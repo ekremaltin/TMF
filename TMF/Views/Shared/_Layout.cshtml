@@ -29,7 +29,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="index.html">
-                                       
+
                     <img src="~/Content/img/logo.png" />
                 </a>
 
@@ -39,7 +39,7 @@
                 <a href="#" class="btn btn-info pull-left">LOGIN</a>
                 @if (true)
                 {
-                <a href="#" class="btn btn-info pull-right">LOG ME OUT</a>
+                    <a href="#" class="btn btn-info pull-right">LOG ME OUT</a>
                 }
             </div>
         </div>
@@ -78,7 +78,7 @@
             <div class="row pad-botm">
                 <div class="col-md-12">
                     <h4 class="header-line">Blank Page</h4>
-                    @RenderBody()                    
+                    @RenderBody()
                 </div>
 
             </div>
@@ -115,5 +115,6 @@
     <script src="~/Scripts/bootstrap.min.js"></script>
     <!-- CUSTOM SCRIPTS  -->
     <script src="~/Scripts/js/custom.js"></script>
+    @RenderSection("scripts", required: false)
 </body>
 </html>

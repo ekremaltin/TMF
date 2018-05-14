@@ -118,7 +118,26 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\js\custom.js" />
+    <Content Include="Scripts\js\home.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="TMF Documents\CiftKeles.png" />
+    <Content Include="TMF Documents\Dmg.png" />
+    <Content Include="TMF Documents\Global.png" />
+    <Content Include="TMF Documents\Keles.png" />
+    <Content Include="TMF Documents\Keles2.png" />
+    <Content Include="TMF Documents\Le.png" />
+    <Content Include="TMF Documents\Lem.png" />
+    <Content Include="TMF Documents\Nova1.png" />
+    <Content Include="TMF Documents\Nova2.png" />
+    <Content Include="TMF Documents\Nova3.png" />
+    <Content Include="TMF Documents\Nova4.png" />
+    <Content Include="TMF Documents\Silver1.png" />
+    <Content Include="TMF Documents\Silver2.png" />
+    <Content Include="TMF Documents\Silver3.png" />
+    <Content Include="TMF Documents\Silver4.png" />
+    <Content Include="TMF Documents\Silver5.png" />
+    <Content Include="TMF Documents\Silver6.png" />
+    <Content Include="TMF Documents\Supreme.png" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
