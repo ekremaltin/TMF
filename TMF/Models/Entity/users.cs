@@ -12,6 +12,7 @@ namespace TMF.Models.Entity
         public byte[] image { get; set; }
         public bool mic { get; set; }
         public bool headset { get; set; }
+        public bool online { get; set; }
         public List<filters> filter { get; set; }
         public List<userGames> userGame { get; set; }
         public virtual roles role { get; set; }
