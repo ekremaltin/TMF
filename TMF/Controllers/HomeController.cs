@@ -7,8 +7,12 @@ namespace TMF.Controllers
         // GET: Home
         public ActionResult Index()
         {
-             
+            if (Session["yetki"] != null)
+            {
+                
+            }
             return View();
         }
+
     }
 }
