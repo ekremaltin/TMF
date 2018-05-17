@@ -1,0 +1,61 @@
+﻿@{
+    ViewBag.Title = "Anasayfa";
+}
+
+<h2>Anasayfa</h2>
+
+@*<div class="container">
+        <div class="row">
+            <div class="col-lg-4">Aktif List
+                <ul class="list-group">
+                    <li class="list-group-item">BEGold</li>
+                    <li class="list-group-item">Burakun</li>
+                    <li class="list-group-item">Ekrem</li>
+                    <li class="list-group-item">Burak</li>
+                </ul>
+            </div>
+            <div class="col-lg-4">Nedir ?</div>
+            <div class="col-lg-4">
+            <input id="lol_id" type="text" placeholder="Buraya Lol Adınızı Yazınızzz"/>
+            <input id="lol_id_btn" type="button" value="Gönder" />
+            </div>
+        </div>
+    </div>*@
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+    <div class="form-horizontal">
+        <p>
+            <label for="amount">Price range:</label>
+            <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+        </p>
+        <div id="slider-range"></div>
+        <div id="gallery" style="display: none;">
+            <img src="~/TMF Documents/Silver1.png" id="minPic" width="140" height="80" />
+            <input type="hidden" id="minData" name="minData"  />
+            <input type="hidden" id="maxData" name="maxData"  />
+            <span class="label label-default">-</span>
+            <img src="~/TMF Documents/Global.png" id="maxPic" width="140" height="80" />
+            <div class="desc">Add a description of the image here</div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Bul" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+
+}
+
+
+
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+@section scripts {
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="~/Scripts/js/home.js"></script>
+}

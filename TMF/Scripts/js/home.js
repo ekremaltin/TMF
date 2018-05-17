@@ -6,6 +6,8 @@
         values: [1, 10],
         slide: function (event, ui) {
             $("#amount").val(ui.values[0] + " - " + ui.values[1]);                  
+            $("#minData").val(ui.values[0]);                  
+            $("#maxData").val(ui.values[1]);                  
             if (ui.values[0] == 1) {                                                
                 $("#minPic").attr('src', '/TMF Documents/Silver1.png');             
             }                                                                       
@@ -71,8 +73,12 @@
         stop: function (event, ui) {
             $("#gallery").slideUp("slow");
         }
-    });    
+    });    /* Ranked aralık Js*/
     
-    $("#amount").val($("#slider-range").slider("values", 0) +
+    $("#amount").val($("#slider-range").slider("values", 0) + /* İlk sayfa açılışta Slider için yazılması gerekenler */
         " - " + $("#slider-range").slider("values", 1));
+    $("#minData").val($("#slider-range").slider("values", 0));
+    $("#maxData").val($("#slider-range").slider("values", 1));
+
+
 });
