@@ -297,16 +297,23 @@ namespace TMF.Controllers
             }
                
 
-                
-
                 return View(liste);
             
-            }
-
-           
         }
-    
+
+        public ActionResult SearchLol()
+        {
+
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Search(FormCollection fc)
+        {
+
+        }
     }
+}
+
 
 
 //var q = (from userGameDesc in db.userGameDesc
