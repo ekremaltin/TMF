@@ -144,14 +144,7 @@
 {
     <script>
         var gameList = $('#userGame_id');
-        gameList.empty();
-        //var cb = '<div class="col-sm-offset-2 col-sm-10">' +
-        //    '<div class="checkbox">' +
-        //    ' <label>' +
-        //    '  <input type="checkbox" value=' + option.Value + '> ' + option.Text + '' +
-        //    '                 </label>' +
-        //    '         </div>' +
-        //    ' </div>'
+        gameList.empty();        
         $.ajax({
             type: 'GET',
             url: '/games/getGames',

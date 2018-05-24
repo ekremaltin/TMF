@@ -21,6 +21,41 @@ namespace TMF.Controllers
             return View(db.user.ToList());
         }
 
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult Login(FormCollection fc)
+        {
+
+            var a = fc["usernameL"].ToString();
+            var b = fc["passL"].ToString();
+            var usr = db.user.Where(u => u.username == a && u.password == b).FirstOrDefault();
+
+            if (usr != null)
+            {
+                Session["id"] = usr.id;
+                Session["Ad"] = usr.username;
+                Session["yetki"] = usr.role.id;
+                return RedirectToAction("Index", "Find");
+            }
+            else
+            {
+                ModelState.AddModelError("", "my db Kullanıcı adı veya şifre hatalı.");
+            }
+
+
+            return View();
+        }
+        public ActionResult LogOut()
+        {
+            Session.Clear();
+            return RedirectToAction("Login");
+        }
+
         // GET: users/Details/5
         public ActionResult Details(int? id)
         {
@@ -47,17 +82,25 @@ namespace TMF.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,username,password,dateOfBirth,image,mic,headset,online")] users users)
+        public ActionResult Create(FormCollection fc)
         {
-            if (ModelState.IsValid)
+            if (((fc["usernameK"]).ToString()).Count()>4)
             {
-                db.user.Add(users);
+                var a = fc["usernameK"];
+                var b = fc["passK"];
+                var c = fc["emailK"];
+                DateTime dt = new DateTime(2000,01,01);
+                users user = new users();
+                user.username = a;
+                user.password = b;
+                user.dateOfBirth= dt;
+                user.role = db.role.Where(u=>u.id==3).FirstOrDefault();
+                db.user.Add(user);
                 db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+                return RedirectToAction("Login");
+            }            
 
-            return View(users);
+            return RedirectToAction("Login");
         }
 
         // GET: users/Edit/5
