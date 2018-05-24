@@ -1,0 +1,74 @@
+﻿@model TMF.Models.Entity.users
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>users</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dateOfBirth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateOfBirth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mic)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mic)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.headset)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.headset)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.online)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.online)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

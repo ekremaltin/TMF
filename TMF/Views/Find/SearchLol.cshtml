@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<TMF.Models.Entity.users>
 @{
-    ViewBag.Title = "Search";
+    ViewBag.Title = "SearchLol";
 }
 
-<h2>Search</h2>
+<h2>SearchLol</h2>
 <div class="col-lg-3 col-md-3">
-    <form method="post" action="@Url.Action("Search")" id="form" enctype="multipart/form-data">
+    <form method="post" action="@Url.Action("SearchLol")" id="form" enctype="multipart/form-data">
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <div class="form-horizontal">
@@ -82,9 +82,9 @@
         foreach (var item in Model)
         {
             <div class="well">
-                    <a href="#" class="">@item.username </a> , @item.dateOfBirth
-                    Roles
-                    Languages
+                <a href="#" class="">@item.username </a> , @item.dateOfBirth
+                Roles
+                Languages
             </div>
 
         }
@@ -95,10 +95,14 @@
 
 
 
-    <link href="~/Content/bootstrap-multiselect.css" rel="stylesheet" />
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    @section scripts {
-        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <script src="~/Scripts/js/home.js"></script>
-    }
+<link href="~/Content/bootstrap-multiselect.css" rel="stylesheet" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+@section scripts {
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="~/Scripts/js/home.js"></script>
+}
+
+
+
+

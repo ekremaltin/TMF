@@ -1,0 +1,82 @@
+﻿@using TMF.Models.Entity
+@model users
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="~/Content/css/login.css" rel="stylesheet" />
+
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="~/Scripts/js/loginJS.js"></script>
+    <script>
+
+
+        $(document).ready(function () {
+            $("#kayitBtn").click(function () {
+                $("#kayitHid").show();
+                $("#loginDiv").hide();
+            });
+            $.ajax({
+                type: 'GET',
+                url: '/games/getGames',
+                datatype: 'json',
+                success: function (data) {
+                    $.each(data, function (index, option) { /*BURDAAAAAAAAAAAAAAAAAAAAA*/
+                        $("#cbList").append('<input value="' + option.Value + '" name="' + option.Value + '" type="checkbox" />');
+                    });
+                }
+            });
+        });
+
+    </script>
+</head>
+<body>
+
+    <div>
+        <div class="container">
+            <div id="login-box">
+                <div class="logo">
+                    <img src="~/TMF Documents/tmf.PNG" class="img img-responsive img-circle center-block" />
+                    <h1 class="logo-caption"><span class="tweak">L</span>ogin</h1>
+                </div><!-- /.logo -->
+                <div class="controls">
+
+                    <form action="@Url.Action("Login","users")" method="post">
+                        <div id="loginDiv">
+                            <input type="text" name="usernameL" placeholder="Username" class="form-control" />
+                            <input type="text" name="passL" placeholder="Password" class="form-control" />
+                        </div>
+                        <button type="submit" class="btn btn-default btn-block btn-custom" id="aaa">Login</button>
+                    </form>
+
+                    <form action="@Url.Action("Create","users")" method="post">
+                        <div id="kayitHid" style="display: none;">
+                            <input type="text" name="usernameK" placeholder="Username" class="form-control" />
+                            <input type="text" name="passK" placeholder="Password" class="form-control" />
+                            <input type="email" name="emailK" placeholder="abc@dce.com" class="form-control" />
+                            <div id="cbList">
+                                @*DB'de bulunan oyun sayısı kadar checkbox.*@
+
+                            </div>
+                            <button type="submit" id="kaydol" class="btn btn-default btn-block btn-custom">Kaydol</button>
+                        </div>
+                        <button type="button" id="kayitBtn" class="btn btn-default btn-block btn-custom">Kayıt Ol</button>
+                    </form>
+
+                </div><!-- /.controls -->
+            </div><!-- /#login-box -->
+        </div><!-- /.container -->
+        <div id="particles-js"></div>
+    </div>
+
+</body>
+</html>

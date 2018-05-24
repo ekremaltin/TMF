@@ -1,4 +1,5 @@
-﻿<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -102,6 +103,7 @@
     <Content Include="Content\css\fontawesome-all.min.css" />
     <Content Include="Content\css\index.css" />
     <Content Include="Content\css\layout.css" />
+    <Content Include="Content\css\login.css" />
     <Content Include="Content\css\searchCss.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
@@ -140,9 +142,14 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\js\bootstrap-select.js" />
-    <Content Include="Scripts\js\custom.js" />
     <Content Include="Scripts\js\home.js" />
+    <Content Include="Scripts\js\loginJS.js" />
     <Content Include="Scripts\js\layout.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="TMF Documents\20180506_115407.jpg" />
@@ -158,6 +165,7 @@
     <Content Include="TMF Documents\Nova2.png" />
     <Content Include="TMF Documents\Nova3.png" />
     <Content Include="TMF Documents\Nova4.png" />
+    <Content Include="TMF Documents\proxy_form.png" />
     <Content Include="TMF Documents\Silver1.png" />
     <Content Include="TMF Documents\Silver2.png" />
     <Content Include="TMF Documents\Silver3.png" />
@@ -165,11 +173,17 @@
     <Content Include="TMF Documents\Silver5.png" />
     <Content Include="TMF Documents\Silver6.png" />
     <Content Include="TMF Documents\Supreme.png" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="TMF Documents\tmf.PNG" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\FindController.cs" />
+    <Compile Include="Controllers\gamesController.cs" />
+    <Compile Include="Controllers\usersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -200,6 +214,18 @@
     <Content Include="Views\Find\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Find\Search.cshtml" />
+    <Content Include="Views\users\Create.cshtml" />
+    <Content Include="Views\users\Delete.cshtml" />
+    <Content Include="Views\users\Details.cshtml" />
+    <Content Include="Views\users\Edit.cshtml" />
+    <Content Include="Views\users\Index.cshtml" />
+    <Content Include="Views\games\Create.cshtml" />
+    <Content Include="Views\games\Delete.cshtml" />
+    <Content Include="Views\games\Details.cshtml" />
+    <Content Include="Views\games\Edit.cshtml" />
+    <Content Include="Views\games\Index.cshtml" />
+    <Content Include="Views\Find\SearchLol.cshtml" />
+    <Content Include="Views\users\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
