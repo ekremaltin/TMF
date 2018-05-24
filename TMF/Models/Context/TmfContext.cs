@@ -23,5 +23,6 @@ namespace TMF.Models.Context
         public DbSet<userGameDescs> userGameDesc { get; set; }
         public DbSet<userGames> userGame { get; set; }
         public DbSet<users> user { get; set; }
+        public DbSet<lobbys> lobby { get; set; }
     }
 }

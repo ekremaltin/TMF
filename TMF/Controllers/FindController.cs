@@ -44,8 +44,8 @@ namespace TMF.Controllers
             List<userGameDescs> query = (from userGameDesc in db.userGameDesc
                          select (userGameDesc)).ToList();
 
-            int min = int.Parse(fc["minData"]); //slider min değer
-            int max = int.Parse(fc["maxData"]); //max değer
+            int min = int.Parse(fc["minDataCS"]); //slider min değer
+            int max = int.Parse(fc["maxDataCS"]); //max değer
 
             int minRank = 86 + (2 * min - 1);
             int maxRank = 86 + (2 * max);
@@ -307,9 +307,9 @@ namespace TMF.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Search(FormCollection fc)
+        public ActionResult SearchLol(FormCollection fc)
         {
-
+            return View();
         }
     }
 }

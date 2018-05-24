@@ -27,26 +27,44 @@
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
 
-    <div class="form-horizontal">
+<div class="form-horizontal">
+    <div id="csDiv" style="display: none;">
         <p>
-            <label for="amount">Price range:</label>
-            <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+            <label for="amountCS">Rank range:</label>
+            <input type="text" id="amountCS" readonly style="border:0; color:#f6931f; font-weight:bold;">
         </p>
-        <div id="slider-range"></div>
-        <div id="gallery" style="display: none;">
-            <img src="~/TMF Documents/Silver1.png" id="minPic" width="140" height="80" />
-            <input type="hidden" id="minData" name="minData"  />
-            <input type="hidden" id="maxData" name="maxData"  />
+        <div id="slider-rangeCS"></div>
+        <div id="galleryCS" style="display: none;">
+            <img src="~/TMF Documents/CS/Silver1.png" id="minPicCS" width="140" height="80" />
+            <input type="hidden" id="minDataCS" name="minData" />
+            <input type="hidden" id="maxDataCS" name="maxData" />
             <span class="label label-default">-</span>
-            <img src="~/TMF Documents/Global.png" id="maxPic" width="140" height="80" />
-            <div class="desc">Add a description of the image here</div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Bul" class="btn btn-default" />
-            </div>
+            <img src="~/TMF Documents/CS/Global.png" id="maxPicCS" width="140" height="80" />
+
         </div>
     </div>
+    <div id="lolDiv" >
+        <p>
+            <label for="amountLOL1">Rank range:</label>
+            <input type="text" id="amountLOL1" readonly style="border:0; color:#f6931f; font-weight:bold;">
+            <input type="text" id="amountLOL2" readonly style="border:0; color:#f6931f; font-weight:bold;">
+        </p>
+        <div id="slider-rangeLOL"></div>
+        <div id="galleryLOL" style="display: none;">
+            <img src="~/TMF Documents/LOL/bronze_5.png" id="minPicLOL" width="140" height="80" />
+            <input type="hidden" id="minDataLOL" name="minData" />
+            <input type="hidden" id="maxDataLOL" name="maxData" />
+            <span class="label label-default">-</span>
+            <img src="~/TMF Documents/LOL/challenger_1.png" id="maxPicLOL" width="140" height="80" />
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Bul" class="btn btn-default" />
+        </div>
+    </div>
+</div>
 
 }
 

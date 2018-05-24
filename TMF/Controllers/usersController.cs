@@ -53,7 +53,7 @@ namespace TMF.Controllers
         public ActionResult LogOut()
         {
             Session.Clear();
-            return RedirectToAction("Login");
+            return RedirectToAction("Index","Find");
         }
 
         // GET: users/Details/5
@@ -123,7 +123,7 @@ namespace TMF.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,username,password,dateOfBirth,image,mic,headset,online")] users users)
+        public ActionResult Edit([Bind(Include = "id,username,password,dateOfBirth,image,mic,headset,online")] users users,FormCollection fc)
         {
             if (ModelState.IsValid)
             {

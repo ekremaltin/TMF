@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
+    <link href="~/Content/css/onOff.css" rel="stylesheet" />
 </head>
 <body>
     <nav class="navbar navbar-inverse">
@@ -15,17 +15,34 @@
             </div>
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">Page 1</a></li>
-                <li><a href="#">Page 2</a></li>
+                <li><a href="@Url.Action("Index","users")">User List</a></li>
+                <li><a href="@Url.Action("Index","Find")">Anasayfa</a></li>
+                <li><a href="@Url.Action("Search","Find")">Cs Search</a></li>
+                <li><a href="@Url.Action("SearchLol","Find")">Lol Search</a></li>
+                <li><a href="@Url.Action("Index","games")">Game List</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                <li><a href="@Url.Action("LogOut","users")"><span class="glyphicon glyphicon-log-out"></span> Çıkış</a></li>
+                @if (Session["id"] == null)
+                {
+                    <li><a href="@Url.Action("Login","users")"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+
+                }
+                else
+                {
+                    <li>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider"></span>
+                        </label>
+                    </li>
+                    <li><a href="@Url.Action("LogOut","users")"><span class="glyphicon glyphicon-log-out"></span> Çıkış</a></li>
+
+                }
             </ul>
         </div>
     </nav>
-    
+
     <div class="container body-content">
         @RenderBody()
         <hr />

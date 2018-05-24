@@ -8,6 +8,8 @@ namespace TMF.Models.Entity
         public virtual users user { get; set; }
         public virtual games game { get; set; }
         public int time { get; set; }
+        public string gameNickName { get; set; }
+        public string gameConnectID { get; set; }
         public List<userGameDescs> userGameDesc { get; set; }
     }
 }
