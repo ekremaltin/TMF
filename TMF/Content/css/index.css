@@ -1,0 +1,143 @@
+﻿.main-banner {
+    position: relative;
+    height: 56rem;
+    background-color: #4b6581;
+    background-repeat: no-repeat;
+    background-position: 100%;
+    background-size: cover
+}
+    .main-banner .wrapper {
+        height: 100%;
+        position: relative
+    }
+.main-banner__text {
+    width: 35rem;
+    position: relative;
+    top: 1.5rem;
+    margin: 0 auto;
+    font-size: 2.5rem;
+    line-height: 2.688rem;
+    font-family: Saira Extra Condensed,sans-serif;
+    font-weight: 600;
+    text-align: center;
+    color: #000
+}
+.main-search{
+    position: relative;
+    width: 100%;
+    align-items: center;
+    margin-top: -3rem;
+    z-index: 4
+}
+
+.search-tabs {
+    transition: all .3s ease-out;
+    text-transform: uppercase;
+    cursor: pointer;
+    height: 2.625rem;
+    border-radius: 4px;
+    font-size: .8125rem;
+    font-weight: 700;
+    border: 2px solid transparent;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none
+}
+    .search-tabs .tab-item.active {
+        background: #fff;
+        color: #314559;
+        z-index: 3
+    }
+
+    .search-tabs .tab-item .wrapper-icon_player {
+        padding-left: 0;
+        box-sizing: border-box
+    }
+
+    .search-tabs .tab-item .wrapper-icon_player img {
+        padding-right: 0;
+        box-sizing: border-box
+    }
+div.bosluk {
+    margin: 200px;
+    width: 35px;
+    height: 30px;
+}
+div.bosluk2 {
+    margin-top:9rem;
+    width: 80px;
+    height: 30px;
+}
+.main-search__wrapper {
+    display: flex;
+    position: relative;
+    width: 60rem;
+    height: 13rem;
+    border-radius: 1.125rem;
+    border: 1px solid black;
+    margin: -.5rem auto 0;
+    background-color: #fff;
+    white-space: nowrap;
+    z-index: 50
+}
+
+.main-search__right {
+    position: relative;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end
+}
+
+.main-search__left {
+    position: relative;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end
+}
+
+
+    .main-search__left .skill-level-home {
+        height: 10rem;
+        margin-right: 3.5rem
+    }
+
+    .main-search__left .skill-level-home__label {
+        width: 100%;
+        justify-content: center;
+        margin-top: 1.2rem;
+        color: #91a6b4
+    }
+
+
+.skill-level-home {
+    padding: 1.25rem 1.25rem .5rem;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    position: relative
+}
+
+.skill-level-home__label {
+    letter-spacing: .0625rem;
+    margin-top: .625rem;
+    position: absolute;
+    top: 0;
+    color: #b2c4d1;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: .75rem;
+    display: flex;
+    align-items: center
+}
+
+.roles{
+    display: flex;
+    flex: 1;
+    position: relative;
+    align-items: flex-end;
+    margin-bottom: .5625rem
+}

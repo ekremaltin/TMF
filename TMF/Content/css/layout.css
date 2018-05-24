@@ -1,0 +1,17 @@
+﻿.dropdown a.icon {
+    position: relative;
+    padding-left: 30px;
+}
+
+.dropdown a.icon .lol {
+        top: 0px;
+        left: -50px;
+        font-size: 500px;
+        width: 35px;
+        height: 30px;
+    }
+span.bosluk {
+    margin-right: 320px;
+    width: 35px;
+    height: 30px;
+}

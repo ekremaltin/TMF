@@ -1,4 +1,5 @@
 ﻿$(function () {
+
     $("#slider-range").slider({
         range: true,
         min: 1,
@@ -8,13 +9,13 @@
             $("#amount").val(ui.values[0] + " - " + ui.values[1]);                  
             $("#minData").val(ui.values[0]);                  
             $("#maxData").val(ui.values[1]);                  
-            if (ui.values[0] == 1) {                                                
+            if (ui.values[0] === 1) {                                                
                 $("#minPic").attr('src', '/TMF Documents/Silver1.png');             
             }                                                                       
-            else if (ui.values[0] == 2) {                                           
+            else if (ui.values[0] === 2) {                                           
                 $("#minPic").attr('src', '/TMF Documents/Silver3.png');             
             }
-            else if (ui.values[0] == 3) {
+            else if (ui.values[0] === 3) {
                 $("#minPic").attr('src', '/TMF Documents/Silver5.png');
             }
             else if (ui.values[0] == 4) {
@@ -79,6 +80,4 @@
         " - " + $("#slider-range").slider("values", 1));
     $("#minData").val($("#slider-range").slider("values", 0));
     $("#maxData").val($("#slider-range").slider("values", 1));
-
-
 });
