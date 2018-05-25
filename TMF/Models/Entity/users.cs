@@ -16,7 +16,7 @@ namespace TMF.Models.Entity
         public bool online { get; set; }
         public bool search { get; set; }
         public List<filters> filter { get; set; }
-        public List<userGames> userGame { get; set; }
+        public virtual List<userGames> userGame { get; set; }
         public virtual roles role { get; set; }
     }
 }
