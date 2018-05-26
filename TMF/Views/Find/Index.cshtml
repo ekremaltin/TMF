@@ -23,8 +23,8 @@
                         <div id="csSearch" class="main-search ">
                             <div class="search-tabs">
                                 <button class="btn btn-outline-primary tab-item" disabled>
-                                    <div data-v-5556e609="" class="wrapper-icon wrapper-icon_player">
-                                        <img data-v-5556e609="" src="data:image/svg+xml,%3Csvg width='29' height='23' viewBox='0 0 29 23' xmlns='http://www.w3.org/2000/svg'%3E%3Ctitle%3Eicon_player_active%3C/title%3E%3Cg fill='%23314559' fill-rule='evenodd'%3E%3Cpath d='M11.387 12.018l2.885 1.579a.624.624 0 0 0 .536.002l2.865-1.55V8.923c.473-.297.784-.794.784-1.36V3.308c0-1.806-1.568-3.27-3.508-3.27h-.836c-1.94 0-3.51 1.464-3.51 3.27v4.254c0 .566.311 1.07.784 1.36v3.096z'/%3E%3Cpath d='M17.929 13.02l-3.18 2.396a.431.431 0 0 1-.49-.001L11.125 13c-.744.35-3.169 1.554-5.432 3.302-.437.338-.69.849-.69 1.383v1.896c0 .796 1.205 1.136 1.205 1.136l7.421 2.2s.874.192 1.749 0c.551-.151 7.42-2.2 7.42-2.2s1.206-.273 1.206-1.136v-1.896a1.725 1.725 0 0 0-.684-1.383c-2.226-1.727-4.605-2.912-5.39-3.282z'/%3E%3C/g%3E%3C/svg%3E"> <!---->
+                                    <div class="wrapper-icon wrapper-icon_player">
+                                        <img src="data:image/svg+xml,%3Csvg width='29' height='23' viewBox='0 0 29 23' xmlns='http://www.w3.org/2000/svg'%3E%3Ctitle%3Eicon_player_active%3C/title%3E%3Cg fill='%23314559' fill-rule='evenodd'%3E%3Cpath d='M11.387 12.018l2.885 1.579a.624.624 0 0 0 .536.002l2.865-1.55V8.923c.473-.297.784-.794.784-1.36V3.308c0-1.806-1.568-3.27-3.508-3.27h-.836c-1.94 0-3.51 1.464-3.51 3.27v4.254c0 .566.311 1.07.784 1.36v3.096z'/%3E%3Cpath d='M17.929 13.02l-3.18 2.396a.431.431 0 0 1-.49-.001L11.125 13c-.744.35-3.169 1.554-5.432 3.302-.437.338-.69.849-.69 1.383v1.896c0 .796 1.205 1.136 1.205 1.136l7.421 2.2s.874.192 1.749 0c.551-.151 7.42-2.2 7.42-2.2s1.206-.273 1.206-1.136v-1.896a1.725 1.725 0 0 0-.684-1.383c-2.226-1.727-4.605-2.912-5.39-3.282z'/%3E%3C/g%3E%3C/svg%3E"> <!---->
                                         Find a CS:GO player
                                     </div>
                                 </button>
@@ -34,8 +34,9 @@
                                     <div class="skill-level-home" style="margin-right:1rem">
                                         <div class="form-horizontal" style="background-color: white;">
                                             <p>
-                                                <label for="amountCS">Rank range:</label>
-                                                <input type="text" id="amountCS" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                                                <label for="amountCS1">Rank range:</label>
+                                                <input type="text" id="amountCS1" readonly style=" width:6rem; border:0; color:#f6931f; font-weight:bold;">
+                                                <input type="text" id="amountCS2" readonly style=" width:6rem; border:0; color:#f6931f; font-weight:bold;">
                                             </p>
                                             <div id="slider-rangeCS"></div>
                                             <div id="galleryCS" style="display: none;">
@@ -93,6 +94,7 @@
                                 </div>
                             </div>
                         </div>
+
                         @*Search for League of Legends*@
                         <div id="lolSearch" class="main-search " style="display:none">
                             <div class="search-tabs">
@@ -105,24 +107,21 @@
                             </div>
                             <div class="main-search__wrapper">
                                 <div class="main-search__left">
-                                    <div class="skill-level-home" style=" margin-right:5rem">
+                                    <div class="skill-level-home" style="width:340px">
                                         <div class="form-horizontal" style="background-color: white;">
-                                            <div id="lolDiv">
-                                                <p>
-                                                    <label for="amountLOL1">Rank range:</label>
-                                                    <input type="text" id="amountLOL1" readonly style="border:0; color:#f6931f; font-weight:bold;">
-                                                    <input type="text" id="amountLOL2" readonly style="border:0; color:#f6931f; font-weight:bold;">
-                                                </p>
-                                                <div id="slider-rangeLOL"></div>
-                                                <div id="galleryLOL" style="display: none;">
-                                                    <img src="~/TMF Documents/LOL/bronze_5.png" id="minPicLOL" width="140" height="80" />
-                                                    <input type="hidden" id="minDataLOL" name="minData" />
-                                                    <input type="hidden" id="maxDataLOL" name="maxData" />
-                                                    <span class="label label-default">-</span>
-                                                    <img src="~/TMF Documents/LOL/challenger_1.png" id="maxPicLOL" width="140" height="80" />
-                                                </div>
+                                            <p>
+                                                <label for="amountLOL1">Rank range:</label>
+                                                <input type="text" id="amountLOL1" readonly style="width:6rem; border:0; color:#f6931f; font-weight:bold;">
+                                                <input type="text" id="amountLOL2" readonly style="width:6rem; border:0; color:#f6931f; font-weight:bold;">
+                                            </p>
+                                            <div id="slider-rangeLOL" style="width:15rem"></div>
+                                            <div id="galleryLOL" style=" display: none;">
+                                                <img src="~/TMF Documents/LOL/bronze_5.png" id="minPicLOL" width="140" height="80" />
+                                                <input type="hidden" id="minDataLOL" name="minData" />
+                                                <input type="hidden" id="maxDataLOL" name="maxData" />
+                                                <span class="label label-default">-</span>
+                                                <img src="~/TMF Documents/LOL/challenger_1.png" id="maxPicLOL" width="140" height="80" />
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
@@ -139,12 +138,22 @@
                                     <div class="roles" style="margin-bottom:6rem; margin-left:6rem">
                                         <div class="checkbox" style="margin-right:1rem">
                                             <label>
-                                                <input type="checkbox" name="Sniper"> Sniper
+                                                <input type="checkbox" name="Top"> Top
                                             </label>
                                         </div>
                                         <div class="checkbox" style="margin-right:1rem">
                                             <label>
-                                                <input type="checkbox" name="Assault"> Assault
+                                                <input type="checkbox" name="Jungle"> Jungle
+                                            </label>
+                                        </div>
+                                        <div class="checkbox" style="margin-right:1rem">
+                                            <label>
+                                                <input type="checkbox" name="Mid"> Mid
+                                            </label>
+                                        </div>
+                                        <div class="checkbox" style="margin-right:1rem">
+                                            <label>
+                                                <input type="checkbox" name="Adc"> Adc
                                             </label>
                                         </div>
                                         <div class="checkbox" style="margin-right:1rem">

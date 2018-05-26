@@ -1,10 +1,10 @@
 ﻿.main-banner {
     position: relative;
     height: 56rem;
-    background-color: #4b6581;
+    /*background-color: #4b6581;
     background-repeat: no-repeat;
     background-position: 100%;
-    background-size: cover
+    background-size: cover*/
 }
     .main-banner .wrapper {
         height: 100%;

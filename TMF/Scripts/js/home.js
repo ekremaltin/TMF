@@ -5,68 +5,87 @@
         max: 10,
         values: [1, 10],
         slide: function (event, ui) {
-            $("#amountCS").val(ui.values[0] + " - " + ui.values[1]);                  
             $("#minDataCS").val(ui.values[0]);                  
             $("#maxDataCS").val(ui.values[1]);                  
             if (ui.values[0] === 1) {                                                
-                $("#minPicCS").attr('src', '/TMF Documents/CS/Silver1.png');             
+                $("#minPicCS").attr('src', '/TMF Documents/CS/Silver1.png');
+                $("#amountCS1").val("Silver 1");
             }                                                                       
             else if (ui.values[0] === 2) {                                           
                 $("#minPicCS").attr('src', '/TMF Documents/CS/Silver3.png');             
+                $("#amountCS1").val("Silver 3");
             }
             else if (ui.values[0] === 3) {
                 $("#minPicCS").attr('src', '/TMF Documents/CS/Silver5.png');
+                $("#amountCS1").val("Silver 5");
             }
             else if (ui.values[0] === 4) {
                 $("#minPicCS").attr('src', '/TMF Documents/CS/Nova1.png');
+                $("#amountCS1").val("Nova 1");
             }
             else if (ui.values[0] === 5) {
                 $("#minPicCS").attr('src', '/TMF Documents/CS/Nova3.png');
+                $("#amountCS1").val("Nova 3");
             }
             else if (ui.values[0] === 6) {
                 $("#minPicCS").attr('src', '/TMF Documents/CS/Keles.png');
+                $("#amountCS1").val("Master Guardian 1");
             }
             else if (ui.values[0] === 7) {
                 $("#minPicCS").attr('src', '/TMF Documents/CS/CiftKeles.png');
+                $("#amountCS1").val("Master Guardian Elite");
             }
             else if (ui.values[0] === 8) {
                 $("#minPicCS").attr('src', '/TMF Documents/CS/Le.png');
+                $("#amountCS1").val("Legendary Eagle");
             }
             else if (ui.values[0] === 9) {
                 $("#minPicCS").attr('src', '/TMF Documents/CS/Supreme.png');
+                $("#amountCS1").val("Supreme Master First Class");
             }
             else if (ui.values[0] === 10) {
                 $("#minPicCS").attr('src', '/TMF Documents/CS/Global.png');
+                $("#amountCS1").val("The Global Elite");
             }
             if (ui.values[1] === 1) {
                 $("#maxPicCS").attr('src', '/TMF Documents/CS/Silver2.png');
+                $("#amountCS2").val("Silver 2");
             } 
             else if (ui.values[1] === 2) {
                 $("#maxPicCS").attr('src', '/TMF Documents/CS/Silver4.png');
+                $("#amountCS2").val("Silver 4");
             }
             else if (ui.values[1] === 3) {
                 $("#maxPicCS").attr('src', '/TMF Documents/CS/Silver6.png');
+                $("#amountCS2").val("Silver 6");
             } 
             else if (ui.values[1] === 4) {
                 $("#maxPicCS").attr('src', '/TMF Documents/CS/Nova2.png');
+                $("#amountCS2").val("Nova 2");
             } 
             else if (ui.values[1] === 5) {
                 $("#maxPicCS").attr('src', '/TMF Documents/CS/Nova4.png');
+                $("#amountCS2").val("Nova 4");
             } 
             else if (ui.values[1] === 6) {
                 $("#maxPicCS").attr('src', '/TMF Documents/CS/Keles2.png');
+                $("#amountCS2").val("Master Guardian 2");
             } 
             else if (ui.values[1] === 7) {
                 $("#maxPicCS").attr('src', '/TMF Documents/CS/Dmg.png');
+                $("#amountCS2").val("Distinguished Master Guardian");
             } 
             else if (ui.values[1] === 8) {
                 $("#maxPicCS").attr('src', '/TMF Documents/CS/Lem.png');
+                $("#amountCS2").val("Legendary Eagle Master");
             } 
             else if (ui.values[1] === 9) {
                 $("#maxPicCS").attr('src', '/TMF Documents/CS/Supreme.png');
+                $("#amountCS2").val("Supreme Master First Class");
             } 
             else if (ui.values[1] === 10) {
                 $("#maxPicCS").attr('src', '/TMF Documents/CS/Global.png');
+                $("#amountCS2").val("The Global Elite");
             }
             $("#galleryCS").slideDown("slow");
         },
@@ -75,8 +94,8 @@
         }
     });    /* Ranked aralık Js*/
     
-    $("#amountCS").val($("#slider-rangeCS").slider("values", 0) + /* İlk sayfa açılışta Slider için yazılması gerekenler */
-        " - " + $("#slider-rangeCS").slider("values", 1));
+    $("#amountCS1").val("Silver 1"); /* İlk sayfa açılışta Slider için yazılması gerekenler */
+    $("#amountCS2").val("The Global Elite");
     $("#minDataCS").val($("#slider-rangeCS").slider("values", 0));
     $("#maxDataCS").val($("#slider-rangeCS").slider("values", 1));
 
