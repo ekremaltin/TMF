@@ -62,6 +62,7 @@
                 <div>
                     Max Saat:  <input type="number" name="maxHours" value="0" />
                 </div>
+             
                 <div class="radio">
                     <input type="radio" name="yas" value="all" checked="checked"> All<br>
                     <input type="radio" name="yas" value="-16"> -16<br>
@@ -81,9 +82,18 @@
         foreach (var item in Model)
         {
             <div class="well">
-                    <a href="#" class="">@item.username </a> , @item.dateOfBirth
-                    Roles
-                    Languages
+                <a href="#" class="">@item.username </a> , @item.dateOfBirth.ToShortDateString();
+                <div class="col-lg-9 col-md-9">
+                    <h2>Roles</h2>
+
+                    @foreach (var item2 in item.userGame.Where(e => e.game.id == 2).First().userGameDesc)
+                    {
+                        @item2.compAtt.value <br />
+                    }
+                </div>
+                <div class="col-lg-3 col-md-3">
+                   <button class="btn-primary">Davet Et</button>
+                </div>
             </div>
 
         }
