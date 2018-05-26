@@ -42,17 +42,35 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Home </a>
+                    <a class="nav-link" href="@Url.Action("Index", "Find")">Home </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Players</a>
+                    <a class="nav-link" href="@Url.Action("Index", "users")">User List</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Create", "users")">User Create</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Search", "Find")">Cs Search</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("SearchLol", "Find")">Lol Search</a>
+                </li>
+
             </ul>
 
             <ul class="nav-item navbar-nav navbar-right">
-                <li><button class="btn btn-outline-primary my-2 mr-2 my-sm-0" type="submit"><span class="fas fa-sign-in-alt "></span> Login</button></li>
-                <li><button class="btn btn-outline-danger my-2 mr-2 my-sm-0" type="submit"><span class="fas fa-sign-out-alt"></span> Logout</button></li>
-                <li><button class="btn btn-outline-primary my-2 my-md-0" type="submit"><span class="fas fa-user"></span> Sign Up</button></li>
+
+                @if (Session["id"] != null)
+                {
+                    <li class="btn btn-outline-primary my-2 mr-2 my-sm-0 ">@Html.ActionLink("Log Out", "LogOut", "users")</li>
+                }
+                else
+                {
+                    <li class="btn btn-outline-primary my-2 mr-2 my-sm-0 ">@Html.ActionLink("Login", "Login", "users")</li>
+                    <li class="btn btn-outline-primary my-2 my-md-0"><span class="fas fa-user"></span> @Html.ActionLink("Sign Up","Create","users")</li>
+
+                }
 
             </ul>
         </div>
@@ -62,7 +80,7 @@
         @RenderBody()
         <hr />
     </div>
-   
+
     @RenderSection("scripts", required: false)
 
 </body>

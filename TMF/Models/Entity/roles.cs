@@ -6,6 +6,6 @@ namespace TMF.Models.Entity
     {
         public int id { get; set; }
         public string name { get; set; }
-        public List<users> user { get; set; }
+        public virtual List<users> user { get; set; }
     }
 }

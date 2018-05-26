@@ -102,8 +102,8 @@
     $("#slider-rangeLOL").slider({
         range: true,
         min: 1,
-        max: 15,
-        values: [1, 15],
+        max: 13,
+        values: [1, 13],
         slide: function (event, ui) {
             $("#minDataLOL").val(ui.values[0]);
             $("#maxDataLOL").val(ui.values[1]);
@@ -116,54 +116,46 @@
                 $("#amountLOL1").val("Silver 5");
             }
             else if (ui.values[0] === 3) {
-                $("#minPicLOL").attr('src', '/TMF Documents/LOL/silver_2.png');
-                $("#amountLOL1").val("Silver 2");
+                $("#minPicLOL").attr('src', '/TMF Documents/LOL/silver_3.png');
+                $("#amountLOL1").val("Silver 3");
             }
             else if (ui.values[0] === 4) {
-                $("#minPicLOL").attr('src', '/TMF Documents/LOL/gold_5.png');
-                $("#amountLOL1").val("Gold 5");
+                $("#minPicLOL").attr('src', '/TMF Documents/LOL/silver_1.png');
+                $("#amountLOL1").val("Silver 1");
             }
             else if (ui.values[0] === 5) {
+                $("#minPicLOL").attr('src', '/TMF Documents/LOL/gold_4.png');
+                $("#amountLOL1").val("Gold 4");
+            }
+            else if (ui.values[0] === 6) {
                 $("#minPicLOL").attr('src', '/TMF Documents/LOL/gold_2.png');
                 $("#amountLOL1").val("Gold 2");
             }
-            else if (ui.values[0] === 6) {
+            else if (ui.values[0] === 7) {
                 $("#minPicLOL").attr('src', '/TMF Documents/LOL/platinum_5.png');
                 $("#amountLOL1").val("Platinum 5");
             }
-            else if (ui.values[0] === 7) {
+            else if (ui.values[0] === 8) {
                 $("#minPicLOL").attr('src', '/TMF Documents/LOL/platinum_3.png');
                 $("#amountLOL1").val("Platinum 3");
             }
-            else if (ui.values[0] === 8) {
-                $("#minPicLOL").attr('src', '/TMF Documents/LOL/platinum_1.png');
-                $("#amountLOL1").val("Platinum 2");
-            }
             else if (ui.values[0] === 9) {
-                $("#minPicLOL").attr('src', '/TMF Documents/LOL/diamond_5.png');
-                $("#amountLOL1").val("Diamond 5");
+                $("#minPicLOL").attr('src', '/TMF Documents/LOL/platinum_1.png');
+                $("#amountLOL1").val("Platinum 1");
             }
             else if (ui.values[0] === 10) {
                 $("#minPicLOL").attr('src', '/TMF Documents/LOL/diamond_4.png');
                 $("#amountLOL1").val("Diamond 4");
             }
             else if (ui.values[0] === 11) {
-                $("#minPicLOL").attr('src', '/TMF Documents/LOL/diamond_3.png');
-                $("#amountLOL1").val("Diamond 3");
-            }
-            else if (ui.values[0] === 12) {
                 $("#minPicLOL").attr('src', '/TMF Documents/LOL/diamond_2.png');
                 $("#amountLOL1").val("Diamond 2");
             }
-            else if (ui.values[0] === 13) {
-                $("#minPicLOL").attr('src', '/TMF Documents/LOL/diamond_1.png');
-                $("#amountLOL1").val("Diamond 1");
-            }
-            else if (ui.values[0] === 14) {
+            else if (ui.values[0] === 12) {
                 $("#minPicLOL").attr('src', '/TMF Documents/LOL/master_1.png');
                 $("#amountLOL1").val("Master");
             }
-            else if (ui.values[0] === 15) {
+            else if (ui.values[0] === 13) {
                 $("#minPicLOL").attr('src', '/TMF Documents/LOL/challenger_1.png');
                 $("#amountLOL1").val("Challenger" + " - ");
             }
@@ -172,12 +164,12 @@
                 $("#amountLOL2").val("Bronze 1");
             }
             else if (ui.values[1] === 2) {
-                $("#maxPicLOL").attr('src', '/TMF Documents/LOL/silver_3.png');
-                $("#amountLOL2").val("Siver 3");
+                $("#maxPicLOL").attr('src', '/TMF Documents/LOL/silver_2.png');
+                $("#amountLOL2").val("Siver 2");
             }
             else if (ui.values[1] === 3) {
-                $("#maxPicLOL").attr('src', '/TMF Documents/LOL/silver_1.png');
-                $("#amountLOL2").val("Silver 1");
+                $("#maxPicLOL").attr('src', '/TMF Documents/LOL/gold_5.png');
+                $("#amountLOL2").val("Gold 5");
             }
             else if (ui.values[1] === 4) {
                 $("#maxPicLOL").attr('src', '/TMF Documents/LOL/gold_3.png');
@@ -196,37 +188,30 @@
                 $("#amountLOL2").val("Platinum 2");
             }
             else if (ui.values[1] === 8) {
-                $("#maxPicLOL").attr('src', '/TMF Documents/LOL/platinum_1.png');
-                $("#amountLOL2").val("Platinum 1");
-            }
-            else if (ui.values[1] === 9) {
                 $("#maxPicLOL").attr('src', '/TMF Documents/LOL/diamond_5.png');
                 $("#amountLOL2").val("Diamond 5");
             }
-            else if (ui.values[1] === 10) {
-                $("#maxPicLOL").attr('src', '/TMF Documents/LOL/diamond_4.png');
-                $("#amountLOL2").val("Diamond 4");
-            }
-            else if (ui.values[1] === 11) {
+            else if (ui.values[1] === 9) {
                 $("#maxPicLOL").attr('src', '/TMF Documents/LOL/diamond_3.png');
                 $("#amountLOL2").val("Diamond 3");
             }
-            else if (ui.values[1] === 12) {
-                $("#maxPicLOL").attr('src', '/TMF Documents/LOL/diamond_2.png');
-                $("#amountLOL2").val("Diamond 2");
-            }
-            else if (ui.values[1] === 13) {
+            else if (ui.values[1] === 10) {
                 $("#maxPicLOL").attr('src', '/TMF Documents/LOL/diamond_1.png');
                 $("#amountLOL2").val("Diamond 1");
             }
-            else if (ui.values[1] === 14) {
+            else if (ui.values[1] === 11) {
                 $("#maxPicLOL").attr('src', '/TMF Documents/LOL/master_1.png');
-                $("#amountLOL2").val("Master");
+                $("#amountLOL1").val("Master");
             }
-            else if (ui.values[1] === 15) {
+            else if (ui.values[1] === 12) {
                 $("#maxPicLOL").attr('src', '/TMF Documents/LOL/challenger_1.png');
                 $("#amountLOL2").val("Challenger");
-            }    
+            }
+            else if (ui.values[1] === 13) {
+                $("#maxPicLOL").attr('src', '/TMF Documents/LOL/challenger_1.png');
+                $("#amountLOL2").val("Challenger");
+            }
+
             $("#galleryLOL").slideDown("slow");
         },
         stop: function (event, ui) {

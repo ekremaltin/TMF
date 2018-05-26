@@ -7,6 +7,6 @@ namespace TMF.Models.Entity
         public int id { get; set; }
         public string name { get; set; }
         public virtual games game { get; set; }
-        public List<compAtts> compAtt { get; set; }
+        public virtual List<compAtts> compAtt { get; set; }
     }
 }

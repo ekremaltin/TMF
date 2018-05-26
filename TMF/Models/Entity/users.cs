@@ -5,6 +5,7 @@ namespace TMF.Models.Entity
 {
     public partial class users
     {
+        
         public int id { get; set; }
         public string username { get; set; }
         public string password { get; set; }
@@ -15,8 +16,8 @@ namespace TMF.Models.Entity
         public bool headset { get; set; }
         public bool online { get; set; }
         public bool search { get; set; }
-        public List<filters> filter { get; set; }
-        public List<userGames> userGame { get; set; }
+        public virtual List<filters> filter { get; set; }
+        public virtual List<userGames> userGame { get; set; }
         public virtual roles role { get; set; }
     }
 }

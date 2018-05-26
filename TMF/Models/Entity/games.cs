@@ -8,10 +8,10 @@ namespace TMF.Models.Entity
         public string name { get; set; }
         public string url { get; set; }
         public byte[] image { get; set; }
-        public List<userGames> userGame { get; set; }
-        public List<gameComponents> gameComponent { get; set; }
-        public List<gameGenres> gameGenre { get; set; }
-        public List<gamePlatforms> gamePlatform { get; set; }
+        public virtual List<userGames> userGame { get; set; }
+        public virtual List<gameComponents> gameComponent { get; set; }
+        public virtual List<gameGenres> gameGenre { get; set; }
+        public virtual List<gamePlatforms> gamePlatform { get; set; }
     }
 
 }
