@@ -11,7 +11,7 @@ namespace TMF.Models.Entity
         public virtual users userGon { get; set; }        
         public virtual users userAl { get; set; }
         public DateTime date { get; set; }
-        public bool status { get; set; }
-        public int gameID { get; set; }
+        public int status { get; set; }
+        public virtual games game { get; set; }
     }
 }

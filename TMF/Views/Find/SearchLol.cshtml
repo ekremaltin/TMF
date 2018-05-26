@@ -85,8 +85,9 @@
                         @item2.compAtt.value <br />
                     }
                 </div>
-                <div class="col-lg-3 col-md-3">
-                    <button class="btn-primary">Davet Et</button>
+                <div class="col-lg-3 col-md-3">                    
+                    <input type="button" class="btn btn-primary" value="Davet Et" onclick="location.href = '@Url.Action("DavetEt", new { DavetEdilenId = item.id, oyunId = 1 })'">
+                                       
                 </div>
             </div>
 

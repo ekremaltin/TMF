@@ -17,8 +17,15 @@ namespace TMF.Controllers
         TmfContext db = new TmfContext();
         public ActionResult Index()
         {
-            
-            return View();
+            List<lobbys> liste = new List<lobbys>();
+            if (Session["id"]!=null)
+            {
+                int id=int.Parse(Session["id"].ToString());
+                liste = (from lobby in db.lobby
+                         where lobby.userAl.id == id && lobby.status == 0
+                         select (lobby)).ToList<lobbys>();
+            }
+            return View(liste);
         }
 
         [HttpPost]
@@ -582,6 +589,68 @@ namespace TMF.Controllers
 
             return View(liste);
         }
+        public ActionResult DavetEt(int DavetEdilenId, int oyunId)
+        {
+            lobbys lobby = new lobbys();
+            lobby.userAl = db.user.Find(DavetEdilenId);
+            lobby.userGon = db.user.Find(int.Parse(Session["id"].ToString()));
+            lobby.status = 0;
+            lobby.date = DateTime.Now;
+            lobby.game = db.game.Find(oyunId);
+
+            db.lobby.Add(lobby);
+            db.SaveChanges();
+            if (oyunId == 1)
+            {
+                
+                return RedirectToAction("SearchLol");
+            }
+            else if (oyunId == 2)
+            {
+                return RedirectToAction("Search");
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+
+        }
+        public ActionResult DavetStatu(int lobbyId, int statu)
+        {
+            lobbys lobby = db.lobby.Find(lobbyId);
+            lobby.status = statu;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        public ActionResult Listeler()
+        {
+            return View();
+        }
+        public ActionResult yourLobbies(int statu)
+        {
+            List<lobbys> liste = new List<lobbys>();
+            if (Session["id"] != null)
+            {
+                int id = int.Parse(Session["id"].ToString());
+                liste = (from lobby in db.lobby
+                         where lobby.userAl.id == id && lobby.status == statu
+                         select (lobby)).ToList<lobbys>();
+            }
+            return View("Listeler", liste);
+        }
+        public ActionResult invitedLobbies(int statu)
+        {
+            List<lobbys> liste = new List<lobbys>();
+            if (Session["id"] != null)
+            {
+                int id = int.Parse(Session["id"].ToString());
+                liste = (from lobby in db.lobby
+                         where lobby.userGon.id == id && lobby.status == statu
+                         select (lobby)).ToList<lobbys>();
+            }
+            return View("Listeler", liste);
+        }
+
     }
 }
 

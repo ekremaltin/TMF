@@ -1,0 +1,37 @@
+﻿@model IEnumerable<TMF.Models.Entity.lobbys>
+@{
+    ViewBag.Title = "Listeler";
+}
+
+<h2>Listeler</h2>
+
+
+<input type="button" class="btn btn-primary" value="Kabul Ettiğin Davetler" onclick="location.href = '@Url.Action("yourLobbies", new { statu = 1 })'">
+<input type="button" class="btn btn-primary" value="Reddettiğin Davetler" onclick="location.href = '@Url.Action("yourLobbies", new { statu = 2 })'">
+<input type="button" class="btn btn-primary" value="Kabul Edilen Davetlerin" onclick="location.href = '@Url.Action("invitedLobbies", new { statu = 1 })'">
+<input type="button" class="btn btn-primary" value="Reddedilen Davetlerin" onclick="location.href = '@Url.Action("invitedLobbies", new { statu = 2 })'"><br />
+
+
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+        if (item.userGon.id == int.Parse(Session["id"].ToString()))
+        {
+            <b>  @item.userAl.username</b>
+            <p>
+                Oyuncusunu @item.game.name oynamaya davet ettiniz.<br />              
+            </p>
+        }
+        else
+        {
+            <b>  @item.userGon.username</b>
+            <p>
+                Sizi @item.game.name oynamaya davet etti.<br />
+                <b>Oyun Nickname:</b> @item.userGon.userGame.Find(e => e.game.id == item.game.id).gameNickName
+            </p>
+        }
+
+
+    }
+}
