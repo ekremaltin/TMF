@@ -77,7 +77,7 @@ namespace TMF.Controllers
         {
             ViewBag.gameList = new SelectList(db.game, "id", "name");
             ViewBag.csRanks = new SelectList(db.compAtt.Where(a => a.id <= 104 && a.id > 86), "id", "value");
-            ViewBag.lolRanks = new SelectList(db.compAtt.Where(a => a.id <= 27 && a.id > 0), "id", "value");
+            ViewBag.lolRanks = new SelectList(db.compAtt.Where(a => a.id <= 81 && a.id > 54), "id", "value");
             return View();
         }
 
@@ -267,7 +267,7 @@ namespace TMF.Controllers
 
                 db.user.Add(usr);
                 db.SaveChanges();
-                return RedirectToAction("Login");
+                return RedirectToAction("Index","users");
             }
 
             return RedirectToAction("Login");
