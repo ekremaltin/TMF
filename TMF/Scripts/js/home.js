@@ -201,7 +201,7 @@
             }
             else if (ui.values[1] === 11) {
                 $("#maxPicLOL").attr('src', '/TMF Documents/LOL/master_1.png');
-                $("#amountLOL1").val("Master");
+                $("#amountLOL2").val("Master");
             }
             else if (ui.values[1] === 12) {
                 $("#maxPicLOL").attr('src', '/TMF Documents/LOL/challenger_1.png');
