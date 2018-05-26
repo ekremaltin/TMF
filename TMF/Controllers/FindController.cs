@@ -18,7 +18,7 @@ namespace TMF.Controllers
         // GET: Home
         public ActionResult Index()
         {
-
+            
             return View();
         }
 
@@ -34,12 +34,14 @@ namespace TMF.Controllers
 
         public ActionResult Search()
         {
-
+            var abc = db.user.Find(11);
+            
             return View();
         }
         [HttpPost]
         public ActionResult Search(FormCollection fc)
         {
+           
             List<users> liste = new List<users>();
             List<userGameDescs> query = (from userGameDesc in db.userGameDesc
                          select (userGameDesc)).ToList();

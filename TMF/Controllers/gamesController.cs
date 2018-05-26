@@ -26,6 +26,16 @@ namespace TMF.Controllers
             var liste = new SelectList(db.game, "id", "name");
             return new JsonResult { Data = liste, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
+        public JsonResult getRankCs()
+        {
+            var liste = new SelectList(db.compAtt.Where(a => a.id <= 104 && a.id >86), "id", "value");
+            return new JsonResult { Data = liste, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
+        public JsonResult getRankLol()
+        {
+            var liste = new SelectList(db.compAtt.Where(a => a.id <= 27 && a.id > 0), "id", "value");
+            return new JsonResult { Data = liste, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
 
         // GET: games/Details/5
         public ActionResult Details(int? id)
@@ -73,6 +83,7 @@ namespace TMF.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             games games = db.game.Find(id);
+
             if (games == null)
             {
                 return HttpNotFound();

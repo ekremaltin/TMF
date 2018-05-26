@@ -10,6 +10,6 @@ namespace TMF.Models.Entity
         public int time { get; set; }
         public string gameNickName { get; set; }
         public string gameConnectID { get; set; }
-        public List<userGameDescs> userGameDesc { get; set; }
+        public virtual List<userGameDescs> userGameDesc { get; set; }
     }
 }

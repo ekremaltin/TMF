@@ -6,6 +6,6 @@ namespace TMF.Models.Entity
     {
         public int id { get; set; }
         public string name { get; set; }
-        public List<gameGenres> gameGenre { get; set; }
+        public virtual List<gameGenres> gameGenre { get; set; }
     }
 }
