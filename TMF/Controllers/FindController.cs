@@ -148,7 +148,31 @@ namespace TMF.Controllers
 
                 foreach (var item in query2)
                 {
+                    if (Session["id"]!=null)
+                    {
+                        if (item.Key == int.Parse(Session["id"].ToString()))
+                        {
+                            continue;
+                        }
+                    }
+                    
                     users u = db.user.Find(item.Key);
+                    string Mic = fc["Mic"];
+                    if (Mic == "on")
+                    {
+                        if (u.mic == false)
+                        {
+                            continue;
+                        }
+                    }
+                    string Headset = fc["Headset"];
+                    if (Headset == "on")
+                    {
+                        if (u.headset == false)
+                        {
+                            continue;
+                        }
+                    }
                     if (yas == "-16")
                     {
                         if (DateTime.Now.Year - u.dateOfBirth.Year < 16)
@@ -233,7 +257,30 @@ namespace TMF.Controllers
 
                 foreach (var item in query2)
                 {
+                    if (Session["id"] != null)
+                    {
+                        if (item.Key == int.Parse(Session["id"].ToString()))
+                        {
+                            continue;
+                        }
+                    }
                     users u = db.user.Find(item.Key);
+                    string Mic = fc["Mic"];
+                    if (Mic == "on")
+                    {
+                        if (u.mic == false)
+                        {
+                            continue;
+                        }
+                    }
+                    string Headset = fc["Headset"];
+                    if (Headset == "on")
+                    {
+                        if (u.headset == false)
+                        {
+                            continue;
+                        }
+                    }
                     if (yas == "-16")
                     {
                         if (DateTime.Now.Year - u.dateOfBirth.Year < 16)
@@ -428,7 +475,30 @@ namespace TMF.Controllers
 
                 foreach (var item in query2)
                 {
+                    if (Session["id"] != null)
+                    {
+                        if (item.Key == int.Parse(Session["id"].ToString()))
+                        {
+                            continue;
+                        }
+                    }
                     users u = db.user.Find(item.Key);
+                    string Mic = fc["Mic"];
+                    if (Mic == "on")
+                    {
+                        if (u.mic == false)
+                        {
+                            continue;
+                        }
+                    }
+                    string Headset = fc["Headset"];
+                    if (Headset == "on")
+                    {
+                        if (u.headset == false)
+                        {
+                            continue;
+                        }
+                    }
                     if (yas == "-16")
                     {
                         if (DateTime.Now.Year - u.dateOfBirth.Year < 16)
@@ -513,7 +583,30 @@ namespace TMF.Controllers
 
                 foreach (var item in query2)
                 {
+                    if (Session["id"] != null)
+                    {
+                        if (item.Key == int.Parse(Session["id"].ToString()))
+                        {
+                            continue;
+                        }
+                    }
                     users u = db.user.Find(item.Key);
+                    string Mic = fc["Mic"];
+                    if (Mic == "on")
+                    {
+                        if (u.mic == false)
+                        {
+                            continue;
+                        }
+                    }
+                    string Headset = fc["Headset"];
+                    if (Headset == "on")
+                    {
+                        if (u.headset == false)
+                        {
+                            continue;
+                        }
+                    }
                     if (yas == "-16")
                     {
                         if (DateTime.Now.Year - u.dateOfBirth.Year < 16)
