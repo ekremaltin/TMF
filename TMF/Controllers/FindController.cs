@@ -32,10 +32,6 @@ namespace TMF.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Index(FormCollection fc)
         {
-            int min = int.Parse(fc["minDataCS"]); //slider min değer
-            int max = int.Parse(fc["maxDataCS"]); //max değer
-            bool a = fc["Fragger"] == "on" ? true : false;
-            bool b = fc["Supporter"] == "on" ? true : false;
             return View();
         }
 
