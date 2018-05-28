@@ -17,18 +17,21 @@ namespace TMF.Controllers
         TmfContext db = new TmfContext();
         public ActionResult Index()
         {
-            
-            return View();
+            List<lobbys> liste = new List<lobbys>();
+            if (Session["id"]!=null)
+            {
+                int id=int.Parse(Session["id"].ToString());
+                liste = (from lobby in db.lobby
+                         where lobby.userAl.id == id && lobby.status == 0
+                         select (lobby)).ToList<lobbys>();
+            }
+            return View(liste);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Index(FormCollection fc)
         {
-            int min = int.Parse(fc["minDataCS"]); //slider min değer
-            int max = int.Parse(fc["maxDataCS"]); //max değer
-            bool a = fc["Fragger"] == "on" ? true : false;
-            bool b = fc["Supporter"] == "on" ? true : false;
             return View();
         }
 
@@ -141,7 +144,31 @@ namespace TMF.Controllers
 
                 foreach (var item in query2)
                 {
+                    if (Session["id"]!=null)
+                    {
+                        if (item.Key == int.Parse(Session["id"].ToString()))
+                        {
+                            continue;
+                        }
+                    }
+                    
                     users u = db.user.Find(item.Key);
+                    string Mic = fc["Mic"];
+                    if (Mic == "on")
+                    {
+                        if (u.mic == false)
+                        {
+                            continue;
+                        }
+                    }
+                    string Headset = fc["Headset"];
+                    if (Headset == "on")
+                    {
+                        if (u.headset == false)
+                        {
+                            continue;
+                        }
+                    }
                     if (yas == "-16")
                     {
                         if (DateTime.Now.Year - u.dateOfBirth.Year < 16)
@@ -226,7 +253,30 @@ namespace TMF.Controllers
 
                 foreach (var item in query2)
                 {
+                    if (Session["id"] != null)
+                    {
+                        if (item.Key == int.Parse(Session["id"].ToString()))
+                        {
+                            continue;
+                        }
+                    }
                     users u = db.user.Find(item.Key);
+                    string Mic = fc["Mic"];
+                    if (Mic == "on")
+                    {
+                        if (u.mic == false)
+                        {
+                            continue;
+                        }
+                    }
+                    string Headset = fc["Headset"];
+                    if (Headset == "on")
+                    {
+                        if (u.headset == false)
+                        {
+                            continue;
+                        }
+                    }
                     if (yas == "-16")
                     {
                         if (DateTime.Now.Year - u.dateOfBirth.Year < 16)
@@ -421,7 +471,30 @@ namespace TMF.Controllers
 
                 foreach (var item in query2)
                 {
+                    if (Session["id"] != null)
+                    {
+                        if (item.Key == int.Parse(Session["id"].ToString()))
+                        {
+                            continue;
+                        }
+                    }
                     users u = db.user.Find(item.Key);
+                    string Mic = fc["Mic"];
+                    if (Mic == "on")
+                    {
+                        if (u.mic == false)
+                        {
+                            continue;
+                        }
+                    }
+                    string Headset = fc["Headset"];
+                    if (Headset == "on")
+                    {
+                        if (u.headset == false)
+                        {
+                            continue;
+                        }
+                    }
                     if (yas == "-16")
                     {
                         if (DateTime.Now.Year - u.dateOfBirth.Year < 16)
@@ -506,7 +579,30 @@ namespace TMF.Controllers
 
                 foreach (var item in query2)
                 {
+                    if (Session["id"] != null)
+                    {
+                        if (item.Key == int.Parse(Session["id"].ToString()))
+                        {
+                            continue;
+                        }
+                    }
                     users u = db.user.Find(item.Key);
+                    string Mic = fc["Mic"];
+                    if (Mic == "on")
+                    {
+                        if (u.mic == false)
+                        {
+                            continue;
+                        }
+                    }
+                    string Headset = fc["Headset"];
+                    if (Headset == "on")
+                    {
+                        if (u.headset == false)
+                        {
+                            continue;
+                        }
+                    }
                     if (yas == "-16")
                     {
                         if (DateTime.Now.Year - u.dateOfBirth.Year < 16)
@@ -582,6 +678,68 @@ namespace TMF.Controllers
 
             return View(liste);
         }
+        public ActionResult DavetEt(int DavetEdilenId, int oyunId)
+        {
+            lobbys lobby = new lobbys();
+            lobby.userAl = db.user.Find(DavetEdilenId);
+            lobby.userGon = db.user.Find(int.Parse(Session["id"].ToString()));
+            lobby.status = 0;
+            lobby.date = DateTime.Now;
+            lobby.game = db.game.Find(oyunId);
+
+            db.lobby.Add(lobby);
+            db.SaveChanges();
+            if (oyunId == 1)
+            {
+                
+                return RedirectToAction("SearchLol");
+            }
+            else if (oyunId == 2)
+            {
+                return RedirectToAction("Search");
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+
+        }
+        public ActionResult DavetStatu(int lobbyId, int statu)
+        {
+            lobbys lobby = db.lobby.Find(lobbyId);
+            lobby.status = statu;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        public ActionResult Listeler()
+        {
+            return View();
+        }
+        public ActionResult yourLobbies(int statu)
+        {
+            List<lobbys> liste = new List<lobbys>();
+            if (Session["id"] != null)
+            {
+                int id = int.Parse(Session["id"].ToString());
+                liste = (from lobby in db.lobby
+                         where lobby.userAl.id == id && lobby.status == statu
+                         select (lobby)).ToList<lobbys>();
+            }
+            return View("Listeler", liste);
+        }
+        public ActionResult invitedLobbies(int statu)
+        {
+            List<lobbys> liste = new List<lobbys>();
+            if (Session["id"] != null)
+            {
+                int id = int.Parse(Session["id"].ToString());
+                liste = (from lobby in db.lobby
+                         where lobby.userGon.id == id && lobby.status == statu
+                         select (lobby)).ToList<lobbys>();
+            }
+            return View("Listeler", liste);
+        }
+
     }
 }
 
