@@ -141,3 +141,47 @@ div.bosluk2 {
     align-items: flex-end;
     margin-bottom: .5625rem
 }
+
+.minPicLOL {
+    width: 110px;
+    height: 70px;
+    margin-right: 3rem
+}
+
+.maxPicLOL {
+    width: 110px;
+    height: 70px;
+    margin-left: 3rem
+}
+
+.amountLOL1 {
+    width: 10rem;
+    font-size: 12px
+}
+
+.amountLOL2 {
+    width: 10rem;
+    font-size: 12px
+}
+
+.minPicCS {
+    width: 100px;
+    height: 50px;
+    margin-right: 3rem
+}
+
+.maxPicCS {
+    width: 100px;
+    height: 50px;
+    margin-left: 3rem
+}
+
+.amountCS1 {
+    width: 10rem;
+    font-size: 12px
+}
+
+.amountCS2 {
+    width: 10rem;
+    font-size: 12px
+}

@@ -4,229 +4,381 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
-
+<link href="~/Content/css/userCreate.css" rel="stylesheet" />
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    <input type="hidden" name="registerPage" value="0" />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="well-block">
+                    <div class="well-title">
+                        <h2>User Create</h2>
+                    </div>
+                    <form>
+                        <!--Username -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="control-label" for="username">Username</label>
+                                <div class="form-group input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                    </div>
+                                    <input name="username" class="form-control" placeholder="Username" type="text">
+                                </div>
+                            </div>
+                            <!-- Password-->
+                            <div class="col-md-6">
+                                <label class="control-label" for="password">Password</label>
+                                <div class="form-group input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                                    </div>
+                                    <input name="password" class="form-control" placeholder="Create password" type="password">
+                                </div>
+                            </div>
 
-    <div class="form-horizontal">
-        <h4>users</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.username, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.dateOfBirth, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.dateOfBirth, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.dateOfBirth, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.mic, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.mic)
-                    @Html.ValidationMessageFor(model => model.mic, "", new { @class = "text-danger" })
+                            <!-- Birthday-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="date">Birthday</label>
+                                    <input id="date" name="date" type="date" class="form-control input-md">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Equipment Check -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                @Html.LabelFor(model => model.mic, htmlAttributes: new { @class = "control-label" })
+                                <span class="fas fa-microphone"></span>
+                            </div>
+                            <div class="col-md-6">
+                                @Html.LabelFor(model => model.headset, htmlAttributes: new { @class = "control-label" })
+                                <span class="fas fa-headphones"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="mic" class="btn btn-primary">
+                                    <input type="checkbox" id="mic" name="mic" class="badgebox">
+                                    <span class="badge">
+                                        &check;
+                                    </span>
+                                </label>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="headset" class="btn btn-primary">
+                                    <input type="checkbox" id="headset" name="headset" class="badgebox">
+                                    <span class="badge">
+                                        &check;
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- form end -->
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col col-md-12">
+                <div class="well-block">
+                    <div class="well-title">
+                        <h2>Games</h2>
+                    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.headset, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.headset)
-                    @Html.ValidationMessageFor(model => model.headset, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
+                    <div class="form-group">
+                        @*DB'de bulunan oyun sayısı kadar checkbox.*@
+                        <div id="game" class="form-group">
+                            <div id="gameList">
+                                <div class="row">
 
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.online, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <div class="checkbox">
-                        @Html.EditorFor(model => model.online)
-                        @Html.ValidationMessageFor(model => model.online, "", new { @class = "text-danger" })
+
+                                    <div id="cbList" class="form-group">
+                                    </div>
+                                </div>
+                                <div class="row">
+
+                                    <!-- Lol Attributes -->
+                                    <div class="col order-first col-md-6" id="lol" style="display:none">
+                                        <!-- Lol Roles -->
+                                        <div class="form-group">
+                                            <div class="col-md-6">
+                                                <label class="roleSearch-label">Main Role</label>
+
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <label for="Top" class="btn btn-primary cb-font col-sm-12">
+                                                            Top
+                                                            <input type="checkbox" id="Top" name="Top" class="badgebox role-input" />
+                                                            <span class="badge">
+                                                                &check;
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <img class="role-img" src="~/TMF Documents/LOL/Top.png" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <label for="Jungle" class="btn btn-primary cb-font col-sm-12">
+                                                            Jungle
+                                                            <input type="checkbox" id="Jungle" name="Jungle" class="badgebox role-input" />
+                                                            <span class="badge">
+                                                                &check;
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <img class="role-img" src="~/TMF Documents/LOL/Jungle.png" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <label for="Mid" class="btn btn-primary cb-font col-sm-12">
+                                                            Mid
+                                                            <input type="checkbox" id="Mid" name="Mid" class="badgebox role-input" />
+                                                            <span class="badge">
+                                                                &check;
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <img class="role-img" src="~/TMF Documents/LOL/Mid.png" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <label for="Adc" class="btn btn-primary cb-font col-sm-12">
+                                                            Adc
+                                                            <input type="checkbox" id="Adc" name="Adc" class="badgebox role-input" />
+                                                            <span class="badge">
+                                                                &check;
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <img class="role-img" src="~/TMF Documents/LOL/adc.png" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <label for="Support" class="btn btn-primary cb-font col-sm-12">
+                                                            Support
+                                                            <input type="checkbox" id="Support" name="Support" class="badgebox role-input" />
+                                                            <span class="badge">
+                                                                &check;
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <img class="role-img" src="~/TMF Documents/LOL/Support.png" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Lol Rank -->
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <label class="input-group-text" for="rankLol">Rank</label>
+                                                    </div>
+                                                    <select class="custom-select" id="rankLol" name="rankLol">
+                                                        <option disabled selected>Rank Seçiniz</option>
+                                                        @foreach (var item in ViewBag.lolRanks)
+                                                        {
+                                                            <option value="@item.Value">@item.Text</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <!-- Lol Hours -->
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <label class="input-group-text" for="lolHours">Hours</label>
+                                                    </div>
+                                                    <input type="number" id="lolHours" name="lolHours" value="0" style="width:135px" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                    <!-- CS Attributes -->
+                                    <div class="col col-md-6" id="cs" style="display:none">
+                                        <!-- CS Roles -->
+                                        <div class="form-group">
+                                            <div class="col-md-6">
+                                                <label class="roleSearch-label">Main Role</label>
+
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <label for="AWP" class="btn btn-primary cb-font col-sm-12">
+                                                            AWP
+                                                            <input type="checkbox" id="AWP" name="AWP" class="badgebox role-input" />
+                                                            <span class="badge">
+                                                                &check;
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <img class="role-img" src="~/TMF Documents/CS/awper.png" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <label for="Lurker" class="btn btn-primary cb-font col-sm-12">
+                                                            Lurker
+                                                            <input type="checkbox" id="Lurker" name="Lurker" class="badgebox role-input" />
+                                                            <span class="badge">
+                                                                &check;
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <img class="role-img" src="~/TMF Documents/CS/lurker.png" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <label for="Rifler" class="btn btn-primary cb-font col-sm-12">
+                                                            Rifler
+                                                            <input type="checkbox" id="Rifler" name="Rifler" class="badgebox role-input" />
+                                                            <span class="badge">
+                                                                &check;
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <img class="role-img" src="~/TMF Documents/CS/rifler.png" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <label for="IGL" class="btn btn-primary cb-font col-sm-12">
+                                                            IGL
+                                                            <input type="checkbox" id="IGL" name="IGL" class="badgebox role-input" />
+                                                            <span class="badge">
+                                                                &check;
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <img class="role-img" src="~/TMF Documents/CS/leader.png" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <label for="Supporter" class="btn btn-primary cb-font col-sm-12">
+                                                            Supporter
+                                                            <input type="checkbox" id="Supporter" name="Supporter" class="badgebox role-input" />
+                                                            <span class="badge">
+                                                                &check;
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <img class="role-img" src="~/TMF Documents/CS/support.png" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <label for="Fragger" class="btn btn-primary cb-font col-sm-12">
+                                                            Fragger
+                                                            <input type="checkbox" id="Fragger" name="Fragger" class="badgebox role-input" />
+                                                            <span class="badge">
+                                                                &check;
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <img class="role-img" src="~/TMF Documents/CS/fragger.png" />
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <!-- CS Rank -->
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <label class="input-group-text" for="rankCS">Rank</label>
+                                                    </div>
+                                                    <select class="custom-select" id="rankCs" name="rankCs">
+                                                        <option disabled selected>Rank Seçiniz</option>
+                                                        @foreach (var item in ViewBag.csRanks)
+                                                        {
+                                                            <option value="@item.Value">@item.Text</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- CS Hours -->
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <label class="input-group-text" for="csHours">Hours</label>
+                                                    </div>
+                                                    <input type="number" id="csHours" name="csHours" value="0" style="width:135px" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10 ">
+                                        <input type="submit" value="Create" class="btn btn-outline-primary" />
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>*@
-
-        <div class="form-group">
-            @Html.Label("CS Go Rank")
-            <div class="col-md-2">
-                <select name="rankCs" id="rankCs">
-                    <option disabled selected>Rank Seçiniz</option>
-                    @foreach (var item in ViewBag.csRanks)
-                    {
-                        <option value="@item.Value">@item.Text</option>
-                    }
-                </select>
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.Label("Lol Rank")
-            <div class="col-md-2">
-                <select name="rankLol" id="rankLol">
-                    <option disabled selected>Rank Seçiniz</option>
-                    @foreach (var item in ViewBag.lolRanks)
-                    {
-                        <option value="@item.Value">@item.Text</option>
-                    }
-                </select>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.Label("lolHours")
-            <div class="col-md-2">
-                <input type="number" name="lolHours" value="0" />
-            </div>
-            @Html.Label("csHours")
-            <div class="col-md-2">
-                <input type="number" name="csHours" value="0" />
-            </div>
-        </div>
-
-        <div class="form-group">
-            @*DB'de bulunan oyun sayısı kadar checkbox.*@
-            <div id="game" class="form-group">
-                <label>Oyunlar :</label>
-                <div id="gameList">
-                    <div id="cbList" class="form-group">
-                        @*JS Burayı dolduruyor*@
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="csDiv">
-            <div class="form-group form-inline">
-                @Html.Label("AWP", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-2">
-                    <div class="checkbox">
-                        <input type="checkbox" name="AWP" class="text-danger" />
-                    </div>
-                </div>
-                @Html.Label("Lurker", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-2">
-                    <div class="checkbox">
-                        <input type="checkbox" name="Lurker" class="text-danger" />
-                    </div>
-                </div>
-                @Html.Label("Rifle", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-2">
-                    <div class="checkbox">
-                        <input type="checkbox" name="Rifle" class="text-danger" />
-                    </div>
-                </div>
-                @Html.Label("IGL", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-2">
-                    <div class="checkbox">
-                        <input type="checkbox" name="IGL" class="text-danger" />
-                    </div>
-                </div>
-                @Html.Label("Supporter", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-2">
-                    <div class="checkbox">
-                        <input type="checkbox" name="Supporter" class="text-danger" />
-                    </div>
-                </div>
-                @Html.Label("Fragger", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-2">
-                    <div class="checkbox">
-                        <input type="checkbox" name="Fragger" class="text-danger" />
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="Top" > Top
-                    </label>
-                </div>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="Jungle"> Jungle
-                    </label>
-                </div>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="Mid"> Mid
-                    </label>
-                </div>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="Adc"> Adc
-                    </label>
-                </div>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="Sup"> Sup
-                    </label>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
     </div>
+
+    <input type="hidden" name="registerPage" value="0" />
 
 }
 
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
+<script src="~/Scripts/bootstrap.js"></script>
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/js/userCreate.js"></script>
+
 @section scripts
 {
-    <script>
-        var gameList = $('#userGame_id');
-        gameList.empty();
-        $.ajax({
-            type: 'GET',
-            url: '/games/getGames',
-            datatype: 'json',
-            success: function (data) {
-                $.each(data, function (index, option) {
-                    gameList.append('<option value=' + option.Value + '>' + option.Text + '</option>');
-                    $("#cbList").append('<div class="col-sm-offset-2 col-sm-10">' +
-                        '<div class="checkbox">' +
-                        ' <label>' +
-                        '  <input type="checkbox" name=' + option.Text + ' > ' + option.Text + '' +
-                        '                 </label>' +
-                        '         </div>' +
-                        ' </div>');
-                });
-            }
-        })
 
-    </script>
 }

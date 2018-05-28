@@ -1,2 +1,56 @@
-﻿body {
+﻿.well-block {
+    background-color: #fff;
+    margin-top: 2rem;
+    border: 1px solid #e9e6e8;
+    padding: 40px;
+}
+
+.well-title {
+    margin-bottom: 40px;
+}
+
+.badgebox {
+    opacity: 0;
+}
+
+    .badgebox + span.badge {
+        text-indent: -999999px;
+        width: 27px;
+        background-color:white;
+        color:royalblue;
+    }
+
+    .badgebox:focus + span.badge {
+        box-shadow: inset 0px 0px 5px;
+    }
+
+    .badgebox:checked + span.badge {
+        text-indent: 0;
+        opacity:1;
+    }
+
+.cb-font{
+    font-size:xx-small;
+    text-align:left;
+}
+
+.gamecb{
+    margin-bottom:1px;
+}
+
+.roleSearch-label {
+    margin-top: 1rem;
+    text-align: left;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.role-img {
+    width: 50px;
+    height: 50px;
+    padding-bottom: 20px;
+}
+
+.role-input {
+    width: 1rem;
 }
