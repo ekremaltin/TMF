@@ -106,6 +106,8 @@
     <Content Include="Content\css\login.css" />
     <Content Include="Content\css\onOff.css" />
     <Content Include="Content\css\searchCss.css" />
+    <Content Include="Content\css\searchLol.css" />
+    <Content Include="Content\css\userCreate.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\img\logo.png" />
@@ -152,6 +154,8 @@
     <Content Include="Scripts\js\home.js" />
     <Content Include="Scripts\js\loginJS.js" />
     <Content Include="Scripts\js\layout.js" />
+    <Content Include="Scripts\js\userCreate.js" />
+    <Content Include="Scripts\js\userIndex.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="TMF Documents\bg.jpg" />
     <Content Include="TMF Documents\CS\awper.png" />
@@ -171,6 +175,7 @@
     <Content Include="TMF Documents\CS\Nova4.png" />
     <Content Include="TMF Documents\CS\rifler.png" />
     <Content Include="TMF Documents\CS\support.png" />
+    <Content Include="TMF Documents\LOL\adc.png" />
     <Content Include="TMF Documents\LOL\bronze_1.png" />
     <Content Include="TMF Documents\LOL\bronze_2.png" />
     <Content Include="TMF Documents\LOL\bronze_3.png" />
@@ -187,7 +192,9 @@
     <Content Include="TMF Documents\LOL\gold_3.png" />
     <Content Include="TMF Documents\LOL\gold_4.png" />
     <Content Include="TMF Documents\LOL\gold_5.png" />
+    <Content Include="TMF Documents\LOL\Jungle.png" />
     <Content Include="TMF Documents\LOL\master_1.png" />
+    <Content Include="TMF Documents\LOL\Mid.png" />
     <Content Include="TMF Documents\LOL\platinum_1.png" />
     <Content Include="TMF Documents\LOL\platinum_2.png" />
     <Content Include="TMF Documents\LOL\platinum_3.png" />
@@ -198,6 +205,8 @@
     <Content Include="TMF Documents\LOL\silver_3.png" />
     <Content Include="TMF Documents\LOL\silver_4.png" />
     <Content Include="TMF Documents\LOL\silver_5.png" />
+    <Content Include="TMF Documents\LOL\Support.png" />
+    <Content Include="TMF Documents\LOL\Top.png" />
     <Content Include="TMF Documents\proxy_form.png" />
     <Content Include="TMF Documents\CS\Silver1.png" />
     <Content Include="TMF Documents\CS\Silver2.png" />
@@ -260,6 +269,7 @@
     <Content Include="Views\games\Index.cshtml" />
     <Content Include="Views\Find\SearchLol.cshtml" />
     <Content Include="Views\users\Login.cshtml" />
+    <Content Include="Views\Find\Listeler.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

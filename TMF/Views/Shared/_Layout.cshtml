@@ -40,9 +40,12 @@
                 <li class="nav-item">
                     <span class="bosluk"> </span>
                 </li>
-
+               
                 <li class="nav-item">
                     <a class="nav-link" href="@Url.Action("Index", "Find")">Home </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Listeler", "Find")">Listeler </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="@Url.Action("Index", "users")">User List</a>
@@ -63,7 +66,7 @@
 
                 @if (Session["id"] != null)
                 {
-                    <li class="btn btn-outline-primary my-2 mr-2 my-sm-0 ">@Html.ActionLink("Log Out", "LogOut", "users")</li>
+                    <li class="btn btn-outline-danger my-2 mr-2 my-sm-0 ">@Html.ActionLink("Log Out", "LogOut", "users")</li>
                 }
                 else
                 {

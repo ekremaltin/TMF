@@ -12,6 +12,7 @@ namespace TMF.Models.Entity
         public virtual List<gameComponents> gameComponent { get; set; }
         public virtual List<gameGenres> gameGenre { get; set; }
         public virtual List<gamePlatforms> gamePlatform { get; set; }
+        public virtual List<lobbys> lobby { get; set; }
     }
 
 }

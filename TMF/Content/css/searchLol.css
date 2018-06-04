@@ -1,21 +1,21 @@
-﻿.minPicCS {
-    width: 100px;
-    height: 50px;
+﻿.minPicLOL {
+    width: 110px;
+    height: 70px;
     margin-right: 3rem
 }
 
-.maxPicCS {
-    width: 100px;
-    height: 50px;
+.maxPicLOL {
+    width: 110px;
+    height: 70px;
     margin-left: 3rem
 }
 
-.amountCS1 {
+.amountLOL1 {
     width: 10rem;
     font-size: 12px
 }
 
-.amountCS2 {
+.amountLOL2 {
     width: 10rem;
     font-size: 12px
 }
@@ -26,13 +26,15 @@
     font-weight: bold;
     font-size: 15px;
 }
-.role-img{
-    width:2rem;
-    height:2rem;
-    padding-bottom:7px;
+
+.role-img {
+    width: 2rem;
+    height: 2rem;
+    padding-bottom: 7px;
 }
-.role-input{
-    width:1rem;
+
+.role-input {
+    width: 1rem;
 }
 
 .hoursPlayed-label {
@@ -41,17 +43,19 @@
     font-weight: bold;
     font-size: 15px;
 }
-.hours-label{
-    padding-right:1rem;
-    padding-left:0px;
+
+.hours-label {
+    padding-right: 1rem;
+    padding-left: 0px;
 }
 
-.ageHeader{
+.ageHeader {
     margin-top: 1rem;
     text-align: left;
     font-weight: bold;
     font-size: 15px;
 }
+
 .age-label {
     padding-right: 1rem;
     padding-left: 0px;
@@ -61,16 +65,16 @@
     flex: 0 0 8.333333%;
     max-width: 4.333333%;
     -ms-flex: 0 0 8.333333%;
-    position:relative;
-    width:100%;
-    min-height:1px;
-    padding-right:15px;
-    padding-left:15px;
-
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
 }
+
 .ageRadio {
-    width:15px;
-    padding:0;
+    width: 15px;
+    padding: 0;
 }
 
 .equipmentCheck-label {
@@ -79,6 +83,8 @@
     font-weight: bold;
     font-size: 15px;
 }
+
 .equipmentCb-input {
     width: 1rem;
 }
+

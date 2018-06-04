@@ -87,3 +87,16 @@ body, html {
     top: 0px;
     z-index: 1;
 }
+
+.cbList-label {
+    margin-top: 1rem;
+    text-align: left;
+    font-weight: bold;
+    font-size: 15px;
+    color: white;
+}
+
+.cbList-text{
+    color:white;
+
+}

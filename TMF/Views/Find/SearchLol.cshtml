@@ -2,97 +2,232 @@
 @{
     ViewBag.Title = "SearchLol";
 }
+<link href="~/Content/css/searchLol.css" rel="stylesheet" />
 
 <h2>SearchLol</h2>
-<div class="col-lg-3 col-md-3">
-    <form method="post" action="@Url.Action("SearchLol")" id="form" enctype="multipart/form-data">
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <div class="form-horizontal">
-                    <p>
-                        <label for="amountLOL1">Rank range:</label>
-                        <input type="text" id="amountLOL1" readonly style="color:#f6931f; font-weight:bold;">
-                        <input type="text" id="amountLOL2" readonly style="color:#f6931f; font-weight:bold;">
-                    </p>
-                    <div id="slider-rangeLOL"></div>
-                    <div id="galleryLOL" style="display: none;">
-                        <img src="~/TMF Documents/LOL/bronze_5.png" id="minPicLOL" width="140" height="80" />
-                        <input type="hidden" id="minDataLOL" name="minDataLOL" />
-                        <input type="hidden" id="maxDataLOL" name="maxDataLOL" />
-                        <span class="label label-default">-</span>
-                        <img src="~/TMF Documents/LOL/challenger_1.png" id="maxPicLOL" width="140" height="80" />
+<div class="row">
+    <div class="col-lg-5 col-md-5">
+        <form method="post" action="@Url.Action("SearchLol")" id="form" enctype="multipart/form-data">
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <div class="form-horizontal">
+                        <p>
+                            <label for="amountLOL1">Rank range:</label>
+                            <br />
+                            <input class="amountLOL1" type="text" id="amountLOL1" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                            <input class="amountLOL2" type="text" id="amountLOL2" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                        </p>
+                        <div id="slider-rangeLOL"></div>
+                        <div id="galleryLOL" style="display: none;">
+                            <img class="minPicLOL" src="~/TMF Documents/LOL/bronze_5.png" id="minPicLOL" />
+                            <input type="hidden" id="minDataLOL" name="minDataLOL" />
+                            <input type="hidden" id="maxDataLOL" name="maxDataLOL" />
+                            <span class="label label-default">-</span>
+                            <img class="maxPicLOL" src="~/TMF Documents/LOL/challenger_1.png" id="maxPicLOL" />
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <label class="roleSearch-label">Main Role</label>
+
+                        <div class="row">
+                            <div class="col-sm-1">
+                                <input class="role-input" type="checkbox" name="Top">
+                            </div>
+                            <div class="col-sm-3">
+                                Top
+                            </div>
+                            <div class="col-sm-3">
+                                <img class="role-img" src="~/TMF Documents/LOL/Top.png" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-1">
+                                <input class="role-input" type="checkbox" name="Jungle">
+                            </div>
+                            <div class="col-sm-3">
+                                Jungle
+                            </div>
+                            <div class="col-sm-3">
+                                <img class="role-img" src="~/TMF Documents/LOL/Jungle.png" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-1">
+                                <input class="role-input" type="checkbox" name="Mid">
+                            </div>
+                            <div class="col-sm-3">
+                                Mid
+                            </div>
+                            <div class="col-sm-3">
+                                <img class="role-img" src="~/TMF Documents/LOL/Mid.png" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-1">
+                                <input class="role-input" type="checkbox" name="Adc">
+                            </div>
+                            <div class="col-sm-3">
+                                Adc
+                            </div>
+                            <div class="col-sm-3">
+                                <img class="role-img" src="~/TMF Documents/LOL/adc.png" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-1">
+                                <input class="role-input" type="checkbox" name="Support">
+                            </div>
+                            <div class="col-sm-3">
+                                Support
+                            </div>
+                            <div class="col-sm-3">
+                                <img class="role-img" src="~/TMF Documents/LOL/Support.png" />
+                            </div>
+                        </div>
+
+                        <label class="hoursPlayed-label">Hours Played</label>
+                        <div class="container">
+
+                            <div class="row">
+                                <div class="col-sm-4 hours-label">
+                                    Min Saat:
+                                </div>
+                                <div class="col-sm-5">
+                                    <input type="number" name="minHours" value="0" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4 hours-label">
+                                    Max Saat:
+                                </div>
+                                <div class="col-sm-5">
+                                    <input type="number" name="maxHours" value="0" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <label class="equipmentCheck-label">Equipments</label>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="control-label" for="Mic">Mic</label>
+                                <span class="fas fa-microphone"></span>
+                                <span>
+                                    <input class="role-input" type="checkbox" name="Mic">
+                                </span>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="control-label" for="Headset">Headset</label>
+                                <span class="fas fa-headphones"></span>
+                                <span>
+                                    <input class="role-input" type="checkbox" name="Headset">
+                                </span>
+                            </div>
+                        </div>
+
+                        <label class="ageHeader">Age</label>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-radio ageRadio">
+                                    <input type="radio" name="yas" value="all" checked="checked">
+                                </div>
+                                <div class="col-sm-2 age-label">
+                                    All
+                                </div>
+
+                                <div class="col-radio ageRadio">
+                                    <input type="radio" name="yas" value="-16">
+                                </div>
+                                <div class="col-sm-2 age-label">
+                                    &lt;16
+                                </div>
+
+                                <div class="ageRadio col-radio">
+                                    <input type="radio" name="yas" value="+16">
+                                </div>
+                                <div class="col-sm-2 age-label">
+                                    +16
+                                </div>
+                            </div>
+
+                            <br />
+                            <input type="submit" id="bul" class="btn btn-primary" value="Bul" />
+                        </div>
+
+
                     </div>
                 </div>
-                <span>MAIN ROLE</span>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="Top"> Top
-                    </label>
-                </div>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="Mid"> Mid
-                    </label>
-                </div>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="Jungle"> Jungle
-                    </label>
-                </div>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="Adc"> Adc
-                    </label>
-                </div>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="Support"> Support
-                    </label>
-                </div>
-              
-                <div>
-                    Min Saat:  <input type="number" name="minHours" value="0" />
-                </div>
-                <div>
-                    Max Saat:  <input type="number" name="maxHours" value="0" />
-                </div>
-             
-                <div class="radio">
-                    <input type="radio" name="yas" value="all" checked="checked"> All<br>
-                    <input type="radio" name="yas" value="-16"> -16<br>
-                    <input type="radio" name="yas" value="+16"> +16
-                </div>
-                <input type="submit" id="bul" class="btn btn-primary" value="Bul" />
-
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 
-</div>
-<div class="col-lg-9 col-md-9">
-    <h2>Oyuncular :</h2>
-    @if (Model != null)
-    {
-        foreach (var item in Model)
+    <div class="col-lg-7 col-md-7">
+        <h2>Oyuncular :</h2>
+        @if (Model != null)
         {
-            <div class="well">
-                <a href="#" class="">@item.username </a> , @item.dateOfBirth.ToShortDateString();
-                <div class="col-lg-9 col-md-9">
-                    <h2>Roles</h2>
+            <text>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Username</th>
+                            <th scope="col">Age</th>
+                            <th scope="col">Roles</th>
+                            <th scope="col">Rank</th>
+                            <th scope="col">Invite</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
-                    @foreach (var item2 in item.userGame.Where(e => e.game.id == 1).First().userGameDesc)
-                    {
-                        @item2.compAtt.value <br />
-                    }
-                </div>
-                <div class="col-lg-3 col-md-3">
-                    <button class="btn-primary">Davet Et</button>
-                </div>
-            </div>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <a href="@Url.Action("Details", "users", new { id = item.id })"> @item.username </a>
+                                </td>
+                                <td>
+                                    @{ int age = 0;
+                                        age = DateTime.Now.Year - item.dateOfBirth.Year;
+                                        if (DateTime.Now.DayOfYear < item.dateOfBirth.DayOfYear)
+                                        {
+                                            age = age - 1;
+                                        }
+                                        @age;
+                                    }
+                                </td>
+                                <td>
+                                    @foreach (var item2 in item.userGame.Where(e => e.game.id == 1).First().userGameDesc)
+                                    {
+                                        if (item2.compAtt.gameComponent.name == "role")
+                                        {
+                                            @item2.compAtt.value <br />
+                                        }
+                                    }
+                                </td>
+                                <td>
+                                    @foreach (var item2 in item.userGame.Where(e => e.game.id == 1).First().userGameDesc)
+                                    {
+                                        if (item2.compAtt.gameComponent.name == "rank5")
+                                        {
+                                            @item2.compAtt.value
+                                        }
 
+                                    }
+                                </td>
+                                <td>
+                                    <input type="button" class="btn btn-primary" value="Davet Et" onclick="location.href = '@Url.Action("DavetEt", new { DavetEdilenId = item.id, oyunId = 1 })'">
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </text>
         }
-    }
-
+    </div>
 </div>
 
 

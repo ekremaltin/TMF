@@ -111,9 +111,9 @@ namespace TMF.Controllers
                 //user table data
                 string usrname = fc["username"];
                 string psw = fc["password"];
-                var date1 = fc["dateOfBirth"];
-                bool mic = Convert.ToBoolean(fc["mic"].Split(',')[0]);
-                bool hs = Convert.ToBoolean(fc["headset"].Split(',')[0]);
+                var date1 = fc["date"];
+                bool mic = fc["mic"] == "on" ? true : false;
+                bool hs = fc["headset"] == "on" ? true : false;
 
                 //userGame table data
                 bool lol = fc["League"] == "on" ? true : false;
@@ -129,7 +129,7 @@ namespace TMF.Controllers
                 var ranklol = fc["rankLol"];
                 bool awp = fc["AWP"] == "on" ? true : false; //CS ROLES
                 bool lurker = fc["Lurker"] == "on" ? true : false;
-                bool rifle = fc["Rifle"] == "on" ? true : false;
+                bool rifle = fc["Rifler"] == "on" ? true : false;
                 bool igl = fc["IGL"] == "on" ? true : false;
                 bool supporter = fc["Supporter"] == "on" ? true : false;
                 bool frag = fc["Fragger"] == "on" ? true : false;
@@ -137,7 +137,7 @@ namespace TMF.Controllers
                 bool mid = fc["Mid"] == "on" ? true : false;
                 bool jung = fc["Jungle"] == "on" ? true : false;
                 bool adc = fc["Adc"] == "on" ? true : false;
-                bool sup = fc["Sup"] == "on" ? true : false;
+                bool sup = fc["Support"] == "on" ? true : false;                
                 string gameIDcs = fc["gameConnectIDcs"];
                 string gameNickcs = fc["gameNickNamecs"];
                 string gameNicklol = fc["gameNickNamelol"];
