@@ -82,17 +82,16 @@
             </div>
         </div>
     </div>
-    <div class="form-group">
-        @*DB'de bulunan oyun sayısı kadar checkbox.*@
-        <div id="game" class="form-group">
-            <label>Oyunlar :</label>
-            <div id="gameList">
-                <div id="cbList" class="form-group">
-                    @*JS Burayı dolduruyor*@
+    @*<div class="form-group">
+            <div id="game" class="form-group">
+                <label>Oyunlar :</label>
+                <div id="gameList">
+                    <div id="cbList" class="form-group">
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </div>*@
+   
     @if (cs)
     {
         var csData = (Model.userGame.ToList().Where(a => a.game.id == 2).FirstOrDefault());
@@ -101,6 +100,8 @@
         var csTime = Model.userGame.Where(u => u.game.id == 2).FirstOrDefault().time;
         <div id="csDiv">
             <div class="form-group form-inline">
+                Steam ID<input name="gameConnectIDcs" type="text" value="@csData.gameConnectID" />
+                Steam Nickname<input name="gameNickNamecs" type="text" value="@csData.gameNickName" />
                 @Html.Label("AWP", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-2">
                     <div class="checkbox">
@@ -143,9 +144,9 @@
                         <select name="rankCs" id="rankCs">
                             <option disabled>Rank Seçiniz</option>
                             @foreach (var item in ViewBag.csRanks)
-                            {
-                                <option value="@item.Value" @if (int.Parse(item.Value) == f) { <text> selected </text> }>@item.Text</option>
-                            }
+                {
+                    <option value="@item.Value" @if (int.Parse(item.Value) == f) { <text> selected </text> }>@item.Text</option>
+    }
                         </select>
                     </div>
                 </div>
@@ -161,22 +162,24 @@
     {
         <div id="csDivNew">
             <div class="form-group form-inline">
+                Steam ID<input name="gameConnectIDcs" type="text" />
+                Steam Nickname<input name="gameNickNamecs" type="text" />
                 @Html.Label("AWP", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-2">
                     <div class="checkbox">
-                        <input type="checkbox" name="AWP" class="text-danger"   />
+                        <input type="checkbox" name="AWP" class="text-danger" />
                     </div>
                 </div>
                 @Html.Label("Lurker", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-2">
                     <div class="checkbox">
-                        <input type="checkbox" name="Lurker" class="text-danger"  />
+                        <input type="checkbox" name="Lurker" class="text-danger" />
                     </div>
                 </div>
                 @Html.Label("Rifle", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-2">
                     <div class="checkbox">
-                        <input type="checkbox" name="Rifle" class="text-danger"   />
+                        <input type="checkbox" name="Rifle" class="text-danger" />
                     </div>
                 </div>
                 @Html.Label("IGL", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -188,7 +191,7 @@
                 @Html.Label("Supporter", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-2">
                     <div class="checkbox">
-                        <input type="checkbox" name="Supporter" class="text-danger"  />
+                        <input type="checkbox" name="Supporter" class="text-danger" />
                     </div>
                 </div>
                 @Html.Label("Fragger", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -203,9 +206,9 @@
                         <select name="rankCs" id="rankCs">
                             <option disabled>Rank Seçiniz</option>
                             @foreach (var item in ViewBag.csRanks)
-                            {
-                                <option value="@item.Value">@item.Text</option>
-                            }
+                {
+                    <option value="@item.Value">@item.Text</option>
+    }
                         </select>
                     </div>
                 </div>
@@ -225,6 +228,7 @@
         var lolTime = Model.userGame.Where(u => u.game.id == 1).FirstOrDefault().time;
         <div id="lolDiv">
             <div class="form-group form-inline">
+                Lol Nickname<input name="gameNickNamelol" type="text" value="@lolData.gameNickName" />
                 @Html.Label("Top", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-2">
                     <div class="checkbox">
@@ -262,15 +266,71 @@
                         <select name="rankLol" id="rankLol">
                             <option disabled>Rank Seçiniz</option>
                             @foreach (var item in ViewBag.lolRanks)
-                            {
-                                <option value="@item.Value" @if (int.Parse(item.Value) == h) { <text> selected </text> }>@item.Text</option>
-                            }
+                {
+                    <option value="@item.Value" @if (int.Parse(item.Value) == h) { <text> selected </text> }>@item.Text</option>
+    }
                         </select>
                     </div>
                 </div>
                 @Html.Label("lolHours")
                 <div class="col-md-2">
                     <input type="number" name="lolHours" value="@lolTime" />
+                </div>
+            </div>
+        </div>
+
+    }
+    else
+    {
+        <div id="lolDiv">
+            <div class="form-group form-inline">
+                Lol Nickname<input name="gameNickNamelol" type="text" />
+                @Html.Label("Top", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        <input type="checkbox" name="Top" class="text-danger" />
+                    </div>
+                </div>
+                @Html.Label("Jungle", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        <input type="checkbox" name="Jungle" class="text-danger" />
+                    </div>
+                </div>
+                @Html.Label("Mid", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        <input type="checkbox" name="Mid" class="text-danger" />
+                    </div>
+                </div>
+                @Html.Label("Adc", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        <input type="checkbox" name="Adc" class="text-danger" />
+                    </div>
+                </div>
+                @Html.Label("Support", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        <input type="checkbox" name="Support" class="text-danger" />
+                    </div>
+                </div>
+                aaaaaaaaaaaaa<input type="checkbox" name="asdasdasd" checked="checked" />
+                <div class="form-group">
+                    @Html.Label("Lol Rank")
+                    <div class="col-md-2">
+                        <select name="rankLol" id="rankLol">
+                            <option disabled>Rank Seçiniz</option>
+                            @foreach (var item in ViewBag.lolRanks)
+                {
+                    <option value="@item.Value"> @item.Text</option>
+    }
+                        </select>
+                    </div>
+                </div>
+                @Html.Label("lolHours")
+                <div class="col-md-2">
+                    <input type="number" name="lolHours" value="0" />
                 </div>
             </div>
         </div>

@@ -39,7 +39,7 @@
                 @Html.ValidationMessageFor(model => model.dateOfBirth, "", new { @class = "text-danger" })
             </div>
         </div>
-         
+
         <div class="form-group">
             @Html.LabelFor(model => model.mic, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -61,14 +61,14 @@
         </div>
 
         @*<div class="form-group">
-                @Html.LabelFor(model => model.online, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <div class="checkbox">
-                        @Html.EditorFor(model => model.online)
-                        @Html.ValidationMessageFor(model => model.online, "", new { @class = "text-danger" })
-                    </div>
+            @Html.LabelFor(model => model.online, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.online)
+                    @Html.ValidationMessageFor(model => model.online, "", new { @class = "text-danger" })
                 </div>
-            </div>*@
+            </div>
+        </div>*@
 
         <div class="form-group">
             @Html.Label("CS Go Rank")
@@ -76,9 +76,9 @@
                 <select name="rankCs" id="rankCs">
                     <option disabled>Rank Seçiniz</option>
                     @foreach (var item in ViewBag.csRanks)
-                    {
-                        <option value="@item.Value">@item.Text</option>
-                    }
+                {
+                    <option value="@item.Value">@item.Text</option>
+            }
                 </select>
             </div>
         </div>
@@ -89,9 +89,9 @@
                 <select name="rankLol" id="rankLol">
                     <option disabled>Rank Seçiniz</option>
                     @foreach (var item in ViewBag.lolRanks)
-                    {
-                        <option value="@item.Value">@item.Text</option>
-                    }
+                {
+                    <option value="@item.Value">@item.Text</option>
+            }
                 </select>
             </div>
         </div>
@@ -162,7 +162,7 @@
             <div class="col-sm-offset-2 col-sm-10">
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" name="Top" > Top
+                        <input type="checkbox" name="Top"> Top
                     </label>
                 </div>
                 <div class="checkbox">
@@ -187,7 +187,9 @@
                 </div>
             </div>
         </div>
-
+        Steam ID<input name="gameConnectIDcs" type="text" />
+        Steam Nickname<input name="gameNickNamecs" type="text" />
+        Lol Nickname<input name="gameNickNamelol" type="text" />
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -197,6 +199,7 @@
     </div>
 
 }
+
 
 <div>
     @Html.ActionLink("Back to List", "Index")
