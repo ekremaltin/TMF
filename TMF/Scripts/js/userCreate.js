@@ -6,11 +6,26 @@
         success: function (data) {
             $.each(data, function (index, option) {
                 $("#cbList").append('<label for=' + option.Text + ' class="btn btn-primary cb-font col-md-6">' + option.Text +
-                    ' <input type="checkbox" data-check="on" class="badgebox" onclick="getDiv(' + option.Value + ')" id=' + option.Text + ' name=' + option.Text + ' >' +
+                    ' <input type="checkbox" data-check="on" class="badgebox games" onclick="getDiv(' + option.Value + ')" id=' + option.Text + ' name=' + option.Text + ' >' +
                     ' <span class="badge">&check;</span> ' +
                     '</label>');
             });
         }
+    });
+
+    $('#createBtn').on('click', function () {
+        var b = false;
+        var i = $('.games:checked').length;
+        if (i>0) {
+            document.getElementById('createBtn').type = 'submit';
+            document.getElementById('createBtn').click();
+        }
+        else {
+            alert("Lütfen en az 1 oyun seçiniz!");
+        }
+
+
+
     });
 });
 
@@ -38,5 +53,5 @@ function getDiv(ids) {
             $("#Counter").data("check", "on");
         }
     }
-    
+
 }

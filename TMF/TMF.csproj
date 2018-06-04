@@ -155,6 +155,7 @@
     <Content Include="Scripts\js\loginJS.js" />
     <Content Include="Scripts\js\layout.js" />
     <Content Include="Scripts\js\userCreate.js" />
+    <Content Include="Scripts\js\userIndex.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="TMF Documents\bg.jpg" />
     <Content Include="TMF Documents\CS\awper.png" />

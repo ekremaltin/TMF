@@ -111,6 +111,24 @@
                             </div>
                         </div>
 
+                        <label class="equipmentCheck-label">Equipments</label>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="control-label" for="Mic">Mic</label>
+                                <span class="fas fa-microphone"></span>
+                                <span>
+                                    <input class="role-input" type="checkbox" name="Mic">
+                                </span>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="control-label" for="Headset">Headset</label>
+                                <span class="fas fa-headphones"></span>
+                                <span>
+                                    <input class="role-input" type="checkbox" name="Headset">
+                                </span>
+                            </div>
+                        </div>
+
                         <label class="ageHeader">Age</label>
                         <div class="container">
                             <div class="row">
@@ -200,7 +218,7 @@
                                     }
                                 </td>
                                 <td>
-                                    <button class="btn-primary">Davet Et</button>
+                                    <input type="button" class="btn btn-primary" value="Davet Et" onclick="location.href = '@Url.Action("DavetEt", new { DavetEdilenId = item.id, oyunId = 1 })'">
                                 </td>
                             </tr>
                         }
@@ -208,95 +226,9 @@
                     </tbody>
                 </table>
             </text>
-
-            @*foreach (var item in Model)
-            {
-                <div class="well">
-                    <a href="#" class="">@item.username </a> , @item.dateOfBirth.ToShortDateString();
-                    <div class="col-lg-9 col-md-9">
-                        <h2>Roles</h2>
-
-                        @foreach (var item2 in item.userGame.Where(e => e.game.id == 1).First().userGameDesc)
-                        {
-                            @item2.compAtt.value <br />
-                        }
-                    </div>
-                    <div class="col-lg-3 col-md-3">
-                        <button class="btn-primary">Davet Et</button>
-                    </div>
-                </div>
-
-            }*@
         }
     </div>
 </div>
-
-@*<div class="col-lg-3 col-md-3">
-        <form method="post" action="@Url.Action("SearchLol")" id="form" enctype="multipart/form-data">
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <div class="form-horizontal">
-                        <p>
-                            <label for="amountLOL1">Rank range:</label>
-                            <input type="text" id="amountLOL1" readonly style="color:#f6931f; font-weight:bold;">
-                            <input type="text" id="amountLOL2" readonly style="color:#f6931f; font-weight:bold;">
-                        </p>
-                        <div id="slider-rangeLOL"></div>
-                        <div id="galleryLOL" style="display: none;">
-                            <img src="~/TMF Documents/LOL/bronze_5.png" id="minPicLOL" width="140" height="80" />
-                            <input type="hidden" id="minDataLOL" name="minDataLOL" />
-                            <input type="hidden" id="maxDataLOL" name="maxDataLOL" />
-                            <span class="label label-default">-</span>
-                            <img src="~/TMF Documents/LOL/challenger_1.png" id="maxPicLOL" width="140" height="80" />
-                        </div>
-                    </div>
-                    <span>MAIN ROLE</span>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" name="Top"> Top
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" name="Mid"> Mid
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" name="Jungle"> Jungle
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" name="Adc"> Adc
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" name="Support"> Support
-                        </label>
-                    </div>
-
-                    <div>
-                        Min Saat:  <input type="number" name="minHours" value="0" />
-                    </div>
-                    <div>
-                        Max Saat:  <input type="number" name="maxHours" value="0" />
-                    </div>
-
-                    <div class="radio">
-                        <input type="radio" name="yas" value="all" checked="checked"> All<br>
-                        <input type="radio" name="yas" value="-16"> -16<br>
-                        <input type="radio" name="yas" value="+16"> +16
-                    </div>
-                    <input type="submit" id="bul" class="btn btn-primary" value="Bul" />
-
-                </div>
-            </div>
-        </form>
-
-    </div>*@
-
 
 
 

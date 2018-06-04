@@ -26,7 +26,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                                     </div>
-                                    <input name="username" class="form-control" placeholder="Username" type="text">
+                                    <input name="username" class="form-control" placeholder="Username" type="text" required>
                                 </div>
                             </div>
                             <!-- Password-->
@@ -36,7 +36,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                                     </div>
-                                    <input name="password" class="form-control" placeholder="Create password" type="password">
+                                    <input name="password" class="form-control" placeholder="Create password" type="password" required>
                                 </div>
                             </div>
 
@@ -94,8 +94,6 @@
                         <div id="game" class="form-group">
                             <div id="gameList">
                                 <div class="row">
-
-
                                     <div id="cbList" class="form-group">
                                     </div>
                                 </div>
@@ -103,6 +101,21 @@
 
                                     <!-- Lol Attributes -->
                                     <div class="col order-first col-md-6" id="lol" style="display:none">
+
+                                        
+
+                                        <!-- Lol Nickname -->
+                                        <div class="form-group">
+                                            <div class="form-group col-md-6">
+                                                <label class="roleSearch-label">Nickname</label>
+                                                <div class="row">
+                                                    <input type="text" class="form-control col-md-12" id="lolNickname" placeholder="LoL Nickname " name="lolNickname" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+
+
                                         <!-- Lol Roles -->
                                         <div class="form-group">
                                             <div class="col-md-6">
@@ -193,7 +206,7 @@
                                                         <label class="input-group-text" for="rankLol">Rank</label>
                                                     </div>
                                                     <select class="custom-select" id="rankLol" name="rankLol">
-                                                        <option disabled selected>Rank Seçiniz</option>
+                                                        <option disabled selected>Choose Rank</option>
                                                         @foreach (var item in ViewBag.lolRanks)
                                                         {
                                                             <option value="@item.Value">@item.Text</option>
@@ -221,6 +234,27 @@
 
                                     <!-- CS Attributes -->
                                     <div class="col col-md-6" id="cs" style="display:none">
+
+                                        <!-- CS Nickname -->
+                                        <div class="form-group">
+                                            <div class="form-group col-md-6">
+                                                <label class="roleSearch-label">Steam Name</label>
+                                                <div class="row">
+                                                    <input type="text" class="form-control col-md-12" id="steamName" placeholder="Steam Name" name="steamName" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Steam ID -->
+                                        <div class="form-group">
+                                            <div class="form-group col-md-6">
+                                                <label class="roleSearch-label">Steam ID</label>
+                                                <div class="row">
+                                                    <input type="text" class="form-control col-md-12" id="steamID" placeholder="Steam ID" name="steamID" />
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         <!-- CS Roles -->
                                         <div class="form-group">
                                             <div class="col-md-6">
@@ -326,7 +360,7 @@
                                                         <label class="input-group-text" for="rankCS">Rank</label>
                                                     </div>
                                                     <select class="custom-select" id="rankCs" name="rankCs">
-                                                        <option disabled selected>Rank Seçiniz</option>
+                                                        <option disabled selected>Choose Rank</option>
                                                         @foreach (var item in ViewBag.csRanks)
                                                         {
                                                             <option value="@item.Value">@item.Text</option>
@@ -351,7 +385,7 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-offset-2 col-md-10 ">
-                                        <input type="submit" value="Create" class="btn btn-outline-primary" />
+                                        <input type="button" id="createBtn" value="Create" class="btn btn-outline-primary" />
                                     </div>
                                 </div>
 

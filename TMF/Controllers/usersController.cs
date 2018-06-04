@@ -114,8 +114,6 @@ namespace TMF.Controllers
                 var date1 = fc["date"];
                 bool mic = fc["mic"] == "on" ? true : false;
                 bool hs = fc["headset"] == "on" ? true : false;
-                //bool mic = Convert.ToBoolean(fc["mic"].Split(',')[0]);
-                //bool hs = Convert.ToBoolean(fc["headset"].Split(',')[0]);
 
                 //userGame table data
                 bool lol = fc["League"] == "on" ? true : false;

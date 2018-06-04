@@ -122,6 +122,24 @@
                             </div>
                         </div>
 
+                        <label class="equipmentCheck-label">Equipments</label>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="control-label" for="Mic">Mic</label>
+                                <span class="fas fa-microphone"></span>
+                                <span>
+                                    <input class="role-input" type="checkbox" name="Mic">
+                                </span>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="control-label" for="Headset">Headset</label>
+                                <span class="fas fa-headphones"></span>
+                                <span>
+                                    <input class="role-input" type="checkbox" name="Headset">
+                                </span>
+                            </div>
+                        </div>
+
                         <label class="ageHeader">Age</label>
                         <div class="container">
                             <div class="row">
@@ -224,24 +242,6 @@
 
     </div>
 </div>
-
-@*<div class="col-lg-9 col-md-9">
-        <h2>Oyuncular :</h2>
-        @if (Model != null)
-        {
-            foreach (var item in Model)
-            {
-                <div class="well">
-                    <a href="#" class="">@item.username </a> , @item.dateOfBirth
-                    Roles
-                    Languages
-                </div>
-
-            }
-        }
-
-    </div>*@
-
 
 <link href="~/Content/bootstrap-multiselect.css" rel="stylesheet" />
 

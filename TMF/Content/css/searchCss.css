@@ -72,3 +72,13 @@
     width:15px;
     padding:0;
 }
+
+.equipmentCheck-label {
+    margin-top: 1rem;
+    text-align: left;
+    font-weight: bold;
+    font-size: 15px;
+}
+.equipmentCb-input {
+    width: 1rem;
+}
