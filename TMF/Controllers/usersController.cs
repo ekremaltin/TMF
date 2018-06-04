@@ -340,8 +340,9 @@ namespace TMF.Controllers
                 List<userGameDescs> lolDataList = db.userGameDesc.Where(u => u.userGame.user.id == users.id && u.userGame.game.id == 1).ToList();
                 List<userGameDescs> csDataList = db.userGameDesc.Where(u => u.userGame.user.id == users.id && u.userGame.game.id == 2).ToList();
                 userGames userCs = new userGames();
-                userGames userLol = new userGames();                
-                
+                userGames userLol = new userGames();
+
+
 
                 userCs.user = usr;
                 //lol yoksa ve yeni girme işlemi yaparsa, yeni userGame nesnesi doldurma
@@ -349,10 +350,10 @@ namespace TMF.Controllers
                 {
                     userLol.game = db.game.Find(1);
                     userLol.time = lolHours;
-                    userLol.user = usr;                    
+                    userLol.user = usr;
                     userLol.gameNickName = gameNicklol;
                     db.userGame.Add(userLol);
-                    db.SaveChanges();
+                    
                 }
                 //cs yoksa ve yeni girme işlemi yaparsa, yeni userGame nesnesi doldurma
                 if (usrGameCs == null && cs)
@@ -363,7 +364,7 @@ namespace TMF.Controllers
                     userCs.gameConnectID = gameIDcs;
                     userCs.gameNickName = gameNickcs;
                     db.userGame.Add(userCs);
-                    db.SaveChanges();
+                   
                 }
                 //Lol kaldırdı ise
                 if (lol == false) //Lol tiki kaldırıldıysa tüm lol verilerini siler.
@@ -376,14 +377,18 @@ namespace TMF.Controllers
                 }
                 else
                 {
-                    if (usrGameCs != null)
+                    if (usrGameLol != null)
                     {
                         if (usrGameLol.time != lolHours)
                         {
                             usrGameLol.time = lolHours;
                             db.Entry(usrGameLol).State = EntityState.Modified;
                         }
-
+                        if (usrGameLol.gameNickName != gameNicklol)
+                        {
+                            usrGameLol.gameNickName = gameNicklol;
+                            db.Entry(usrGameLol).State = EntityState.Modified;
+                        }
                     }
 
                     if (usrGameLol == null && top)
@@ -391,7 +396,6 @@ namespace TMF.Controllers
                         userGameDescs row = new userGameDescs();
                         row.compAtt = db.compAtt.Find(82);
                         row.userGame = userLol;
-                        userLol.userGameDesc.Add(row);
                         db.userGameDesc.Add(row);
                     }
                     else if (lolDataList.Any(u => u.compAtt.id == 82) == false && top == true)
@@ -414,7 +418,7 @@ namespace TMF.Controllers
                         userGameDescs row = new userGameDescs();
                         row.compAtt = db.compAtt.Find(83);
                         row.userGame = userLol;
-                        userLol.userGameDesc.Add(row);
+                        db.userGameDesc.Add(row);
 
                     }
                     else if (lolDataList.Any(u => u.compAtt.id == 83) == false && mid == true)
@@ -437,7 +441,7 @@ namespace TMF.Controllers
                         userGameDescs row = new userGameDescs();
                         row.compAtt = db.compAtt.Find(84);
                         row.userGame = userLol;
-                        userLol.userGameDesc.Add(row);
+                        db.userGameDesc.Add(row);
 
                     }
                     else if (lolDataList.Any(u => u.compAtt.id == 84) == false && jung == true)
@@ -459,7 +463,7 @@ namespace TMF.Controllers
                         userGameDescs row = new userGameDescs();
                         row.compAtt = db.compAtt.Find(85);
                         row.userGame = userLol;
-                        userLol.userGameDesc.Add(row);
+                        db.userGameDesc.Add(row);
 
                     }
                     else if (lolDataList.Any(u => u.compAtt.id == 85) == false && adc == true)
@@ -483,7 +487,7 @@ namespace TMF.Controllers
                         userGameDescs row = new userGameDescs();
                         row.compAtt = db.compAtt.Find(86);
                         row.userGame = userLol;
-                        userLol.userGameDesc.Add(row);
+                        db.userGameDesc.Add(row);
 
                     }
                     else if (lolDataList.Any(u => u.compAtt.id == 86) == false && sup == true)
@@ -505,8 +509,7 @@ namespace TMF.Controllers
                         userGameDescs row = new userGameDescs();
                         row.compAtt = db.compAtt.Find(int.Parse(ranklol));
                         row.userGame = userLol;
-                        userLol.userGameDesc.Add(row);
-                        db.userGame.Add(userLol);
+                        db.userGameDesc.Add(row);
                     }
                     else if (lolDataList.Where(u => u.compAtt.gameComponent.id == 3).First().compAtt.id != int.Parse(ranklol))
                     {
@@ -532,6 +535,16 @@ namespace TMF.Controllers
                         if (usrGameCs.time != csHours) //Önceden olan cs verisi saat kontrolü ####HATA
                         {
                             usrGameCs.time = csHours;
+                            db.Entry(usrGameCs).State = EntityState.Modified;
+                        }
+                        if (usrGameCs.gameConnectID != gameIDcs)
+                        {
+                            usrGameCs.gameConnectID = gameIDcs;
+                            db.Entry(usrGameCs).State = EntityState.Modified;
+                        }
+                        if (usrGameCs.gameNickName != gameNickcs)
+                        {
+                            usrGameCs.gameNickName = gameNickcs;
                             db.Entry(usrGameCs).State = EntityState.Modified;
                         }
                     }
@@ -561,7 +574,7 @@ namespace TMF.Controllers
                     {
                         userGameDescs row = new userGameDescs();
                         row.compAtt = db.compAtt.Find(106);
-                        //row.userGame = userCs;
+                        row.userGame = userCs;
                         db.userGameDesc.Add(row);
                     }
                     else if (csDataList.Any(u => u.compAtt.id == 106) == false && lurker == true)
@@ -578,7 +591,7 @@ namespace TMF.Controllers
                         csDataList.Remove(temp);
                     }
 
-                    if (usrGameCs == null && lurker == true)
+                    if (usrGameCs == null && rifle == true)
                     {
                         userGameDescs row = new userGameDescs();
                         row.compAtt = db.compAtt.Find(107);
@@ -599,7 +612,7 @@ namespace TMF.Controllers
                         csDataList.Remove(temp);
                     }
 
-                    if (usrGameCs == null && lurker == true)
+                    if (usrGameCs == null && igl == true)
                     {
                         userGameDescs row = new userGameDescs();
                         row.compAtt = db.compAtt.Find(108);
@@ -621,7 +634,7 @@ namespace TMF.Controllers
                         csDataList.Remove(temp);
                     }
 
-                    if (usrGameCs == null && lurker == true)
+                    if (usrGameCs == null && supporter == true)
                     {
                         userGameDescs row = new userGameDescs();
                         row.compAtt = db.compAtt.Find(109);
@@ -642,7 +655,7 @@ namespace TMF.Controllers
                         csDataList.Remove(temp);
                     }
 
-                    if (usrGameCs == null && lurker == true)
+                    if (usrGameCs == null && frag == true)
                     {
                         userGameDescs row = new userGameDescs();
                         row.compAtt = db.compAtt.Find(110);
@@ -668,7 +681,7 @@ namespace TMF.Controllers
                         userGameDescs row = new userGameDescs();
                         row.compAtt = db.compAtt.Find(int.Parse(rankcs));
                         row.userGame = userCs;
-                        db.userGameDesc.Add(row); 
+                        db.userGameDesc.Add(row);
                     }
                     else if (csDataList.Where(u => u.compAtt.gameComponent.id == 5).First().compAtt.id != int.Parse(rankcs))
                     {
@@ -677,7 +690,13 @@ namespace TMF.Controllers
                     }
 
                 }
-                db.Entry(users).State = EntityState.Modified;
+                usr.dateOfBirth = users.dateOfBirth; ;
+                usr.headset = users.headset; ;
+                usr.mic = users.mic;
+                usr.password = users.password;
+                usr.username = users.username;
+
+                db.Entry(usr).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
