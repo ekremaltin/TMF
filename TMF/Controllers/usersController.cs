@@ -267,7 +267,7 @@ namespace TMF.Controllers
 
                 db.user.Add(usr);
                 db.SaveChanges();
-                return RedirectToAction("Index","users");
+                return RedirectToAction("Index", "users");
             }
 
             return RedirectToAction("Login");
@@ -283,7 +283,8 @@ namespace TMF.Controllers
             users users = db.user.Find(id);
 
             ViewBag.csRanks = new SelectList(db.compAtt.Where(a => a.id <= 104 && a.id > 86), "id", "value");
-            ViewBag.lolRanks = new SelectList(db.compAtt.Where(a => a.id <= 27 && a.id > 0), "id", "value");
+            ViewBag.lolRanks = new SelectList(db.compAtt.Where(a => a.id <= 81 && a.id > 54), "id", "value");
+            ViewBag.gameListt = new SelectList(db.game.ToList(), "id", "name");
             if (users == null)
             {
                 return HttpNotFound();
@@ -300,7 +301,139 @@ namespace TMF.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(users).State = EntityState.Modified;
+                //userGame table data
+                bool lol = fc["League"] == "on" ? true : false;
+                bool cs = fc["Counter"] == "on" ? true : false;
+                bool pubg = fc["PlayerUnknown's"] == "on" ? true : false;
+                bool rocket = fc["Rocket"] == "on" ? true : false;
+                bool fort = fc["Fortnite"] == "on" ? true : false;
+                int lolHours = int.Parse(fc["lolHours"]);
+                int csHours = int.Parse(fc["csHours"]);
+                bool Jungle2 = fc["Jungle2"] == "on" ? true : false;
+
+                //userGameDesc table data
+                var rankcs = fc["rankCs"];
+                var ranklol = fc["rankLol"];
+                bool awp = fc["AWP"] == "on" ? true : false; //CS ROLES
+                bool lurker = fc["Lurker"] == "on" ? true : false;
+                bool rifle = fc["Rifle"] == "on" ? true : false;
+                bool igl = fc["IGL"] == "on" ? true : false;
+                bool supporter = fc["Supporter"] == "on" ? true : false;
+                bool frag = fc["Fragger"] == "on" ? true : false;
+                bool top = fc["Top"] == "on" ? true : false; //LOL ROLES
+                bool mid = fc["Mid"] == "on" ? true : false;
+                bool jung = fc["Jungle"] == "on" ? true : false;
+                bool adc = fc["Adc"] == "on" ? true : false;
+                bool sup = fc["Support"] == "on" ? true : false;
+                bool ggg = fc["asdasdasd"] == "on" ? true : false;
+                users usr = db.user.Find(users.id);
+                userGames usrGameLol = usr.userGame.Where(u => u.game.id == 1).FirstOrDefault();
+                List<userGameDescs> lolDataList = db.userGameDesc.Where(u => u.userGame.user.id == users.id && u.userGame.game.id == 1).ToList();
+                List<userGameDescs> csDataList = db.userGameDesc.Where(u => u.userGame.user.id == users.id && u.userGame.game.id == 2).ToList();
+                if (lol == false) //Lol tiki kaldırıldıysa tüm lol verilerini siler.
+                {
+                    foreach (var item in lolDataList)
+                    {
+                        db.userGameDesc.Remove(item);
+                    }
+                    db.userGame.Remove(usrGameLol);
+                }
+                else
+                {
+                    if (usrGameLol.time != lolHours)
+                    {
+                        usrGameLol.time = lolHours;
+                        db.Entry(usrGameLol).State = EntityState.Modified;
+                    }
+                    if (lolDataList.Any(u => u.compAtt.id == 82) == false && top == true)
+                    {
+                        userGameDescs row = new userGameDescs();
+                        row.compAtt = db.compAtt.Find(82);
+                        row.userGame = usrGameLol;
+                        db.userGameDesc.Add(row);
+                    }
+                    else if (lolDataList.Any(u => u.compAtt.id == 82) && top == false)
+                    {
+                        var temp = lolDataList.Where(a => a.compAtt.id == 82).First();
+                        db.userGameDesc.Remove(lolDataList.Where(a => a.compAtt.id == 82).First());
+                        lolDataList.Remove(temp);
+                    }
+
+                    if (lolDataList.Any(u => u.compAtt.id == 83) == false && mid == true)
+                    {
+                        userGameDescs row = new userGameDescs();
+                        row.compAtt = db.compAtt.Find(83);
+                        row.userGame = usrGameLol;
+                        db.userGameDesc.Add(row);
+                    }
+                    else if (lolDataList.Any(u => u.compAtt.id == 83) && mid == false)
+                    {
+                        var temp = lolDataList.Where(a => a.compAtt.id == 83).First();
+                        db.userGameDesc.Remove(lolDataList.Where(a => a.compAtt.id == 83).First());
+                        lolDataList.Remove(temp);
+                    }
+
+                    if (lolDataList.Any(u => u.compAtt.id == 84) == false && jung == true)
+                    {
+                        userGameDescs row = new userGameDescs();
+                        row.compAtt = db.compAtt.Find(84);
+                        row.userGame = usrGameLol;
+                        db.userGameDesc.Add(row);
+                    }
+                    else if (lolDataList.Any(u => u.compAtt.id == 84) && jung == false)
+                    {
+                        var temp = lolDataList.Where(a => a.compAtt.id == 84).First();
+                        db.userGameDesc.Remove(lolDataList.Where(a => a.compAtt.id == 84).First());
+                        lolDataList.Remove(temp);
+                    }
+                    if (lolDataList.Any(u => u.compAtt.id == 85) == false && adc == true)
+                    {
+                        userGameDescs row = new userGameDescs();
+                        row.compAtt = db.compAtt.Find(85);
+                        row.userGame = usrGameLol;
+                        db.userGameDesc.Add(row);
+                    }
+                    else if (lolDataList.Any(u => u.compAtt.id == 85) && adc == false)
+                    {
+                        var temp = lolDataList.Where(a => a.compAtt.id == 85).First();
+
+                        db.userGameDesc.Remove(lolDataList.Where(a => a.compAtt.id == 85).First());
+                        lolDataList.Remove(temp);
+                    }
+
+                    if (lolDataList.Any(u => u.compAtt.id == 86) == false && sup == true)
+                    {
+                        userGameDescs row = new userGameDescs();
+                        row.compAtt = db.compAtt.Find(86);
+                        row.userGame = usrGameLol;
+                        db.userGameDesc.Add(row);
+                    }
+                    else if (lolDataList.Any(u => u.compAtt.id == 86) && sup == false)
+                    {
+                        var temp = lolDataList.Where(a => a.compAtt.id == 86).First();
+                        db.userGameDesc.Remove(lolDataList.Where(a => a.compAtt.id == 86).First());
+                        lolDataList.Remove(temp);
+                    }
+
+                    if (lolDataList.Where(u => u.compAtt.gameComponent.id == 3).First().compAtt.id != int.Parse(ranklol))
+                    {
+                        lolDataList.Where(u => u.compAtt.gameComponent.id == 3).First().compAtt = db.compAtt.Find(int.Parse(ranklol));
+                        db.Entry(lolDataList.Where(u => u.compAtt.gameComponent.id == 3).First()).State = EntityState.Modified;
+                    }
+
+                }
+
+                //if (cs == false)//Cs tiki kaldırıldıysa tüm cs verilerini siler.
+                //{
+                //    foreach (var item in csDataList)
+                //    {
+                //        db.userGameDesc.Remove(item);
+                //    }
+                //}
+                //else
+                //{
+
+                //}
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
