@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using TMF.Models.Context;
 using TMF.Models.Entity;
+using Newtonsoft.Json;
+using TMF.Models.Games.Steam;
 
 namespace TMF.Controllers
 {
@@ -71,6 +73,34 @@ namespace TMF.Controllers
             }
             return View(users);
         }
+        [HttpPost]
+        public JsonResult getSteamDatas(string connectID)
+        {
+            //76561198017002228
+            string url = " http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=0A6275C1D7258B89774826D89329EE09&steamid="+connectID+ "&include_appinfo=1&format=json ";
+            WebRequest istek = HttpWebRequest.Create(url);
+            WebResponse cevap;
+            cevap = istek.GetResponse();
+            using (StreamReader r = new StreamReader(cevap.GetResponseStream()))
+            {
+                string json = r.ReadToEnd();
+                data item = JsonConvert.DeserializeObject<data>(json);
+                return Json ( item, JsonRequestBehavior.AllowGet );
+            }        
+        }
+        //static public void LoadJson() //Steam api (the names and hours of the user's games )
+        //{
+        //    string url = " http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=0A6275C1D7258B89774826D89329EE09&steamid=76561198017002228&include_appinfo=1&format=json ";
+        //    WebRequest istek = HttpWebRequest.Create(url);
+        //    WebResponse cevap;
+        //    cevap = istek.GetResponse();
+
+        //    using (StreamReader r = new StreamReader(cevap.GetResponseStream()))
+        //    {
+        //        string json = r.ReadToEnd();
+        //        data item = JsonConvert.DeserializeObject<data>(json);                
+        //    }
+        //}
 
         // GET: users/Create
         public ActionResult Create()
@@ -287,7 +317,6 @@ namespace TMF.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             users users = db.user.Find(id);
-
             ViewBag.csRanks = new SelectList(db.compAtt.Where(a => a.id <= 104 && a.id > 86), "id", "value");
             ViewBag.lolRanks = new SelectList(db.compAtt.Where(a => a.id <= 81 && a.id > 54), "id", "value");
             ViewBag.gameListt = new SelectList(db.game.ToList(), "id", "name");

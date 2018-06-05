@@ -10,7 +10,7 @@
 <div>
     <h4>users</h4>
     <hr />
-    <dl class="dl-horizontal">
+    <dl id="detailDiv" class="dl-horizontal">
         <dt>
             USERNAME
         </dt>
@@ -78,10 +78,7 @@
                 @item.gameNickName
             </dd>
             <dd>
-                @if (item.gameConnectID != null)
-                {
-                    item.gameConnectID.ToString();
-                }
+                @item.gameConnectID
             </dd>
             foreach (var itemDesc in item.userGameDesc)
             {
@@ -91,19 +88,24 @@
             }
 
         }
-        @*@foreach (userGames item1 in Model.userGame.ToList<userGames>())
-            {
-                foreach (var itemDesc in item1.userGameDesc)
-                {
-                    <dd>
-                        @itemDesc.compAtt.value
-                    </dd>
-                }
 
-            }*@
     </dl>
+
+</div>
+<button type="button" id="opener">For Steam Datas info</button>
+<div id="steamPopup" title="Steam Datas">
+    <h6><b>Game Count</b></h6>
+    <ul id="steamGameCount"></ul>
+    <h6><b>Game List</b></h6>
+    <ul id="steamGameList"></ul>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+<input type="hidden" id="steamID" value="@Model.userGame.Where(u=>u.game.id==2).FirstOrDefault().gameConnectID" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="~/Scripts/js/apiJs.js"></script>

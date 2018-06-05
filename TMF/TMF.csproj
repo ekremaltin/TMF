@@ -55,6 +55,9 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -150,6 +153,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\js\apiJs.js" />
     <Content Include="Scripts\js\bootstrap-select.js" />
     <Content Include="Scripts\js\home.js" />
     <Content Include="Scripts\js\loginJS.js" />
@@ -244,6 +248,9 @@
     <Compile Include="Models\Entity\userGames.cs" />
     <Compile Include="Models\Entity\userGameDescs.cs" />
     <Compile Include="Models\Entity\users.cs" />
+    <Compile Include="Models\Games\Steam\data.cs" />
+    <Compile Include="Models\Games\Steam\gameDesc.cs" />
+    <Compile Include="Models\Games\Steam\response.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -280,7 +287,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\Games\LOL\" />
-    <Folder Include="Models\Games\Steam\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
