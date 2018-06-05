@@ -1,4 +1,5 @@
 ﻿@model TMF.Models.Entity.users
+@using TMF.Models.Entity
 
 @{
     ViewBag.Title = "Details";
@@ -11,7 +12,7 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.username)
+            USERNAME
         </dt>
 
         <dd>
@@ -19,7 +20,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.password)
+            PAROLA
         </dt>
 
         <dd>
@@ -27,23 +28,23 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.dateOfBirth)
+            DOĞUM TARİHİ - YAŞ
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.dateOfBirth)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.image)
-        </dt>
+        @*<dt>
+                @Html.DisplayNameFor(model => model.image)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.image)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.image)
+            </dd>*@
 
         <dt>
-            @Html.DisplayNameFor(model => model.mic)
+            MİC
         </dt>
 
         <dd>
@@ -51,21 +52,55 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.headset)
+            HEADSET
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.headset)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.online)
-        </dt>
+        @*<dt>
+                @Html.DisplayNameFor(model => model.online)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.online)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.online)
+            </dd>*@
+        @foreach (userGames item in Model.userGame.ToList())
+        {
+            <dt>
+                @item.game.name
+            </dt>
+            <dd>
+                @item.time
+            </dd>
+            <dd>
+                @item.gameNickName
+            </dd>
+            <dd>
+                @if (item.gameConnectID != null)
+                {
+                    item.gameConnectID.ToString();
+                }
+            </dd>
+            foreach (var itemDesc in item.userGameDesc)
+            {
+                <dd>
+                    @itemDesc.compAtt.gameComponent.name = @itemDesc.compAtt.value
+                </dd>
+            }
 
+        }
+        @*@foreach (userGames item1 in Model.userGame.ToList<userGames>())
+            {
+                foreach (var itemDesc in item1.userGameDesc)
+                {
+                    <dd>
+                        @itemDesc.compAtt.value
+                    </dd>
+                }
+
+            }*@
     </dl>
 </div>
 <p>

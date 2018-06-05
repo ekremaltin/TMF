@@ -724,6 +724,14 @@ namespace TMF.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             users users = db.user.Find(id);
+            foreach (var item in users.userGame.ToList<userGames>())
+            {
+                foreach (var itemDesc in item.userGameDesc.ToList<userGameDescs>())
+                {
+                    db.userGameDesc.Remove(itemDesc);
+                }
+                db.userGame.Remove(item);
+            }
             db.user.Remove(users);
             db.SaveChanges();
             return RedirectToAction("Index");
