@@ -108,6 +108,7 @@
     <Content Include="Content\css\searchCss.css" />
     <Content Include="Content\css\searchLol.css" />
     <Content Include="Content\css\userCreate.css" />
+    <Content Include="Content\css\userEdit.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\img\logo.png" />
@@ -151,10 +152,13 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\js\bootstrap-select.js" />
+    <Content Include="Scripts\js\findSearch.js" />
+    <Content Include="Scripts\js\findSearchLol.js" />
     <Content Include="Scripts\js\home.js" />
     <Content Include="Scripts\js\loginJS.js" />
     <Content Include="Scripts\js\layout.js" />
     <Content Include="Scripts\js\userCreate.js" />
+    <Content Include="Scripts\js\userEdit.js" />
     <Content Include="Scripts\js\userIndex.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="TMF Documents\bg.jpg" />

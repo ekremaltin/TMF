@@ -9,6 +9,7 @@
     margin-bottom: 40px;
 }
 
+
 .badgebox {
     opacity: 0;
 }
@@ -18,25 +19,24 @@
         width: 27px;
         background-color: white;
         color: royalblue;
-        float: right;
+        float:right;
     }
-
     .badgebox:focus + span.badge {
         box-shadow: inset 0px 0px 5px;
     }
 
     .badgebox:checked + span.badge {
         text-indent: 0;
-        opacity:1;
+        opacity: 1;
     }
 
-.cb-font{
-    font-size:xx-small;
-    text-align:left;
+.cb-font {
+    font-size: small;
+    text-align: left;
 }
 
-.gamecb{
-    margin-bottom:1px;
+.gamecb {
+    margin-bottom: 1px;
 }
 
 .roleSearch-label {
@@ -53,12 +53,14 @@
 }
 
 .role-input {
+    
 }
+
 
 .games {
-    float: right;
+    float:right;
 }
 
-.roleLol {
-    float: right;
+.roleLol{
+    float:right;
 }

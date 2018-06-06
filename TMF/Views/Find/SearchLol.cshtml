@@ -98,7 +98,7 @@
                                     Min Saat:
                                 </div>
                                 <div class="col-sm-5">
-                                    <input type="number" name="minHours" value="0" />
+                                    <input type="number" id="minHours" name="minHours" value="0" min="0" />
                                 </div>
                             </div>
                             <div class="row">
@@ -106,7 +106,7 @@
                                     Max Saat:
                                 </div>
                                 <div class="col-sm-5">
-                                    <input type="number" name="maxHours" value="0" />
+                                    <input type="number" id="maxHours" name="maxHours" value="0" min="0" />
                                 </div>
                             </div>
                         </div>
@@ -155,7 +155,7 @@
                             </div>
 
                             <br />
-                            <input type="submit" id="bul" class="btn btn-primary" value="Bul" />
+                            <input type="button" id="bul" class="btn btn-primary" value="Bul" />
                         </div>
 
 
@@ -236,6 +236,7 @@
 <link href="~/Content/bootstrap-multiselect.css" rel="stylesheet" />
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 @section scripts {
+    <script src="~/Scripts/js/findSearchLol.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="~/Scripts/js/home.js"></script>
