@@ -1,4 +1,5 @@
 ﻿@model TMF.Models.Entity.users
+@using TMF.Models.Entity
 
 @{
     ViewBag.Title = "Details";
@@ -9,9 +10,9 @@
 <div>
     <h4>users</h4>
     <hr />
-    <dl class="dl-horizontal">
+    <dl id="detailDiv" class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.username)
+            USERNAME
         </dt>
 
         <dd>
@@ -19,7 +20,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.password)
+            PAROLA
         </dt>
 
         <dd>
@@ -27,23 +28,23 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.dateOfBirth)
+            DOĞUM TARİHİ - YAŞ
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.dateOfBirth)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.image)
-        </dt>
+        @*<dt>
+                @Html.DisplayNameFor(model => model.image)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.image)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.image)
+            </dd>*@
 
         <dt>
-            @Html.DisplayNameFor(model => model.mic)
+            MİC
         </dt>
 
         <dd>
@@ -51,24 +52,60 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.headset)
+            HEADSET
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.headset)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.online)
-        </dt>
+        @*<dt>
+                @Html.DisplayNameFor(model => model.online)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.online)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.online)
+            </dd>*@
+        @foreach (userGames item in Model.userGame.ToList())
+        {
+            <dt>
+                @item.game.name
+            </dt>
+            <dd>
+                @item.time
+            </dd>
+            <dd>
+                @item.gameNickName
+            </dd>
+            <dd>
+                @item.gameConnectID
+            </dd>
+            foreach (var itemDesc in item.userGameDesc)
+            {
+                <dd>
+                    @itemDesc.compAtt.gameComponent.name = @itemDesc.compAtt.value
+                </dd>
+            }
+
+        }
 
     </dl>
+
+</div>
+<button type="button" id="opener">For Steam Datas info</button>
+<div id="steamPopup" title="Steam Datas">
+    <h6><b>Game Count</b></h6>
+    <ul id="steamGameCount"></ul>
+    <h6><b>Game List</b></h6>
+    <ul id="steamGameList"></ul>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+<input type="hidden" id="steamID" value="@Model.userGame.Where(u=>u.game.id==2).FirstOrDefault().gameConnectID" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="~/Scripts/js/apiJs.js"></script>
