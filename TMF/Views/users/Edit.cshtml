@@ -30,10 +30,21 @@
 
 
 
+
 }
 
 <link href="~/Content/css/userEdit.css" rel="stylesheet" />
-
+<h2>Edit</h2>
+<span><b>Searchable</b></span>
+<div class="onoffswitch3">
+    <input type="checkbox" name="onoffswitch3" class="onoffswitch3-checkbox" id="myonoffswitch3" @if (Model.search) { <text> checked</text> }>
+    <label class="onoffswitch3-label" for="myonoffswitch3">
+        <span class="onoffswitch3-inner">
+            <span class="onoffswitch3-active"><span class="onoffswitch3-switch">Active</span></span>
+            <span class="onoffswitch3-inactive"><span class="onoffswitch3-switch">Inactive</span></span>
+        </span>
+    </label>
+</div>
 
 @using (Html.BeginForm())
 {
@@ -756,14 +767,47 @@
 
 
 }
+
+
+<input type="hidden" id="userID" value="@Model.id" />
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
 <script src="~/Scripts/js/userEdit.js"></script>
 <script src="~/Scripts/bootstrap.js"></script>
+<link href="~/Content/css/onOff.css" rel="stylesheet" />
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-
-@section scripts{
-    <script>
+@section scripts {
+<script>
+        $(document).on("click", "#myonoffswitch3", function () {
+            var degerler = {
+                bit: $("#myonoffswitch3:checked").length == 1 ? true : false,
+                id: $("#userID").val()
+            };
+            $.ajax({
+                type: 'POST',
+                url: '/users/userSearchable',
+                data: JSON.stringify(degerler),
+                dataType: "JSON",
+                contentType: "application/json;charset=utf-8",
+                success: function (gelenDeg) {
+                    if (gelenDeg == "1") {
+                        alert("Searchable is active!");
+                    }
+                    else if (gelenDeg == "0") {
+                        alert("Searchable is inactive!");
+                    }
+                },
+                error: function () {
+                    alert("There was a problem occur!");
+                }
+            });
+        });
+</script>
+<script>
         function getDelete(ids) {
             if (confirm("Are you sure you want to delete this account ?")) {
                 location.href = "/users/delete/" + ids;
@@ -772,6 +816,6 @@
                 return;
             }
         }
-    </script>
-    
+</script>
 }
+

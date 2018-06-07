@@ -26,16 +26,20 @@ function getSteamDatas() {
         url: '/users/getSteamDatas',
         data: { 'connectID': ($('#steamID').val()) },
         success: function (data) {
-            //alert(data);
-            $("#steamGameCount").append('<li>' + data.response.game_count + '</li>')
-            $.each(data.response.games, function (index, option) {
-                $("#steamGameList").append('<li>' + option.name + '</li>');
-            });
-            $("#steamPopup").dialog("open");
+            if (data == false) {
+                alert('Steam ID is not existing');
+            }
+            else {
+                $("#steamGameCount").append('<li>' + data.response.game_count + '</li>')
+                $.each(data.response.games, function (index, option) {
+                    $("#steamGameList").append('<li>' + option.name + '</li>');
+                });
+            }
+            
 
         },
         error: function () {
-            alert('Steam ID is not existing');
+            
         }
     });
 

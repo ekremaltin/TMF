@@ -20,13 +20,22 @@ namespace TMF.Controllers
         // GET: users
         public ActionResult Index()
         {
-            var a = db.user.ToList();
-            return View(a);
+
+            if (Session["id"] != null && Session["yetki"].ToString() == "1")
+            {
+                var a = db.user.ToList();
+                return View(a);
+            }
+            return RedirectToAction("Login");
         }
 
         public ActionResult Login()
         {
-            return View();
+            if (Session["yetki"] == null)
+            {
+                return View();
+            }
+            return RedirectToAction("Index", "Find");
         }
 
 
@@ -43,6 +52,10 @@ namespace TMF.Controllers
                 Session["id"] = usr.id;
                 Session["Ad"] = usr.username;
                 Session["yetki"] = usr.role.id;
+                Session["search"] = usr.search == true ?  "1" : "0";
+                usr.online = true;
+                db.Entry(usr).State = EntityState.Modified;
+                db.SaveChanges();
                 return RedirectToAction("Index", "Find");
             }
             else
@@ -55,52 +68,58 @@ namespace TMF.Controllers
         }
         public ActionResult LogOut()
         {
-            Session.Clear();
+            if (Session["id"] != null)
+            {
+                var usr = db.user.Find(Session["id"]);
+                usr.online = false;
+                db.Entry(usr).State = EntityState.Modified;
+                db.SaveChanges();
+                Session.Clear();
+                return RedirectToAction("Index", "Find");
+            }
             return RedirectToAction("Index", "Find");
+
         }
 
         // GET: users/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            if (Session["yetki"] != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                users users = db.user.Find(id);
+                if (users == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(users);
             }
-            users users = db.user.Find(id);
-            if (users == null)
-            {
-                return HttpNotFound();
-            }
-            return View(users);
+            return RedirectToAction("Login");
+
         }
         [HttpPost]
         public JsonResult getSteamDatas(string connectID)
         {
-            //76561198017002228
-            string url = " http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=0A6275C1D7258B89774826D89329EE09&steamid="+connectID+ "&include_appinfo=1&format=json ";
-            WebRequest istek = HttpWebRequest.Create(url);
-            WebResponse cevap;
-            cevap = istek.GetResponse();
-            using (StreamReader r = new StreamReader(cevap.GetResponseStream()))
+            if (connectID != "")
             {
-                string json = r.ReadToEnd();
-                data item = JsonConvert.DeserializeObject<data>(json);
-                return Json ( item, JsonRequestBehavior.AllowGet );
-            }        
+                //76561198017002228
+                string url = " http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=0A6275C1D7258B89774826D89329EE09&steamid=" + connectID + "&include_appinfo=1&format=json ";
+                WebRequest istek = HttpWebRequest.Create(url);
+                WebResponse cevap;
+                cevap = istek.GetResponse();
+                using (StreamReader r = new StreamReader(cevap.GetResponseStream()))
+                {
+                    string json = r.ReadToEnd();
+                    data item = JsonConvert.DeserializeObject<data>(json);
+                    return Json(item, JsonRequestBehavior.AllowGet);
+                }
+            }
+            return Json(false);
+            
         }
-        //static public void LoadJson() //Steam api (the names and hours of the user's games )
-        //{
-        //    string url = " http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=0A6275C1D7258B89774826D89329EE09&steamid=76561198017002228&include_appinfo=1&format=json ";
-        //    WebRequest istek = HttpWebRequest.Create(url);
-        //    WebResponse cevap;
-        //    cevap = istek.GetResponse();
-
-        //    using (StreamReader r = new StreamReader(cevap.GetResponseStream()))
-        //    {
-        //        string json = r.ReadToEnd();
-        //        data item = JsonConvert.DeserializeObject<data>(json);                
-        //    }
-        //}
 
         // GET: users/Create
         public ActionResult Create()
@@ -167,7 +186,7 @@ namespace TMF.Controllers
                 bool mid = fc["Mid"] == "on" ? true : false;
                 bool jung = fc["Jungle"] == "on" ? true : false;
                 bool adc = fc["Adc"] == "on" ? true : false;
-                bool sup = fc["Support"] == "on" ? true : false;                
+                bool sup = fc["Support"] == "on" ? true : false;
                 string gameIDcs = fc["gameConnectIDcs"];
                 string gameNickcs = fc["gameNickNamecs"];
                 string gameNicklol = fc["gameNickNamelol"];
@@ -312,19 +331,24 @@ namespace TMF.Controllers
         // GET: users/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if (Session["id"] != null && (Session["id"].ToString() == id.ToString() || Session["yetki"].ToString() == "1"))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                users users = db.user.Find(id);
+                ViewBag.csRanks = new SelectList(db.compAtt.Where(a => a.id <= 104 && a.id > 86), "id", "value");
+                ViewBag.lolRanks = new SelectList(db.compAtt.Where(a => a.id <= 81 && a.id > 54), "id", "value");
+                ViewBag.gameListt = new SelectList(db.game.ToList(), "id", "name");
+                if (users == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(users);
             }
-            users users = db.user.Find(id);
-            ViewBag.csRanks = new SelectList(db.compAtt.Where(a => a.id <= 104 && a.id > 86), "id", "value");
-            ViewBag.lolRanks = new SelectList(db.compAtt.Where(a => a.id <= 81 && a.id > 54), "id", "value");
-            ViewBag.gameListt = new SelectList(db.game.ToList(), "id", "name");
-            if (users == null)
-            {
-                return HttpNotFound();
-            }
-            return View(users);
+            return RedirectToAction("Login");
+
         }
 
         // POST: users/Edit/5
@@ -385,7 +409,7 @@ namespace TMF.Controllers
                     userLol.user = usr;
                     userLol.gameNickName = gameNicklol;
                     db.userGame.Add(userLol);
-                    
+
                 }
                 //cs yoksa ve yeni girme işlemi yaparsa, yeni userGame nesnesi doldurma
                 if (usrGameCs == null && cs)
@@ -396,10 +420,10 @@ namespace TMF.Controllers
                     userCs.gameConnectID = gameIDcs;
                     userCs.gameNickName = gameNickcs;
                     db.userGame.Add(userCs);
-                   
+
                 }
                 //Lol kaldırdı ise
-                if (lol == false && usrGameLol!=null) //Lol tiki kaldırıldıysa tüm lol verilerini siler.
+                if (usrGameLol != null && lol == false) //Lol tiki kaldırıldıysa tüm lol verilerini siler.
                 {
                     foreach (var item in lolDataList)
                     {
@@ -728,6 +752,48 @@ namespace TMF.Controllers
                 usr.password = users.password;
                 usr.username = users.username;
 
+                if (usr.userGame.Any(u=>u.game.id==5) == false &&  fort) // fortnite yok ama işaretlemiş - fort ekle
+                {
+                    userGames usrGame = new userGames();
+                    usrGame.game = db.game.Find(5);
+                    usrGame.user = usr;
+                    db.userGame.Add(usrGame);
+                }
+                else if (usr.userGame.Any(u => u.game.id == 5) == true && fort == false)// fortnite var ama işaretlememiş - fort sil
+                {
+                    userGames temp = usr.userGame.Where(a => a.game.id == 5).First();
+                    db.userGame.Remove(temp);
+
+                }
+
+                if (usr.userGame.Any(u => u.game.id == 3) == false &&  pubg)// pubg yok ama işaretlemiş - pubg ekle
+                {
+                    userGames usrGame = new userGames();
+                    usrGame.game = db.game.Find(3);
+                    usrGame.user = usr;
+                    db.userGame.Add(usrGame);
+                }
+                else if (usr.userGame.Any(u => u.game.id == 3) == true && pubg == false)// pubg var ama işaretlememiş - pubg sil
+                {
+                    userGames temp = usr.userGame.Where(a => a.game.id == 3).First();
+                    db.userGame.Remove(temp);
+
+                }
+
+                if (usr.userGame.Any(u => u.game.id == 4) == false && rocket)// rocket yok ama işaretlemiş - rocket ekle
+                {
+                    userGames usrGame = new userGames();
+                    usrGame.game = db.game.Find(4);
+                    usrGame.user = usr;
+                    db.userGame.Add(usrGame);
+                }
+                else if (usr.userGame.Any(u => u.game.id == 4) == true && rocket == false)// rocket var ama işaretlememiş - rocket sil
+                {
+                    userGames temp = usr.userGame.Where(a => a.game.id == 4).First();
+                    db.userGame.Remove(temp);
+                }
+
+
                 db.Entry(usr).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -735,38 +801,55 @@ namespace TMF.Controllers
             return View(users);
         }
 
-        // GET: users/Delete/5
-        public ActionResult Delete(int? id)
+        [HttpPost]
+        public JsonResult userSearchable(bool bit,string id)
         {
-            if (id == null)
+            if (id !="0")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                users usr = db.user.Find(int.Parse(id));
+                if (usr.search == true && bit == false) //Aranmak istemiyor.
+                {
+                    usr.search = false;
+                    db.Entry(usr).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return Json("0");
+
+                }
+                else if (usr.search == false && bit == true) //Aranmak istiyor.
+                {
+
+                    usr.search = true;
+                    db.Entry(usr).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return Json("1");
+                }
+                else
+                {
+                    return Json("2");
+                }
             }
-            users users = db.user.Find(id);
-            if (users == null)
-            {
-                return HttpNotFound();
-            }
-            return View(users);
+            return Json("3");
         }
 
-        // POST: users/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult Delete(int id)
         {
-            users users = db.user.Find(id);
-            foreach (var item in users.userGame.ToList<userGames>())
+            if (Session["yetki"].ToString() == "1" || Session["id"].ToString() == id.ToString())
             {
-                foreach (var itemDesc in item.userGameDesc.ToList<userGameDescs>())
+                users users = db.user.Find(id);
+                foreach (var item in users.userGame.ToList<userGames>())
                 {
-                    db.userGameDesc.Remove(itemDesc);
+                    foreach (var itemDesc in item.userGameDesc.ToList<userGameDescs>())
+                    {
+                        db.userGameDesc.Remove(itemDesc);
+                    }
+                    db.userGame.Remove(item);
                 }
-                db.userGame.Remove(item);
+                db.user.Remove(users);
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
-            db.user.Remove(users);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Login", "users");
+
         }
 
         protected override void Dispose(bool disposing)
