@@ -39,126 +39,48 @@
         var click4 = true;
         //Oyunlar Seçili ise
         if (i > 0) {
-            //LoL seçili ise
-            if ($('#League:checked').length == true && $('#Counter:checked').length == false) {
+            //LoL özellik kontrolü
+            if ($('#League:checked').length == true) {
                 $('#lolNickname').prop("required", true);
                 if (roleLol == 0) {
-                    alert("Lütfen LoL için en az 1 role seçiniz!");
+                    alert("Please select at least 1 role for LoL!");
                     click1 = false;
                 }
 
                 $('#rankLol').prop("required", true);
                 if (lolHours < 0) {
-                    alert("Lütfen LoL için 0'dan küçük saat değeri girmeyin");
+                    alert("Please do not enter a clock less than 0 for LoL!");
                     click2 = false;
-                }
-
-                if (click1 == true && click2 == true) {
-                    document.getElementById('createBtn').type = 'submit';
-                    document.getElementById('createBtn').click();
-                }
-
-            }
-            //CS seçili ise
-            else if ($('#League:checked').length == false && $('#Counter:checked').length == true) {
-                $('#steamName').prop("required", true);
-                $('#steamID').prop("required", true);
-
-                if (roleCS == 0) {
-                    alert("Lütfen CS:GO için en az 1 role seçiniz!");
-                    click1 = false;
-                }
-
-                $('#rankCs').prop("required", true);
-                if (csHours < 0) {
-                    alert("Lütfen 0'dan küçük saat değeri girmeyin");
-                    click2 = false;
-                }
-
-                if (click1 == true && click2 == true) {
-                    document.getElementById('createBtn').type = 'submit';
-                    document.getElementById('createBtn').click();
                 }
             }
-            //CS ve LoL seçili ise
-            else if ($('#League:checked').length == true && $('#Counter:checked').length == true) {
 
-                //LoL özellik kontrolü
-                $('#lolNickname').prop("required", true);
-                if (roleLol == 0) {
-                    alert("Lütfen LoL için en az 1 role seçiniz!");
-                    click1 = false;
-                }
 
-                $('#rankLol').prop("required", true);
-                if (lolHours < 0) {
-                    alert("Lütfen 0'dan küçük saat değeri girmeyin");
-                    click2 = false;
-                }
-
-                //CS:GO özellik kontrolü
+            //CS:GO özellik kontrolü
+            if ($('#Counter:checked').length == true) {
                 $('#steamName').prop("required", true);
                 $('#steamID').prop("required", true);
                 if (roleCS == 0) {
-                    alert("Lütfen CS:GO için en az 1 role seçiniz!");
+                    alert("Please select at least 1 role for CS:GO!");
                     click3 = false;
                 }
                 $('#rankCs').prop("required", true);
                 if (csHours < 0) {
-                    alert("Lütfen CS:GO için 0'dan küçük saat değeri girmeyin");
+                    alert("Please do not enter a clock less than 0 for CS:GO!");
                     click4 = false;
                 }
-                if (click1 == true && click2 == true && click3 == true && click4 == true) {
-
-                    document.getElementById('createBtn').type = 'submit';
-                    document.getElementById('createBtn').click();
-                }
             }
-            //CS ve LoL dışında oyunlar seçili ise   || 
-            else {
-                //LoL özellik kontrolü
-                if ($('#League:checked').length == true) {
-                    $('#lolNickname').prop("required", true);
-                    if (roleLol == 0) {
-                        alert("Lütfen LoL için en az 1 role seçiniz!");
-                        click1 = false;
-                    }
 
-                    $('#rankLol').prop("required", true);
-                    if (lolHours < 0) {
-                        alert("Lütfen 0'dan küçük saat değeri girmeyin");
-                        click2 = false;
-                    }
-                }
-                
+            if (click1 == true && click2 == true && click3 == true && click4 == true) {
 
-                //CS:GO özellik kontrolü
-                if ($('#Counter:checked').length == true) {
-                    $('#steamName').prop("required", true);
-                    $('#steamID').prop("required", true);
-                    if (roleCS == 0) {
-                        alert("Lütfen CS:GO için en az 1 role seçiniz!");
-                        click3 = false;
-                    }
-                    $('#rankCs').prop("required", true);
-                    if (csHours < 0) {
-                        alert("Lütfen 0'dan küçük saat değeri girmeyin");
-                        click4 = false;
-                    }
-                }
-                
-                if (click1 == true && click2 == true && click3 == true && click4 == true) {
-
-                    document.getElementById('createBtn').type = 'submit';
-                    document.getElementById('createBtn').click();
-                }
+                document.getElementById('createBtn').type = 'submit';
+                document.getElementById('createBtn').click();
             }
 
 
         }
         //Hiçbir oyun seçili değilse
         else {
-            alert("Lütfen en az 1 oyun seçiniz!");
+            alert("Please select at least 1 game!");
         }
 
 

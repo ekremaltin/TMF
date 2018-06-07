@@ -111,6 +111,7 @@
     <Content Include="Content\css\searchCss.css" />
     <Content Include="Content\css\searchLol.css" />
     <Content Include="Content\css\userCreate.css" />
+    <Content Include="Content\css\userDetails.css" />
     <Content Include="Content\css\userEdit.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />

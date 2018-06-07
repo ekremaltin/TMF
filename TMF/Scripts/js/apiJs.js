@@ -19,7 +19,6 @@
 
 $("#opener").on("click", function () {
     getSteamDatas();
-    $("#steamPopup").dialog("open");
 });
 function getSteamDatas() {    
     $.ajax({
@@ -32,6 +31,7 @@ function getSteamDatas() {
             $.each(data.response.games, function (index, option) {
                 $("#steamGameList").append('<li>' + option.name + '</li>');
             });
+            $("#steamPopup").dialog("open");
 
         },
         error: function () {

@@ -29,13 +29,13 @@
             if ($('#League:checked').length > 0 ) {
                 $('#lolNickname').prop("required", true);
                 if (roleLol == 0) {
-                    alert("Lütfen LoL için en az 1 role seçiniz!");
+                    alert("Please select at least 1 role for LoL!");
                     click1 = false;
                 }
 
                 $('#rankLol').prop("required", true);
                 if (lolHours < 0) {
-                    alert("Lütfen 0'dan küçük saat değeri girmeyin");
+                    alert("Please do not enter a clock less than 0 for LoL!");
                     click2 = false;
                 }
             }
@@ -46,12 +46,12 @@
                 $('#steamName').prop("required", true);
                 $('#steamID').prop("required", true);
                 if (roleCS == 0) {
-                    alert("Lütfen CS:GO için en az 1 role seçiniz!");
+                    alert("Please select at least 1 role for CS:GO!");
                     click3 = false;
                 }
                 $('#rankCs').prop("required", true);
                 if (csHours < 0) {
-                    alert("Lütfen 0'dan küçük saat değeri girmeyin");
+                    alert("Please do not enter a clock less than 0 for CS:GO!");
                     click4 = false;
                 }
             }
@@ -66,7 +66,7 @@
         }
         //Hiçbir oyun seçili değilse
         else {
-            alert("Lütfen en az 1 oyun seçiniz!");
+            alert("Please select at least 1 game!");
         }
 
 

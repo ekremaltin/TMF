@@ -738,6 +738,7 @@
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
                                     <input type="button" id="saveBtn" value="Save" class="btn btn-outline-primary" />
+                                    <input type="button" id="deleteBtn" value="Delete this Account" class="btn btn-danger" onclick="getDelete(@Model.id)" />
                                 </div>
                             </div>
 
@@ -755,12 +756,22 @@
 
 
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 <script src="~/Scripts/js/userEdit.js"></script>
 <script src="~/Scripts/bootstrap.js"></script>
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+@section scripts{
+    <script>
+        function getDelete(ids) {
+            if (confirm("Are you sure you want to delete this account ?")) {
+                location.href = "/users/delete/" + ids;
+            }
+            else {
+                return;
+            }
+        }
+    </script>
+    
+}

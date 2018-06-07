@@ -6,106 +6,178 @@
 }
 
 <h2>Details</h2>
+<link href="~/Content/css/userDetails.css" rel="stylesheet" />
 
-<div>
-    <h4>users</h4>
-    <hr />
-    <dl id="detailDiv" class="dl-horizontal">
-        <dt>
-            USERNAME
-        </dt>
+<div class="content py-5  bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home" data-toggle="tab">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#gamesTab" data-toggle="tab">Games</a>
+                    </li>
+                </ul>
+                <!-- form user info -->
+                <div class="card card-outline-secondary tab-content">
 
-        <dd>
-            @Html.DisplayFor(model => model.username)
-        </dd>
+                    <div id="home" class="tab-pane active">
+                        <div class="card-header">
+                            <h3 class="mb-0">User Information</h3>
+                        </div>
+                        <div class="card-body">
+                            <form class="form" role="form" autocomplete="off">
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label">Username</label>
+                                    <div class="col-lg-9">
+                                        <input class="form-control" type="text" value="@Model.username" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label">Password</label>
+                                    <div class="col-lg-9">
+                                        <input class="form-control" type="text" value="@Model.password" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label">Age</label>
+                                    @{ int age = 0;
+                                        age = DateTime.Now.Year - Model.dateOfBirth.Year;
+                                        if (DateTime.Now.DayOfYear < Model.dateOfBirth.DayOfYear)
+                                        {
+                                            age = age - 1;
+                                        }
+                                    }
+                                    <div class="col-lg-9">
+                                        <input class="form-control" type="email" value="@age" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label">Mic</label>
+                                    <div class="col-lg-9">
+                                        <label for="mic" class="btn btn-primary">
+                                            <input type="checkbox" id="mic" name="mic" class="badgebox" value="@Model.mic" disabled>
+                                            <span class="badge">
+                                                &check;
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label">Headset</label>
+                                    <div class="col-lg-9">
+                                        <label for="mic" class="btn btn-primary">
+                                            <input type="checkbox" id="headset" name="headset" class="badgebox" value="@Model.headset" disabled>
+                                            <span class="badge">
+                                                &check;
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
 
-        <dt>
-            PAROLA
-        </dt>
+                                <div class="form-group row">
+                                    <label class="col-lg-6 col-form-label form-control-label"></label>
+                                    <div class="col-lg-6">
+                                        <input type="button" class="btn btn-success" value="Go to Edit" onclick="getEdit(@Model.id)">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.password)
-        </dd>
+                    <div id="gamesTab" class="tab-pane fade">
+                        <div class="card-header">
+                            <h3 class="mb-0">Games</h3>
+                        </div>
+                        <div class="card-body">
+                            <form id="tab" class="form" role="form" autocomplete="off">
+                                @foreach (userGames item in Model.userGame.ToList())
+                                {
 
-        <dt>
-            DOĞUM TARİHİ - YAŞ
-        </dt>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label form-control-label" ><b>Game Name</b></label>
+                                        <div class="col-lg-9">
+                                            <input class="form-control" type="text" value="@item.game.name" disabled>
+                                        </div>
+                                    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.dateOfBirth)
-        </dd>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label form-control-label">Hours</label>
+                                        <div class="col-lg-9">
+                                            <input class="form-control" type="text" value="@item.time" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label form-control-label">Game Nickname</label>
+                                        <div class="col-lg-9">
+                                            <input class="form-control" type="text" value="@item.gameNickName" disabled>
+                                        </div>
+                                    </div>
+                                    if (item.gameConnectID.AsBool())
+                                    {
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label form-control-label">Steam ID</label>
+                                            <div class="col-lg-9">
+                                                <input class="form-control" type="text" value="@item.gameConnectID" disabled>
+                                            </div>
+                                        </div>
+                                    }
 
-        @*<dt>
-                @Html.DisplayNameFor(model => model.image)
-            </dt>
+                                    foreach (var itemDesc in item.userGameDesc)
+                                    {
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label form-control-label">@itemDesc.compAtt.gameComponent.name</label>
+                                            <div class="col-lg-9">
+                                                <input class="form-control" type="email" value="@itemDesc.compAtt.value" disabled>
+                                            </div>
+                                        </div>
+                                    }
 
-            <dd>
-                @Html.DisplayFor(model => model.image)
-            </dd>*@
+                                }
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label"></label>
+                                    <div class="col-lg-9">
+                                        <input type="reset" class="btn btn-secondary" value="Return Home">
+                                        <button type="button" class="btn btn-primary" id="opener">For Steam Dataset info</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
 
-        <dt>
-            MİC
-        </dt>
+                </div>
+                <!-- /form user info -->
+            </div>
+        </div>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.mic)
-        </dd>
-
-        <dt>
-            HEADSET
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.headset)
-        </dd>
-
-        @*<dt>
-                @Html.DisplayNameFor(model => model.online)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.online)
-            </dd>*@
-        @foreach (userGames item in Model.userGame.ToList())
-        {
-            <dt>
-                @item.game.name
-            </dt>
-            <dd>
-                @item.time
-            </dd>
-            <dd>
-                @item.gameNickName
-            </dd>
-            <dd>
-                @item.gameConnectID
-            </dd>
-            foreach (var itemDesc in item.userGameDesc)
-            {
-                <dd>
-                    @itemDesc.compAtt.gameComponent.name = @itemDesc.compAtt.value
-                </dd>
-            }
-
-        }
-
-    </dl>
+    
 
 </div>
-<button type="button" id="opener">For Steam Datas info</button>
-<div id="steamPopup" title="Steam Datas">
+
+<div id="steamPopup" title="Steam Dataset">
     <h6><b>Game Count</b></h6>
     <ul id="steamGameCount"></ul>
     <h6><b>Game List</b></h6>
     <ul id="steamGameList"></ul>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
 <input type="hidden" id="steamID" value="@Model.userGame.Where(u=>u.game.id==2).FirstOrDefault().gameConnectID" />
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
 
+
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 <script src="~/Scripts/js/apiJs.js"></script>
+
+@section scripts{
+    <script>
+        function getEdit(ids) {
+            location.href = "/users/edit/" + ids;
+        }
+    </script>
+    }

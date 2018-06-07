@@ -1,0 +1,20 @@
+﻿.badgebox {
+    opacity: 0;
+}
+
+    .badgebox + span.badge {
+        text-indent: -999999px;
+        width: 27px;
+        background-color: white;
+        color: royalblue;
+        float: right;
+    }
+
+    .badgebox:focus + span.badge {
+        box-shadow: inset 0px 0px 5px;
+    }
+
+    .badgebox:checked + span.badge {
+        text-indent: 0;
+        opacity: 1;
+    }
