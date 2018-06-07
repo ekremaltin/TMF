@@ -88,56 +88,42 @@ namespace TMF.Controllers
             if (AWP == "on")
             {
                 q1 = query.Where(e => e.compAtt.value == "AWP").ToList();
-
             }
-
-
-
+            
             string Lurker = fc["Lurker"];
             if (Lurker == "on")
             {
                 q2 = query.Where(e => e.compAtt.value == "Lurker").ToList();
-
             }
-
-
+            
             string Rifler = fc["Rifler"];
             if (Rifler == "on")
             {
                 q3 = query.Where(e => e.compAtt.value == "Rifler").ToList();
-
             }
 
             string IGL = fc["IGL"];
             if (IGL == "on")
             {
                 q4 = query.Where(e => e.compAtt.value == "IGL").ToList();
-
             }
-
 
             string Supporter = fc["Supporter"];
             if (Supporter == "on")
             {
                 q5 = query.Where(e => e.compAtt.value == "Supporter").ToList();
-
             }
-
 
             string Fragger = fc["Fragger"];
             if (Fragger == "on")
             {
                 q6 = query.Where(e => e.compAtt.value == "Fragger").ToList();
-
             }
-
 
             if (AWP == null && Lurker == null && Rifler == null && IGL == null && Supporter == null && Fragger == null)
             {
                
                 var query2 = query.GroupBy(e => e.userGame.user.id).ToList();
-
-
                 string yas = fc["yas"];
                 int minHours = int.Parse(fc["minHours"]);
                 int maxHours = int.Parse(fc["maxHours"]);
@@ -237,20 +223,14 @@ namespace TMF.Controllers
                     }
 
                 }
-
-
             }
             else
             {
                 var q = q1.Union(q2).Union(q3).Union(q4).Union(q5).Union(q6).ToList();
-                
                 var query2 = q.GroupBy(e => e.userGame.user.id).ToList();
-
-
                 string yas = fc["yas"];
                 int minHours = int.Parse(fc["minHours"]);
                 int maxHours = int.Parse(fc["maxHours"]);
-
                 foreach (var item in query2)
                 {
                     if (Session["id"] != null)
@@ -343,15 +323,10 @@ namespace TMF.Controllers
                             liste.Add(u);
                         }
                     }
-
                 }
-
-
-            }
-               
-
-                return View(liste);
-            
+            }               
+                //return View(liste.Where(u=>u.online==true && u.search == true).ToList());            
+                return View(liste.Where(u=>u.search==true).ToList());
         }
 
         public ActionResult SearchLol()
@@ -675,8 +650,8 @@ namespace TMF.Controllers
 
             }
 
-
-            return View(liste);
+            //return View(liste.Where(u=>u.online==true && u.search == true).ToList());  
+            return View(liste.Where(u => u.search == true).ToList());
         }
         public ActionResult DavetEt(int DavetEdilenId, int oyunId)
         {

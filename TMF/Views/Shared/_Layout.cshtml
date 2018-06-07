@@ -11,6 +11,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
     <script src="~/Scripts/js/bootstrap-select.js"></script>
     <script src="~/Scripts/js/layout.js"></script>
+    
 </head>
 <body>
     <link href="~/Content/css/layout.css" rel="stylesheet" />
@@ -40,7 +41,7 @@
                 <li class="nav-item">
                     <span class="bosluk"> </span>
                 </li>
-               
+
                 <li class="nav-item">
                     <a class="nav-link" href="@Url.Action("Index", "Find")">Home </a>
                 </li>
@@ -66,19 +67,20 @@
 
                 @if (Session["id"] != null)
                 {
+                    
                     <li class="btn btn-outline-danger my-2 mr-2 my-sm-0 ">@Html.ActionLink("Log Out", "LogOut", "users")</li>
                 }
                 else
                 {
                     <li class="btn btn-outline-primary my-2 mr-2 my-sm-0 ">@Html.ActionLink("Login", "Login", "users")</li>
-                    <li class="btn btn-outline-primary my-2 my-md-0"><span class="fas fa-user"></span> @Html.ActionLink("Sign Up","Create","users")</li>
+                    <li class="btn btn-outline-primary my-2 my-md-0"><span class="fas fa-user"></span> @Html.ActionLink("Sign Up", "Create", "users")</li>
 
                 }
 
             </ul>
         </div>
     </nav>
-
+    
     <div class="container body-content">
         @RenderBody()
         <hr />

@@ -69,7 +69,8 @@
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
                     @Html.ActionLink("Details", "Details", new { id = item.id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                    <a href="#" id='btnDelete' onclick=getDelete(@item.id) >Delete</a>
+                    
                 </td>
             </tr>
         }
@@ -82,3 +83,15 @@
 <script src="https://cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.1/js/responsive.bootstrap4.min.js"></script>
 <script src="~/Scripts/js/userIndex.js"></script>
+@section scripts {
+    <script>
+        function getDelete(IDs) {
+            if (confirm("Are you sure you want to delete ?")) {
+                location.href = '/users/Delete/' + IDs;
+            }
+            else {
+                return;
+            }
+        }
+    </script>
+}

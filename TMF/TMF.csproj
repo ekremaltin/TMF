@@ -269,11 +269,6 @@
     <Content Include="Views\users\Details.cshtml" />
     <Content Include="Views\users\Edit.cshtml" />
     <Content Include="Views\users\Index.cshtml" />
-    <Content Include="Views\games\Create.cshtml" />
-    <Content Include="Views\games\Delete.cshtml" />
-    <Content Include="Views\games\Details.cshtml" />
-    <Content Include="Views\games\Edit.cshtml" />
-    <Content Include="Views\games\Index.cshtml" />
     <Content Include="Views\Find\SearchLol.cshtml" />
     <Content Include="Views\users\Login.cshtml" />
     <Content Include="Views\Find\Listeler.cshtml" />
