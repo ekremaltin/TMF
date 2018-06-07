@@ -5,9 +5,35 @@
     var cs = Model.userGame.Any(a => a.game.id == 2);
     var lol = Model.userGame.Any(a => a.game.id == 1);
 
+    string day = "";
+    string month = "";
+
+    if (Model.dateOfBirth.Day < 10)
+    {
+        day = "0" + Model.dateOfBirth.Day.ToString();
+    }
+    else
+    {
+        day = Model.dateOfBirth.Day.ToString();
+    }
+    if (Model.dateOfBirth.Day < 10)
+    {
+        month = "0" + Model.dateOfBirth.Month.ToString();
+    }
+    else
+    {
+        month = Model.dateOfBirth.Month.ToString();
+    }
+    var year = Model.dateOfBirth.Year.ToString();
+
+
+
+
+
 
 }
 
+<link href="~/Content/css/userEdit.css" rel="stylesheet" />
 <h2>Edit</h2>
 <span><b>Searchable</b></span>
 <div class="onoffswitch3">
@@ -23,346 +49,722 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        <h4>users</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.id)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.username, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.dateOfBirth, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.dateOfBirth, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.dateOfBirth, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.image, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.image, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.image, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.mic, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.mic)
-                    @Html.ValidationMessageFor(model => model.mic, "", new { @class = "text-danger" })
+    @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
+<div class="container">
+    @Html.HiddenFor(model => model.id)
+    <div class="row">
+        <div class="col">
+            <div class="well-block">
+                <div class="well-title">
+                    <h2>User Edit</h2>
                 </div>
-            </div>
-        </div>
+                <form>
+                    <div class="row">
+                        <!--Username -->
+                        <div class="col-md-6">
+                            <label class="control-label" for="username">Username</label>
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                </div>
+                                @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form-control", required = true } })
+                            </div>
+                        </div>
+                        <!-- Password-->
+                        <div class="col-md-6">
+                            <label class="control-label" for="password">Password</label>
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                                </div>   
+                                <input class="form-control" type="password" id="password" name="password" data-check="on" required value="@Model.password"/>
+                                <div class="input-group-append">
+                                    <span id="pswShow" class="input-group-text"> <i class="far fa-eye"></i> </span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Birthday-->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label" for="date">Birthday</label>
+                                @*@Html.EditorFor(model => model.dateOfBirth, new { htmlAttributes = new { @class = "form-control input-md", type = "date", required = true, value = @year+"-"+@month+"-"+@day } })*@
+                                <input type="date" id="=dateOfBirth" name="dateOfBirth" class="form-control input-md" value="@year-@month-@day" required/>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.headset, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.headset)
-                    @Html.ValidationMessageFor(model => model.headset, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.online, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.online)
-                    @Html.ValidationMessageFor(model => model.online, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-        @*<div class="form-group">
-                <div id="game" class="form-group">
-                    <label>Oyunlar :</label>
-                    <div id="gameList">
-                        <div id="cbList" class="form-group">
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>*@
-
-        @if (cs)
-        {
-            var csData = (Model.userGame.ToList().Where(a => a.game.id == 2).FirstOrDefault());
-            var d = csData.userGameDesc.Where(b => b.compAtt.gameComponent.id == 5).FirstOrDefault();
-            var f = d.compAtt.id;
-            var csTime = Model.userGame.Where(u => u.game.id == 2).FirstOrDefault().time;
-            <div id="csDiv">
-                <div class="form-group form-inline">
-                    Steam ID<input name="gameConnectIDcs" type="text" value="@csData.gameConnectID" />
-                    Steam Nickname<input name="gameNickNamecs" type="text" value="@csData.gameNickName" />
-                    @Html.Label("AWP", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-2">
-                        <div class="checkbox">
-                            <input type="checkbox" name="AWP" class="text-danger" @if (csData.userGameDesc.Where(u => u.compAtt.id == 105).FirstOrDefault() != null) { <text> checked="checked" </text> } />
+                    <!-- Equipment Check -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            Mic
+                            <span class="fas fa-microphone"></span>
+                        </div>
+                        <div class="col-md-6">
+                            Headset
+                            <span class="fas fa-headphones"></span>
                         </div>
                     </div>
-                    @Html.Label("Lurker", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-2">
-                        <div class="checkbox">
-                            <input type="checkbox" name="Lurker" class="text-danger" @if (csData.userGameDesc.Where(u => u.compAtt.id == 106).FirstOrDefault() != null) { <text> checked="checked" </text> } />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="mic" class="btn btn-primary">
+                                <input type="checkbox" id="mic" name="mic" class="badgebox" @if (Model.mic) { <text> checked </text> } />
+                                <span class="badge">
+                                    &check;
+                                </span>
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="headset" class="btn btn-primary">
+                                <input type="checkbox" id="headset" name="headset" class="badgebox" @if (Model.headset) { <text> checked </text> } />
+                                <span class="badge">
+                                    &check;
+                                </span>
+                            </label>
                         </div>
                     </div>
-                    @Html.Label("Rifle", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-2">
-                        <div class="checkbox">
-                            <input type="checkbox" name="Rifle" class="text-danger" @if (csData.userGameDesc.Where(u => u.compAtt.id == 107).FirstOrDefault() != null) { <text> checked="checked" </text> } />
-                        </div>
-                    </div>
-                    @Html.Label("IGL", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-2">
-                        <div class="checkbox">
-                            <input type="checkbox" name="IGL" class="text-danger" @if (csData.userGameDesc.Where(u => u.compAtt.id == 108).FirstOrDefault() != null) { <text> checked="checked" </text> } />
-                        </div>
-                    </div>
-                    @Html.Label("Supporter", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-2">
-                        <div class="checkbox">
-                            <input type="checkbox" name="Supporter" class="text-danger" @if (csData.userGameDesc.Where(u => u.compAtt.id == 109).FirstOrDefault() != null) { <text> checked="checked" </text> } />
-                        </div>
-                    </div>
-                    @Html.Label("Fragger", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-2">
-                        <div class="checkbox">
-                            <input type="checkbox" name="Fragger" class="text-danger" @if (csData.userGameDesc.Where(u => u.compAtt.id == 110).FirstOrDefault() != null) { <text> checked="checked" </text> } />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.Label("CS Go Rank")
-                        <div class="col-md-2">
-                            <select name="rankCs" id="rankCs">
-                                <option disabled>Rank Seçiniz</option>
-                                @foreach (var item in ViewBag.csRanks)
-                                {
-                                    <option value="@item.Value" @if (int.Parse(item.Value) == f) { <text> selected </text> }>@item.Text</option>
-                                }
-                            </select>
-                        </div>
-                    </div>
-                    @Html.Label("csHours")
-                    <div class="col-md-2">
-                        <input type="number" name="csHours" value="@csTime" />
-                    </div>
-                </div>
-            </div>
-
-        }
-        else
-        {
-            <div id="csDivNew">
-                <div class="form-group form-inline">
-                    Steam ID<input name="gameConnectIDcs" type="text" />
-                    Steam Nickname<input name="gameNickNamecs" type="text" />
-                    @Html.Label("AWP", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-2">
-                        <div class="checkbox">
-                            <input type="checkbox" name="AWP" class="text-danger" />
-                        </div>
-                    </div>
-                    @Html.Label("Lurker", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-2">
-                        <div class="checkbox">
-                            <input type="checkbox" name="Lurker" class="text-danger" />
-                        </div>
-                    </div>
-                    @Html.Label("Rifle", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-2">
-                        <div class="checkbox">
-                            <input type="checkbox" name="Rifle" class="text-danger" />
-                        </div>
-                    </div>
-                    @Html.Label("IGL", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-2">
-                        <div class="checkbox">
-                            <input type="checkbox" name="IGL" class="text-danger" />
-                        </div>
-                    </div>
-                    @Html.Label("Supporter", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-2">
-                        <div class="checkbox">
-                            <input type="checkbox" name="Supporter" class="text-danger" />
-                        </div>
-                    </div>
-                    @Html.Label("Fragger", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-2">
-                        <div class="checkbox">
-                            <input type="checkbox" name="Fragger" class="text-danger" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.Label("CS Go Rank")
-                        <div class="col-md-2">
-                            <select name="rankCs" id="rankCs">
-                                <option disabled>Rank Seçiniz</option>
-                                @foreach (var item in ViewBag.csRanks)
-                                {
-                                    <option value="@item.Value">@item.Text</option>
-                                }
-                            </select>
-                        </div>
-                    </div>
-                    @Html.Label("csHours")
-                    <div class="col-md-2">
-                        <input type="number" name="csHours" value="0" />
-                    </div>
-                </div>
-            </div>
-
-        }
-        @if (lol)
-        {
-            var lolData = (Model.userGame.ToList().Where(a => a.game.id == 1).FirstOrDefault());
-            var g = lolData.userGameDesc.Where(b => b.compAtt.gameComponent.id == 3).FirstOrDefault();
-            var h = g.compAtt.id;
-            var lolTime = Model.userGame.Where(u => u.game.id == 1).FirstOrDefault().time;
-            <div id="lolDiv">
-                <div class="form-group form-inline">
-                    Lol Nickname<input name="gameNickNamelol" type="text" value="@lolData.gameNickName" />
-                    @Html.Label("Top", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-2">
-                        <div class="checkbox">
-                            <input type="checkbox" name="Top" class="text-danger" @if (lolData.userGameDesc.Where(u => u.compAtt.id == 82).FirstOrDefault() != null) { <text> checked="checked" </text> } />
-                        </div>
-                    </div>
-                    @Html.Label("Jungle", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-2">
-                        <div class="checkbox">
-                            <input type="checkbox" name="Jungle" class="text-danger" @if (lolData.userGameDesc.Where(u => u.compAtt.id == 84).FirstOrDefault() != null) { <text> checked="checked" </text> } />
-                        </div>
-                    </div>
-                    @Html.Label("Mid", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-2">
-                        <div class="checkbox">
-                            <input type="checkbox" name="Mid" class="text-danger" @if (lolData.userGameDesc.Where(u => u.compAtt.id == 83).FirstOrDefault() != null) { <text> checked="checked" </text> } />
-                        </div>
-                    </div>
-                    @Html.Label("Adc", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-2">
-                        <div class="checkbox">
-                            <input type="checkbox" name="Adc" class="text-danger" @if (lolData.userGameDesc.Where(u => u.compAtt.id == 85).FirstOrDefault() != null) { <text> checked="checked" </text> } />
-                        </div>
-                    </div>
-                    @Html.Label("Support", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-2">
-                        <div class="checkbox">
-                            <input type="checkbox" name="Support" class="text-danger" @if (lolData.userGameDesc.Where(u => u.compAtt.id == 86).FirstOrDefault() != null) { <text> checked="checked" </text> } />
-                        </div>
-                    </div>
-                    aaaaaaaaaaaaa<input type="checkbox" name="asdasdasd" checked="checked" />
-                    <div class="form-group">
-                        @Html.Label("Lol Rank")
-                        <div class="col-md-2">
-                            <select name="rankLol" id="rankLol">
-                                <option disabled>Rank Seçiniz</option>
-                                @foreach (var item in ViewBag.lolRanks)
-                                {
-                                    <option value="@item.Value" @if (int.Parse(item.Value) == h) { <text> selected </text> }>@item.Text</option>
-                                }
-                            </select>
-                        </div>
-                    </div>
-                    @Html.Label("lolHours")
-                    <div class="col-md-2">
-                        <input type="number" name="lolHours" value="@lolTime" />
-                    </div>
-                </div>
-            </div>
-
-        }
-        else
-        {
-            <div id="lolDiv">
-                <div class="form-group form-inline">
-                    Lol Nickname<input name="gameNickNamelol" type="text" />
-                    @Html.Label("Top", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-2">
-                        <div class="checkbox">
-                            <input type="checkbox" name="Top" class="text-danger" />
-                        </div>
-                    </div>
-                    @Html.Label("Jungle", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-2">
-                        <div class="checkbox">
-                            <input type="checkbox" name="Jungle" class="text-danger" />
-                        </div>
-                    </div>
-                    @Html.Label("Mid", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-2">
-                        <div class="checkbox">
-                            <input type="checkbox" name="Mid" class="text-danger" />
-                        </div>
-                    </div>
-                    @Html.Label("Adc", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-2">
-                        <div class="checkbox">
-                            <input type="checkbox" name="Adc" class="text-danger" />
-                        </div>
-                    </div>
-                    @Html.Label("Support", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-2">
-                        <div class="checkbox">
-                            <input type="checkbox" name="Support" class="text-danger" />
-                        </div>
-                    </div>
-                    aaaaaaaaaaaaa<input type="checkbox" name="asdasdasd" checked="checked" />
-                    <div class="form-group">
-                        @Html.Label("Lol Rank")
-                        <div class="col-md-2">
-                            <select name="rankLol" id="rankLol">
-                                <option disabled>Rank Seçiniz</option>
-                                @foreach (var item in ViewBag.lolRanks)
-                                {
-                                    <option value="@item.Value"> @item.Text</option>
-                                }
-                            </select>
-                        </div>
-                    </div>
-                    @Html.Label("lolHours")
-                    <div class="col-md-2">
-                        <input type="number" name="lolHours" value="0" />
-                    </div>
-                </div>
-            </div>
-
-        }
-
-        <div class="form-group">
-            @Html.Label("Games")
-            <div class="col-md-2">
-                @foreach (var item in ViewBag.gameListt)
-                {
-                    <span>@item.Text</span>
-                    <input type="checkbox" name="@item.Text.Split(' ')[0]" @if (Model.userGame.Any(u => u.game.id == int.Parse(item.Value))) { <text> checked </text> }>
-                }
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                </form>
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col col-md-12">
+            <div class="well-block">
+                <div class="well-title">
+                    <h2>Games</h2>
+                </div>
+                <div class="form-group">
+                    <div id="game" class="form-group">
+                        <div id="gameList">
+                            <div class="row">
+                                <div id="cbList" class="form-group">
+                                    @foreach (var item in ViewBag.gameListt)
+                                    {
+                                        <label for="@item.Text.Split(' ')[0]" class="btn btn-primary cb-font col-md-5">
+                                            @item.Text
+                                            <input type="checkbox" id="@item.Text.Split(' ')[0]" name="@item.Text.Split(' ')[0]" data-check="on" class="games badgebox"  @if (Model.userGame.Any(u => u.game.id == int.Parse(item.Value))) { <text> onclick="getDiv(@item.Value)" checked </text> } else { <text> onclick="getDiv2(@item.Value)"</text> }>
+                                            <span class="badge">
+                                                &check;
+                                            </span>
+                                        </label>
+                                    }
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                @*If User Have LoL*@
+                                @if (lol)
+                                {
+                                    <!-- Lol Attributes -->
+                                    var lolData = (Model.userGame.ToList().Where(a => a.game.id == 1).FirstOrDefault());
+                                    var g = lolData.userGameDesc.Where(b => b.compAtt.gameComponent.id == 3).FirstOrDefault();
+                                    var h = g.compAtt.id;
+                                    var lolTime = Model.userGame.Where(u => u.game.id == 1).FirstOrDefault().time;
+
+                                    <div id="lolDiv" class="col order-first col-md-6">
+
+                                        <!-- Lol Nickname -->
+                                        <div class="form-group">
+                                            <div class="form-group col-md-6">
+                                                <label class="roleSearch-label">Nickname</label>
+                                                <div class="row">
+                                                    <input type="text" class="form-control col-md-12" id="lolNickname" value="@lolData.gameNickName" name="gameNickNamelol" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Lol Roles -->
+                                        <div class="form-group">
+                                            <div class="col-md-6">
+                                                <label class="roleSearch-label">Main Role</label>
+
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <label for="Top" class="btn btn-primary cb-font col-sm-12">
+                                                            Top
+                                                            <input type="checkbox" name="Top" id="Top" class="badgebox text-danger role-input roleLol" @if (lolData.userGameDesc.Where(u => u.compAtt.id == 82).FirstOrDefault() != null) { <text> checked="checked" </text> } />
+                                                            <span class="badge">
+                                                                &check;
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <img class="role-img" src="~/TMF Documents/LOL/Top.png" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <label for="Jungle" class="btn btn-primary cb-font col-sm-12">
+                                                            Jungle
+                                                            <input type="checkbox" name="Jungle" id="Jungle" class="badgebox text-danger role-input roleLol" @if (lolData.userGameDesc.Where(u => u.compAtt.id == 84).FirstOrDefault() != null) { <text> checked="checked" </text> } />
+                                                            <span class="badge">
+                                                                &check;
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <img class="role-img" src="~/TMF Documents/LOL/Jungle.png" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <label for="Mid" class="btn btn-primary cb-font col-sm-12">
+                                                            Mid
+                                                            <input type="checkbox" name="Mid" id="Mid" class="badgebox text-danger role-input roleLol" @if (lolData.userGameDesc.Where(u => u.compAtt.id == 83).FirstOrDefault() != null) { <text> checked="checked" </text> } />
+                                                            <span class="badge">
+                                                                &check;
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <img class="role-img" src="~/TMF Documents/LOL/Mid.png" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <label for="Adc" class="btn btn-primary cb-font col-sm-12">
+                                                            Adc
+                                                            <input type="checkbox" name="Adc" id="Adc" class="badgebox text-danger role-input roleLol" @if (lolData.userGameDesc.Where(u => u.compAtt.id == 85).FirstOrDefault() != null) { <text> checked="checked" </text> } />
+                                                            <span class="badge">
+                                                                &check;
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <img class="role-img" src="~/TMF Documents/LOL/Adc.png" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <label for="Support" class="btn btn-primary cb-font col-sm-12">
+                                                            Support
+                                                            <input type="checkbox" name="Support" id="Support" class="badgebox text-danger role-input roleLol" @if (lolData.userGameDesc.Where(u => u.compAtt.id == 86).FirstOrDefault() != null) { <text> checked="checked" </text> } />
+                                                            <span class="badge">
+                                                                &check;
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <img class="role-img" src="~/TMF Documents/LOL/Support.png" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Lol Rank -->
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <label class="input-group-text" for="rankLol">Rank</label>
+                                                    </div>
+                                                    <select class="custom-select" id="rankLol" name="rankLol">
+                                                        <option disabled selected value="">Choose Rank</option>
+                                                        @foreach (var item in ViewBag.lolRanks)
+                                                        {
+                                                            <option value="@item.Value" @if (int.Parse(item.Value) == h) { <text> selected </text> }>@item.Text</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Lol Hours -->
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <label class="input-group-text" for="lolHours">Hours</label>
+                                                    </div>
+                                                    <input type="number" id="lolHours" name="lolHours" value="@lolTime" style="width:135px" min="0" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                }
+
+                                @*If User doesn't have LoL*@
+                                else
+                                {
+                                    <!-- Lol Attributes -->
+                                    <div class="col order-first col-md-6" id="lolDivNew" style="display:none">
+
+
+
+                                        <!-- Lol Nickname -->
+                                        <div class="form-group">
+                                            <div class="form-group col-md-6">
+                                                <label class="roleSearch-label">Nickname</label>
+                                                <div class="row">
+                                                    <input type="text" class="form-control col-md-12" id="lolNickname" placeholder="LoL Nickname " name="gameNickNamelol" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                        <!-- Lol Roles -->
+                                        <div class="form-group">
+                                            <div class="col-md-6">
+                                                <label class="roleSearch-label">Main Role</label>
+
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <label for="Top" class="btn btn-primary cb-font col-sm-12">
+                                                            Top
+                                                            <input type="checkbox" id="Top" name="Top" class="badgebox role-input roleLol" />
+                                                            <span class="badge">
+                                                                &check;
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <img class="role-img" src="~/TMF Documents/LOL/Top.png" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <label for="Jungle" class="btn btn-primary cb-font col-sm-12">
+                                                            Jungle
+                                                            <input type="checkbox" id="Jungle" name="Jungle" class="badgebox role-input roleLol" />
+                                                            <span class="badge">
+                                                                &check;
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <img class="role-img" src="~/TMF Documents/LOL/Jungle.png" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <label for="Mid" class="btn btn-primary cb-font col-sm-12">
+                                                            Mid
+                                                            <input type="checkbox" id="Mid" name="Mid" class="badgebox role-input roleLol" />
+                                                            <span class="badge">
+                                                                &check;
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <img class="role-img" src="~/TMF Documents/LOL/Mid.png" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <label for="Adc" class="btn btn-primary cb-font col-sm-12">
+                                                            Adc
+                                                            <input type="checkbox" id="Adc" name="Adc" class="badgebox role-input roleLol" />
+                                                            <span class="badge">
+                                                                &check;
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <img class="role-img" src="~/TMF Documents/LOL/adc.png" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <label for="Support" class="btn btn-primary cb-font col-sm-12">
+                                                            Support
+                                                            <input type="checkbox" id="Support" name="Support" class="badgebox role-input roleLol" />
+                                                            <span class="badge">
+                                                                &check;
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <img class="role-img" src="~/TMF Documents/LOL/Support.png" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Lol Rank -->
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <label class="input-group-text" for="rankLol">Rank</label>
+                                                    </div>
+                                                    <select class="custom-select" id="rankLol" name="rankLol">
+                                                        <option disabled selected value="">Choose Rank</option>
+                                                        @foreach (var item in ViewBag.lolRanks)
+                                                        {
+                                                            <option value="@item.Value">@item.Text</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <!-- Lol Hours -->
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <label class="input-group-text" for="lolHours">Hours</label>
+                                                    </div>
+                                                    <input type="number" id="lolHours" name="lolHours" value="0" style="width:135px" min="0" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                }
+
+                                @*If User Have CS:GO*@
+                                @if (cs)
+                                {
+                                    var csData = (Model.userGame.ToList().Where(a => a.game.id == 2).FirstOrDefault());
+                                    var d = csData.userGameDesc.Where(b => b.compAtt.gameComponent.id == 5).FirstOrDefault();
+                                    var f = d.compAtt.id;
+                                    var csTime = Model.userGame.Where(u => u.game.id == 2).FirstOrDefault().time;
+
+                                    <!-- CS Attributes -->
+                                    <div class="col col-md-6" id="csDiv">
+
+                                        <!-- CS Nickname -->
+                                        <div class="form-group">
+                                            <div class="form-group col-md-6">
+                                                <label class="roleSearch-label">Steam Name</label>
+                                                <div class="row">
+                                                    <input type="text" class="form-control col-md-12" id="steamName" value="@csData.gameNickName" name="gameNickNamecs" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Steam ID -->
+                                        <div class="form-group">
+                                            <div class="form-group col-md-6">
+                                                <label class="roleSearch-label">Steam ID</label>
+                                                <div class="row">
+                                                    <input type="text" class="form-control col-md-12" id="steamID" value="@csData.gameConnectID" name="gameConnectIDcs" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- CS Roles -->
+                                        <div class="form-group">
+                                            <div class="col-md-6">
+                                                <label class="roleSearch-label">Main Role</label>
+
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <label for="AWP" class="btn btn-primary cb-font col-sm-12">
+                                                            AWP
+                                                            <input type="checkbox" id="AWP" name="AWP" class="badgebox role-input roleCS" @if (csData.userGameDesc.Where(u => u.compAtt.id == 105).FirstOrDefault() != null) { <text> checked="checked" </text> } />
+                                                            <span class="badge">
+                                                                &check;
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <img class="role-img" src="~/TMF Documents/CS/awper.png" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <label for="Lurker" class="btn btn-primary cb-font col-sm-12">
+                                                            Lurker
+                                                            <input type="checkbox" id="Lurker" name="Lurker" class="badgebox role-input roleCS" @if (csData.userGameDesc.Where(u => u.compAtt.id == 106).FirstOrDefault() != null) { <text> checked="checked" </text> } />
+                                                            <span class="badge">
+                                                                &check;
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <img class="role-img" src="~/TMF Documents/CS/lurker.png" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <label for="Rifler" class="btn btn-primary cb-font col-sm-12">
+                                                            Rifler
+                                                            <input type="checkbox" id="Rifler" name="Rifler" class="badgebox role-input roleCS" @if (csData.userGameDesc.Where(u => u.compAtt.id == 107).FirstOrDefault() != null) { <text> checked="checked" </text> } />
+                                                            <span class="badge">
+                                                                &check;
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <img class="role-img" src="~/TMF Documents/CS/rifler.png" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <label for="IGL" class="btn btn-primary cb-font col-sm-12">
+                                                            IGL
+                                                            <input type="checkbox" id="IGL" name="IGL" class="badgebox role-input roleCS" @if (csData.userGameDesc.Where(u => u.compAtt.id == 108).FirstOrDefault() != null) { <text> checked="checked" </text> } />
+                                                            <span class="badge">
+                                                                &check;
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <img class="role-img" src="~/TMF Documents/CS/leader.png" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <label for="Supporter" class="btn btn-primary cb-font col-sm-12">
+                                                            Supporter
+                                                            <input type="checkbox" id="Supporter" name="Supporter" class="badgebox role-input roleCS" @if (csData.userGameDesc.Where(u => u.compAtt.id == 109).FirstOrDefault() != null) { <text> checked="checked" </text> } />
+                                                            <span class="badge">
+                                                                &check;
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <img class="role-img" src="~/TMF Documents/CS/support.png" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <label for="Fragger" class="btn btn-primary cb-font col-sm-12">
+                                                            Fragger
+                                                            <input type="checkbox" id="Fragger" name="Fragger" class="badgebox role-input roleCS" @if (csData.userGameDesc.Where(u => u.compAtt.id == 110).FirstOrDefault() != null) { <text> checked="checked" </text> } />
+                                                            <span class="badge">
+                                                                &check;
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <img class="role-img" src="~/TMF Documents/CS/fragger.png" />
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <!-- CS Rank -->
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <label class="input-group-text" for="rankCs">Rank</label>
+                                                    </div>
+                                                    <select class="custom-select" id="rankCs" name="rankCs">
+                                                        <option disabled selected value="">Choose Rank</option>
+                                                        @foreach (var item in ViewBag.csRanks)
+                                                        {
+                                                            <option value="@item.Value" @if (int.Parse(item.Value) == f) { <text> selected </text> }>@item.Text</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- CS Hours -->
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <label class="input-group-text" for="csHours">Hours</label>
+                                                    </div>
+                                                    <input type="number" id="csHours" name="csHours" value="@csTime" style="width:135px" min="0" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                }
+
+                                else
+                                {
+
+                                    <!-- CS Attributes -->
+                                    <div class="col col-md-6" id="csDivNew" style="display:none">
+
+                                        <!-- CS Nickname -->
+                                        <div class="form-group">
+                                            <div class="form-group col-md-6">
+                                                <label class="roleSearch-label">Steam Name</label>
+                                                <div class="row">
+                                                    <input type="text" class="form-control col-md-12" id="steamName" placeholder="Steam Name" name="gameNickNamecs" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Steam ID -->
+                                        <div class="form-group">
+                                            <div class="form-group col-md-6">
+                                                <label class="roleSearch-label">Steam ID</label>
+                                                <div class="row">
+                                                    <input type="text" class="form-control col-md-12" id="steamID" placeholder="Steam ID" name="gameConnectIDcs" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- CS Roles -->
+                                        <div class="form-group">
+                                            <div class="col-md-6">
+                                                <label class="roleSearch-label">Main Role</label>
+
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <label for="AWP" class="btn btn-primary cb-font col-sm-12">
+                                                            AWP
+                                                            <input type="checkbox" id="AWP" name="AWP" class="badgebox role-input roleCS" />
+                                                            <span class="badge">
+                                                                &check;
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <img class="role-img" src="~/TMF Documents/CS/awper.png" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <label for="Lurker" class="btn btn-primary cb-font col-sm-12">
+                                                            Lurker
+                                                            <input type="checkbox" id="Lurker" name="Lurker" class="badgebox role-input roleCS" />
+                                                            <span class="badge">
+                                                                &check;
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <img class="role-img" src="~/TMF Documents/CS/lurker.png" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <label for="Rifler" class="btn btn-primary cb-font col-sm-12">
+                                                            Rifler
+                                                            <input type="checkbox" id="Rifler" name="Rifler" class="badgebox role-input roleCS" />
+                                                            <span class="badge">
+                                                                &check;
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <img class="role-img" src="~/TMF Documents/CS/rifler.png" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <label for="IGL" class="btn btn-primary cb-font col-sm-12">
+                                                            IGL
+                                                            <input type="checkbox" id="IGL" name="IGL" class="badgebox role-input roleCS" />
+                                                            <span class="badge">
+                                                                &check;
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <img class="role-img" src="~/TMF Documents/CS/leader.png" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <label for="Supporter" class="btn btn-primary cb-font col-sm-12">
+                                                            Supporter
+                                                            <input type="checkbox" id="Supporter" name="Supporter" class="badgebox role-input roleCS" />
+                                                            <span class="badge">
+                                                                &check;
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <img class="role-img" src="~/TMF Documents/CS/support.png" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <label for="Fragger" class="btn btn-primary cb-font col-sm-12">
+                                                            Fragger
+                                                            <input type="checkbox" id="Fragger" name="Fragger" class="badgebox role-input roleCS" />
+                                                            <span class="badge">
+                                                                &check;
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <img class="role-img" src="~/TMF Documents/CS/fragger.png" />
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <!-- CS Rank -->
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <label class="input-group-text" for="rankCs">Rank</label>
+                                                    </div>
+                                                    <select class="custom-select" id="rankCs" name="rankCs">
+                                                        <option disabled selected value="">Choose Rank</option>
+                                                        @foreach (var item in ViewBag.csRanks)
+                                                        {
+                                                            <option value="@item.Value">@item.Text</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- CS Hours -->
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <label class="input-group-text" for="csHours">Hours</label>
+                                                    </div>
+                                                    <input type="number" id="csHours" name="csHours" value="0" style="width:135px" min="0" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                }
+
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="button" id="saveBtn" value="Save" class="btn btn-outline-primary" />
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    
+</div>
+
+
 }
 
 
@@ -371,12 +773,14 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+<script src="~/Scripts/js/userEdit.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
 <link href="~/Content/css/onOff.css" rel="stylesheet" />
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 @section scripts {
-    <script>
+<script>
         $(document).on("click", "#myonoffswitch3", function () {
             var degerler = {
                 bit: $("#myonoffswitch3:checked").length == 1 ? true : false,
@@ -401,5 +805,5 @@
                 }
             });
         });
-    </script>
+</script>
 }

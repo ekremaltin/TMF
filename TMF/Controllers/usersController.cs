@@ -358,7 +358,7 @@ namespace TMF.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id,username,password,dateOfBirth,mic,headset,online")] users users, FormCollection fc)
         {
-            if (ModelState.IsValid)
+            if (users.id!= null && users.username!="" && users.password!="")
             {
                 //userGame table data
                 bool lol = fc["League"] == "on" ? true : false;
@@ -394,6 +394,12 @@ namespace TMF.Controllers
                 List<userGameDescs> csDataList = db.userGameDesc.Where(u => u.userGame.user.id == users.id && u.userGame.game.id == 2).ToList();
                 userGames userCs = new userGames();
                 userGames userLol = new userGames();
+                users.mic = fc["mic"] == "on" ? true : false;
+                users.headset = fc["headset"] == "on" ? true : false;
+
+
+
+
                 userCs.user = usr;
                 //lol yoksa ve yeni girme işlemi yaparsa, yeni userGame nesnesi doldurma
                 if (usrGameLol == null && lol)
@@ -425,7 +431,7 @@ namespace TMF.Controllers
                     }
                     db.userGame.Remove(usrGameLol);
                 }
-                else
+                else if (lol == true)
                 {
                     if (usrGameLol != null)
                     {
@@ -569,7 +575,7 @@ namespace TMF.Controllers
 
                 }
 
-                if (cs == false)//Cs tiki kaldırıldıysa tüm cs verilerini siler.
+                if (cs == false && usrGameCs!=null)//Cs verisi var ve tiki kaldırılmış tüm cs verilerini siler.
                 {
                     foreach (var item in csDataList)
                     {
@@ -577,7 +583,7 @@ namespace TMF.Controllers
                     }
                     db.userGame.Remove(usrGameCs);
                 }
-                else //Cs verisi (tik) girmiş
+                else if (cs == true)//Cs verisi (tik) girmiş
                 {
 
                     if (usrGameCs != null)

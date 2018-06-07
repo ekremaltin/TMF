@@ -478,15 +478,15 @@ namespace TMF.Controllers
                             {
                                 liste.Add(u);
                             }
-                            else if (u.userGame.Find(e => e.game.id == 2).time > minHours && maxHours == 0)
+                            else if (u.userGame.Find(e => e.game.id == 1).time > minHours && maxHours == 0)
                             {
                                 liste.Add(u);
                             }
-                            else if (minHours == 0 && u.userGame.Find(e => e.game.id == 2).time < maxHours)
+                            else if (minHours == 0 && u.userGame.Find(e => e.game.id == 1).time < maxHours)
                             {
                                 liste.Add(u);
                             }
-                            else if (u.userGame.Find(e => e.game.id == 2).time > minHours && u.userGame.Find(e => e.game.id == 2).time < maxHours)
+                            else if (u.userGame.Find(e => e.game.id == 1).time > minHours && u.userGame.Find(e => e.game.id == 1).time < maxHours)
                             {
                                 liste.Add(u);
                             }
@@ -502,15 +502,15 @@ namespace TMF.Controllers
                             {
                                 liste.Add(u);
                             }
-                            else if (u.userGame.Find(e => e.game.id == 2).time > minHours && maxHours == 0)
+                            else if (u.userGame.Find(e => e.game.id == 1).time > minHours && maxHours == 0)
                             {
                                 liste.Add(u);
                             }
-                            else if (minHours == 0 && u.userGame.Find(e => e.game.id == 2).time < maxHours)
+                            else if (minHours == 0 && u.userGame.Find(e => e.game.id == 1).time < maxHours)
                             {
                                 liste.Add(u);
                             }
-                            else if (u.userGame.Find(e => e.game.id == 2).time > minHours && u.userGame.Find(e => e.game.id == 2).time < maxHours)
+                            else if (u.userGame.Find(e => e.game.id == 1).time > minHours && u.userGame.Find(e => e.game.id == 1).time < maxHours)
                             {
                                 liste.Add(u);
                             }
@@ -523,15 +523,15 @@ namespace TMF.Controllers
                         {
                             liste.Add(u);
                         }
-                        else if (u.userGame.Find(e => e.game.id == 2).time > minHours && maxHours == 0)
+                        else if (u.userGame.Find(e => e.game.id == 1).time > minHours && maxHours == 0)
                         {
                             liste.Add(u);
                         }
-                        else if (minHours == 0 && u.userGame.Find(e => e.game.id == 2).time < maxHours)
+                        else if (minHours == 0 && u.userGame.Find(e => e.game.id == 1).time < maxHours)
                         {
                             liste.Add(u);
                         }
-                        else if (u.userGame.Find(e => e.game.id == 2).time > minHours && u.userGame.Find(e => e.game.id == 2).time < maxHours)
+                        else if (u.userGame.Find(e => e.game.id == 1).time > minHours && u.userGame.Find(e => e.game.id == 1).time < maxHours)
                         {
                             liste.Add(u);
                         }

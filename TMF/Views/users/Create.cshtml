@@ -18,8 +18,8 @@
                         <h2>User Create</h2>
                     </div>
                     <form>
-                        <!--Username -->
                         <div class="row">
+                            <!--Username -->
                             <div class="col-md-6">
                                 <label class="control-label" for="username">Username</label>
                                 <div class="form-group input-group">
@@ -36,7 +36,10 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                                     </div>
-                                    <input name="password" class="form-control" placeholder="Create password" type="password" required>
+                                    <input name="password" id="password" class="form-control" data-check="on" placeholder="Create password" type="password" required>
+                                    <div class="input-group-append">
+                                        <span id="pswShow" class="input-group-text"> <i class="far fa-eye"></i> </span>
+                                    </div>
                                 </div>
                             </div>
 
@@ -44,7 +47,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label" for="date">Birthday</label>
-                                    <input id="date" name="date" type="date" class="form-control input-md">
+                                    <input id="date" name="date" type="date" class="form-control input-md" required>
                                 </div>
                             </div>
                         </div>
@@ -125,7 +128,7 @@
                                                     <div class="col-md-9">
                                                         <label for="Top" class="btn btn-primary cb-font col-sm-12">
                                                             Top
-                                                            <input type="checkbox" id="Top" name="Top" class="badgebox role-input" />
+                                                            <input type="checkbox" id="Top" name="Top" class="badgebox role-input roleLol" />
                                                             <span class="badge">
                                                                 &check;
                                                             </span>
@@ -140,7 +143,7 @@
                                                     <div class="col-md-9">
                                                         <label for="Jungle" class="btn btn-primary cb-font col-sm-12">
                                                             Jungle
-                                                            <input type="checkbox" id="Jungle" name="Jungle" class="badgebox role-input" />
+                                                            <input type="checkbox" id="Jungle" name="Jungle" class="badgebox role-input roleLol" />
                                                             <span class="badge">
                                                                 &check;
                                                             </span>
@@ -155,7 +158,7 @@
                                                     <div class="col-md-9">
                                                         <label for="Mid" class="btn btn-primary cb-font col-sm-12">
                                                             Mid
-                                                            <input type="checkbox" id="Mid" name="Mid" class="badgebox role-input" />
+                                                            <input type="checkbox" id="Mid" name="Mid" class="badgebox role-input roleLol" />
                                                             <span class="badge">
                                                                 &check;
                                                             </span>
@@ -170,7 +173,7 @@
                                                     <div class="col-md-9">
                                                         <label for="Adc" class="btn btn-primary cb-font col-sm-12">
                                                             Adc
-                                                            <input type="checkbox" id="Adc" name="Adc" class="badgebox role-input" />
+                                                            <input type="checkbox" id="Adc" name="Adc" class="badgebox role-input roleLol" />
                                                             <span class="badge">
                                                                 &check;
                                                             </span>
@@ -185,7 +188,7 @@
                                                     <div class="col-md-9">
                                                         <label for="Support" class="btn btn-primary cb-font col-sm-12">
                                                             Support
-                                                            <input type="checkbox" id="Support" name="Support" class="badgebox role-input" />
+                                                            <input type="checkbox" id="Support" name="Support" class="badgebox role-input roleLol" />
                                                             <span class="badge">
                                                                 &check;
                                                             </span>
@@ -206,7 +209,7 @@
                                                         <label class="input-group-text" for="rankLol">Rank</label>
                                                     </div>
                                                     <select class="custom-select" id="rankLol" name="rankLol">
-                                                        <option disabled selected>Choose Rank</option>
+                                                        <option disabled selected value="">Choose Rank</option>
                                                         @foreach (var item in ViewBag.lolRanks)
                                                         {
                                                             <option value="@item.Value">@item.Text</option>
@@ -224,7 +227,7 @@
                                                     <div class="input-group-prepend">
                                                         <label class="input-group-text" for="lolHours">Hours</label>
                                                     </div>
-                                                    <input type="number" id="lolHours" name="lolHours" value="0" style="width:135px" />
+                                                    <input type="number" id="lolHours" name="lolHours" value="0" style="width:135px" min="0"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -264,7 +267,7 @@
                                                     <div class="col-md-9">
                                                         <label for="AWP" class="btn btn-primary cb-font col-sm-12">
                                                             AWP
-                                                            <input type="checkbox" id="AWP" name="AWP" class="badgebox role-input" />
+                                                            <input type="checkbox" id="AWP" name="AWP" class="badgebox role-input roleCS" />
                                                             <span class="badge">
                                                                 &check;
                                                             </span>
@@ -279,7 +282,7 @@
                                                     <div class="col-md-9">
                                                         <label for="Lurker" class="btn btn-primary cb-font col-sm-12">
                                                             Lurker
-                                                            <input type="checkbox" id="Lurker" name="Lurker" class="badgebox role-input" />
+                                                            <input type="checkbox" id="Lurker" name="Lurker" class="badgebox role-input roleCS" />
                                                             <span class="badge">
                                                                 &check;
                                                             </span>
@@ -294,7 +297,7 @@
                                                     <div class="col-md-9">
                                                         <label for="Rifler" class="btn btn-primary cb-font col-sm-12">
                                                             Rifler
-                                                            <input type="checkbox" id="Rifler" name="Rifler" class="badgebox role-input" />
+                                                            <input type="checkbox" id="Rifler" name="Rifler" class="badgebox role-input roleCS" />
                                                             <span class="badge">
                                                                 &check;
                                                             </span>
@@ -309,7 +312,7 @@
                                                     <div class="col-md-9">
                                                         <label for="IGL" class="btn btn-primary cb-font col-sm-12">
                                                             IGL
-                                                            <input type="checkbox" id="IGL" name="IGL" class="badgebox role-input" />
+                                                            <input type="checkbox" id="IGL" name="IGL" class="badgebox role-input roleCS" />
                                                             <span class="badge">
                                                                 &check;
                                                             </span>
@@ -324,7 +327,7 @@
                                                     <div class="col-md-9">
                                                         <label for="Supporter" class="btn btn-primary cb-font col-sm-12">
                                                             Supporter
-                                                            <input type="checkbox" id="Supporter" name="Supporter" class="badgebox role-input" />
+                                                            <input type="checkbox" id="Supporter" name="Supporter" class="badgebox role-input roleCS" />
                                                             <span class="badge">
                                                                 &check;
                                                             </span>
@@ -339,7 +342,7 @@
                                                     <div class="col-md-9">
                                                         <label for="Fragger" class="btn btn-primary cb-font col-sm-12">
                                                             Fragger
-                                                            <input type="checkbox" id="Fragger" name="Fragger" class="badgebox role-input" />
+                                                            <input type="checkbox" id="Fragger" name="Fragger" class="badgebox role-input roleCS" />
                                                             <span class="badge">
                                                                 &check;
                                                             </span>
@@ -357,10 +360,10 @@
                                             <div class="form-group col-md-6">
                                                 <div class="input-group mb-3">
                                                     <div class="input-group-prepend">
-                                                        <label class="input-group-text" for="rankCS">Rank</label>
+                                                        <label class="input-group-text" for="rankCs">Rank</label>
                                                     </div>
                                                     <select class="custom-select" id="rankCs" name="rankCs">
-                                                        <option disabled selected>Choose Rank</option>
+                                                        <option disabled selected value="">Choose Rank</option>
                                                         @foreach (var item in ViewBag.csRanks)
                                                         {
                                                             <option value="@item.Value">@item.Text</option>
@@ -376,7 +379,7 @@
                                                     <div class="input-group-prepend">
                                                         <label class="input-group-text" for="csHours">Hours</label>
                                                     </div>
-                                                    <input type="number" id="csHours" name="csHours" value="0" style="width:135px" />
+                                                    <input type="number" id="csHours" name="csHours" value="0" style="width:135px" min="0" />
                                                 </div>
                                             </div>
                                         </div>
@@ -407,11 +410,12 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+<script src="~/Scripts/js/userCreate.js"></script>
 <script src="~/Scripts/bootstrap.js"></script>
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-<script src="~/Scripts/js/userCreate.js"></script>
+
 
 @section scripts
 {
