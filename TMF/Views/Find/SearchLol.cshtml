@@ -3,9 +3,7 @@
     ViewBag.Title = "SearchLol";
 }
 <link href="~/Content/css/searchLol.css" rel="stylesheet" />
-
-<h2>SearchLol</h2>
-<div class="row">
+<div class="row" style="background-color:white">
     <div class="col-lg-5 col-md-5">
         <form method="post" action="@Url.Action("SearchLol")" id="form" enctype="multipart/form-data">
             <div class="form-group">
@@ -218,7 +216,14 @@
                                     }
                                 </td>
                                 <td>
-                                    <input type="button" class="btn btn-primary" value="Davet Et" onclick="location.href = '@Url.Action("DavetEt", new { DavetEdilenId = item.id, oyunId = 1 })'">
+                                    @if (Session["id"] != null)
+                                    {
+                                        <input type="button" class="btn btn-primary" value="Davet Et" onclick="location.href = '@Url.Action("DavetEt", new { DavetEdilenId = item.id, oyunId = 1 })'">
+                                    }
+                                    else
+                                    {
+                                        <input type="button" class="btn btn-primary" value="Davet Et" onclick="alert('If you want to Invite someone, you need to Login!')">
+                                    }
                                 </td>
                             </tr>
                         }

@@ -21,15 +21,15 @@
                         <div class="col-lg-12 col-md-12">
                             @foreach (var item in Model)
                             {
-                                @item.userGon.username <p>sizi @item.game.name oynamaya davet etti.</p>
+                                <p><b>@item.userGon.username</b> sizi <b>@item.game.name</b> oynamaya davet etti.</p>
                                 <input type="button" class="btn btn-success" value="Kabul Et" onclick="location.href = '@Url.Action("DavetStatu", new { lobbyId = item.id, statu = 1 })'">
                                 <input type="button" class="btn btn-danger" value="Reddet Et" onclick="location.href = '@Url.Action("DavetStatu", new { lobbyId = item.id, statu = 2 })'">
-                                <p>Oyun Nickname:</p> @item.userGon.userGame.Find(e => e.game.id == item.game.id).gameNickName
+                                <p>Game Nickname:<b> @item.userGon.userGame.Where(e => e.game.id == item.game.id).FirstOrDefault().gameNickName</b></p>
 
                             }
                         </div>
                     </div>
-                    
+
 
                     <div class="bosluk"></div>
 
@@ -200,11 +200,11 @@
 
 
                 </div>
-                    
+
             </div>
         </section>
     </div>
-    
+
 </section>
 
 

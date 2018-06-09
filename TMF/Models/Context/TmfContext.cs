@@ -9,7 +9,8 @@ namespace TMF.Models.Context
         public TmfContext() : base("TmfContext")
         {
             Database.SetInitializer(new
-                MigrateDatabaseToLatestVersion<TmfContext, Configuration>("TmfContext")); //Migration klasöründeki Configuration ile Context ilişkilendirilmesi.
+                //Migration klasöründeki Configuration ile Context ilişkilendirilmesi.
+                MigrateDatabaseToLatestVersion<TmfContext, Configuration>("TmfContext")); 
         }
         public DbSet<compAtts> compAtt { get; set; }
         public DbSet<filters> filter { get; set; }

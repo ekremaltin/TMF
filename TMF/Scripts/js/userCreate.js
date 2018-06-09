@@ -37,8 +37,24 @@
         var click2 = true;
         var click3 = true;
         var click4 = true;
+        var click5 = true;
         //Oyunlar Seçili ise
         if (i > 0) {
+            //$.ajax({
+            //    type: "POST",
+            //    url: '/users/usernameControl',
+            //    data: { 'username': ($('#username').val()) },
+            //    success: function (data) {
+            //        if (data == "0") {
+            //            alert("kullanıcı adı mevcut");
+            //            click5 = false;
+            //        }
+                    
+            //    },
+            //    error: function () {
+
+            //    }
+            //});
             //LoL özellik kontrolü
             if ($('#League:checked').length == true) {
                 $('#lolNickname').prop("required", true);
@@ -70,7 +86,7 @@
                 }
             }
 
-            if (click1 == true && click2 == true && click3 == true && click4 == true) {
+            if (click1 == true && click2 == true && click3 == true && click4 == true && click5 == true) {
 
                 document.getElementById('createBtn').type = 'submit';
                 document.getElementById('createBtn').click();

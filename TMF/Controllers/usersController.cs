@@ -52,7 +52,7 @@ namespace TMF.Controllers
                 Session["id"] = usr.id;
                 Session["Ad"] = usr.username;
                 Session["yetki"] = usr.role.id;
-                Session["search"] = usr.search == true ?  "1" : "0";
+                Session["search"] = usr.search == true ? "1" : "0";
                 usr.online = true;
                 db.Entry(usr).State = EntityState.Modified;
                 db.SaveChanges();
@@ -105,20 +105,45 @@ namespace TMF.Controllers
         {
             if (connectID != "")
             {
-                //76561198017002228
-                string url = " http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=0A6275C1D7258B89774826D89329EE09&steamid=" + connectID + "&include_appinfo=1&format=json ";
-                WebRequest istek = HttpWebRequest.Create(url);
-                WebResponse cevap;
-                cevap = istek.GetResponse();
-                using (StreamReader r = new StreamReader(cevap.GetResponseStream()))
+                try
                 {
-                    string json = r.ReadToEnd();
-                    data item = JsonConvert.DeserializeObject<data>(json);
-                    return Json(item, JsonRequestBehavior.AllowGet);
+                    string url = " http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=0A6275C1D7258B89774826D89329EE09&steamid=" + connectID + "&include_appinfo=1&format=json ";
+                    WebRequest istek = HttpWebRequest.Create(url);
+                    WebResponse cevap;
+                    cevap = istek.GetResponse();
+                    using (StreamReader r = new StreamReader(cevap.GetResponseStream()))
+                    {
+                        string json = r.ReadToEnd();
+                        data item = JsonConvert.DeserializeObject<data>(json);
+                        return Json(item, JsonRequestBehavior.AllowGet);
+                    }
+
                 }
+                catch (Exception)
+                {
+
+                    return Json(false);
+                }
+
             }
             return Json(false);
-            
+
+        }
+
+        public JsonResult usernameControl(string username)
+        {
+            if (username != "" && db.user.Any(u => u.username == username)) //Kullanıcı adı mevcut,kullanılamaz
+            {
+                return Json("0");
+
+            }
+            else if (username != "" && db.user.Any(u => u.username == username) == false) // Kullanıcı adı kullanılabilir
+            {
+                return Json("1");
+
+            }
+            return Json("2");
+
         }
 
         // GET: users/Create
@@ -136,194 +161,195 @@ namespace TMF.Controllers
         [HttpPost]
         public ActionResult Create(FormCollection fc)
         {
-            if (fc["registerPage"] == "1")
+            //if (fc["registerPage"] == "1")
+            //{
+            //    if (((fc["usernameK"]).ToString()).Count() > 4)
+            //    {
+            //        var a = fc["usernameK"];
+            //        var b = fc["passK"];
+            //        var c = fc["emailK"];
+            //        DateTime dt = new DateTime(2000, 01, 01);
+            //        users user = new users();
+            //        user.username = a;
+            //        user.password = b;
+            //        user.dateOfBirth = dt;
+            //        user.role = db.role.Where(u => u.id == 3).FirstOrDefault();
+            //        db.user.Add(user);
+            //        db.SaveChanges();
+            //        return RedirectToAction("Login");
+            //    }
+
+            //}
+            //else
+            //{
+            //user table data
+            string usrname = fc["username"];
+            string psw = fc["password"];
+            var date1 = fc["date"];
+            bool mic = fc["mic"] == "on" ? true : false;
+            bool hs = fc["headset"] == "on" ? true : false;
+
+            //userGame table data
+            bool lol = fc["League"] == "on" ? true : false;
+            bool cs = fc["Counter"] == "on" ? true : false;
+            bool pubg = fc["PlayerUnknown's"] == "on" ? true : false;
+            bool rocket = fc["Rocket"] == "on" ? true : false;
+            bool fort = fc["Fortnite"] == "on" ? true : false;
+            int lolHours = int.Parse(fc["lolHours"]);
+            int csHours = int.Parse(fc["csHours"]);
+
+            //userGameDesc table data
+            var rankcs = fc["rankCs"];
+            var ranklol = fc["rankLol"];
+            bool awp = fc["AWP"] == "on" ? true : false; //CS ROLES
+            bool lurker = fc["Lurker"] == "on" ? true : false;
+            bool rifle = fc["Rifler"] == "on" ? true : false;
+            bool igl = fc["IGL"] == "on" ? true : false;
+            bool supporter = fc["Supporter"] == "on" ? true : false;
+            bool frag = fc["Fragger"] == "on" ? true : false;
+            bool top = fc["Top"] == "on" ? true : false; //LOL ROLES
+            bool mid = fc["Mid"] == "on" ? true : false;
+            bool jung = fc["Jungle"] == "on" ? true : false;
+            bool adc = fc["Adc"] == "on" ? true : false;
+            bool sup = fc["Support"] == "on" ? true : false;
+            string gameIDcs = fc["gameConnectIDcs"];
+            string gameNickcs = fc["gameNickNamecs"];
+            string gameNicklol = fc["gameNickNamelol"];
+
+            DateTime date = new DateTime();
+            date = Convert.ToDateTime(date1);
+
+            users usr = new users();
+            userGames usrGameLol = new userGames();
+            userGames usrGameCs = new userGames();
+            userGames usrGameFort = new userGames();
+            userGames usrGamePubg = new userGames();
+            userGames usrGameRocket = new userGames();
+            userGameDescs topData = new userGameDescs();
+            userGameDescs midData = new userGameDescs();
+            userGameDescs jungData = new userGameDescs();
+            userGameDescs adcData = new userGameDescs();
+            userGameDescs supData = new userGameDescs();
+            userGameDescs lolRankData = new userGameDescs();
+            userGameDescs awpData = new userGameDescs();
+            userGameDescs lurkerData = new userGameDescs();
+            userGameDescs rifleData = new userGameDescs();
+            userGameDescs iglData = new userGameDescs();
+            userGameDescs supporterData = new userGameDescs();
+            userGameDescs fragData = new userGameDescs();
+            userGameDescs csRankData = new userGameDescs();
+            userGameDescs usrGameDescCs = new userGameDescs();
+            List<userGameDescs> userGameDescListLol = new List<userGameDescs>();
+            List<userGameDescs> userGameDescListCs = new List<userGameDescs>();
+            List<userGames> userGameList = new List<userGames>();
+            if (lol)
             {
-                if (((fc["usernameK"]).ToString()).Count() > 4)
+                usrGameLol.game = db.game.Find(1);
+                usrGameLol.time = lolHours;
+                usrGameLol.gameNickName = gameNicklol;
+                lolRankData.compAtt = db.compAtt.Find(int.Parse(ranklol));
+                userGameDescListLol.Add(lolRankData);
+                if (top)
                 {
-                    var a = fc["usernameK"];
-                    var b = fc["passK"];
-                    var c = fc["emailK"];
-                    DateTime dt = new DateTime(2000, 01, 01);
-                    users user = new users();
-                    user.username = a;
-                    user.password = b;
-                    user.dateOfBirth = dt;
-                    user.role = db.role.Where(u => u.id == 3).FirstOrDefault();
-                    db.user.Add(user);
-                    db.SaveChanges();
-                    return RedirectToAction("Login");
+                    topData.compAtt = db.compAtt.Find(82);
+                    userGameDescListLol.Add(topData);
                 }
+                if (jung)
+                {
+                    jungData.compAtt = db.compAtt.Find(84);
+                    userGameDescListLol.Add(jungData);
+                }
+                if (mid)
+                {
+                    midData.compAtt = db.compAtt.Find(83);
+                    //var a2 = midData;
+                    userGameDescListLol.Add(midData);
+                }
+                if (adc)
+                {
+                    adcData.compAtt = db.compAtt.Find(85);
+                    userGameDescListLol.Add(adcData);
 
+                }
+                if (sup)
+                {
+                    supData.compAtt = db.compAtt.Find(86);
+                    userGameDescListLol.Add(supData);
+                }
+                usrGameLol.userGameDesc = userGameDescListLol;
+                userGameList.Add(usrGameLol);
             }
-            else
+            if (cs)
             {
-                //user table data
-                string usrname = fc["username"];
-                string psw = fc["password"];
-                var date1 = fc["date"];
-                bool mic = fc["mic"] == "on" ? true : false;
-                bool hs = fc["headset"] == "on" ? true : false;
-
-                //userGame table data
-                bool lol = fc["League"] == "on" ? true : false;
-                bool cs = fc["Counter"] == "on" ? true : false;
-                bool pubg = fc["PlayerUnknown's"] == "on" ? true : false;
-                bool rocket = fc["Rocket"] == "on" ? true : false;
-                bool fort = fc["Fortnite"] == "on" ? true : false;
-                int lolHours = int.Parse(fc["lolHours"]);
-                int csHours = int.Parse(fc["csHours"]);
-
-                //userGameDesc table data
-                var rankcs = fc["rankCs"];
-                var ranklol = fc["rankLol"];
-                bool awp = fc["AWP"] == "on" ? true : false; //CS ROLES
-                bool lurker = fc["Lurker"] == "on" ? true : false;
-                bool rifle = fc["Rifler"] == "on" ? true : false;
-                bool igl = fc["IGL"] == "on" ? true : false;
-                bool supporter = fc["Supporter"] == "on" ? true : false;
-                bool frag = fc["Fragger"] == "on" ? true : false;
-                bool top = fc["Top"] == "on" ? true : false; //LOL ROLES
-                bool mid = fc["Mid"] == "on" ? true : false;
-                bool jung = fc["Jungle"] == "on" ? true : false;
-                bool adc = fc["Adc"] == "on" ? true : false;
-                bool sup = fc["Support"] == "on" ? true : false;
-                string gameIDcs = fc["gameConnectIDcs"];
-                string gameNickcs = fc["gameNickNamecs"];
-                string gameNicklol = fc["gameNickNamelol"];
-
-                DateTime date = new DateTime();
-                date = Convert.ToDateTime(date1);
-
-                users usr = new users();
-                userGames usrGameLol = new userGames();
-                userGames usrGameCs = new userGames();
-                userGames usrGameFort = new userGames();
-                userGames usrGamePubg = new userGames();
-                userGames usrGameRocket = new userGames();
-                userGameDescs topData = new userGameDescs();
-                userGameDescs midData = new userGameDescs();
-                userGameDescs jungData = new userGameDescs();
-                userGameDescs adcData = new userGameDescs();
-                userGameDescs supData = new userGameDescs();
-                userGameDescs lolRankData = new userGameDescs();
-                userGameDescs awpData = new userGameDescs();
-                userGameDescs lurkerData = new userGameDescs();
-                userGameDescs rifleData = new userGameDescs();
-                userGameDescs iglData = new userGameDescs();
-                userGameDescs supporterData = new userGameDescs();
-                userGameDescs fragData = new userGameDescs();
-                userGameDescs csRankData = new userGameDescs();
-                userGameDescs usrGameDescCs = new userGameDescs();
-                List<userGameDescs> userGameDescListLol = new List<userGameDescs>();
-                List<userGameDescs> userGameDescListCs = new List<userGameDescs>();
-                List<userGames> userGameList = new List<userGames>();
-                if (lol)
+                usrGameCs.game = db.game.Find(2);
+                usrGameCs.time = csHours;
+                usrGameCs.gameConnectID = gameIDcs;
+                usrGameCs.gameNickName = gameNickcs;
+                csRankData.compAtt = db.compAtt.Find(int.Parse(rankcs));
+                userGameDescListCs.Add(csRankData);
+                if (awp)
                 {
-                    usrGameLol.game = db.game.Find(1);
-                    usrGameLol.time = lolHours;
-                    usrGameLol.gameNickName = gameNicklol;
-                    lolRankData.compAtt = db.compAtt.Find(int.Parse(ranklol));
-                    userGameDescListLol.Add(lolRankData);
-                    if (top)
-                    {
-                        topData.compAtt = db.compAtt.Find(82);
-                        userGameDescListLol.Add(topData);
-                    }
-                    if (jung)
-                    {
-                        jungData.compAtt = db.compAtt.Find(84);
-                        userGameDescListLol.Add(jungData);
-                    }
-                    if (mid)
-                    {
-                        midData.compAtt = db.compAtt.Find(83);
-                        var a2 = midData;
-                        userGameDescListLol.Add(a2);
-                    }
-                    if (adc)
-                    {
-                        adcData.compAtt = db.compAtt.Find(85);
-                        userGameDescListLol.Add(adcData);
-
-                    }
-                    if (sup)
-                    {
-                        supData.compAtt = db.compAtt.Find(86);
-                        userGameDescListLol.Add(supData);
-                    }
-                    usrGameLol.userGameDesc = userGameDescListLol;
-                    userGameList.Add(usrGameLol);
+                    awpData.compAtt = db.compAtt.Find(105);
+                    userGameDescListCs.Add(awpData);
                 }
-                if (cs)
+                if (lurker)
                 {
-                    usrGameCs.game = db.game.Find(2);
-                    usrGameCs.time = csHours;
-                    usrGameCs.gameConnectID = gameIDcs;
-                    usrGameCs.gameNickName = gameNickcs;
-                    csRankData.compAtt = db.compAtt.Find(int.Parse(rankcs));
-                    userGameDescListCs.Add(csRankData);
-                    if (awp)
-                    {
-                        awpData.compAtt = db.compAtt.Find(105);
-                        userGameDescListCs.Add(awpData);
-                    }
-                    if (lurker)
-                    {
-                        lurkerData.compAtt = db.compAtt.Find(106);
-                        userGameDescListCs.Add(lurkerData);
-                    }
-                    if (rifle)
-                    {
-                        rifleData.compAtt = db.compAtt.Find(107);
-                        userGameDescListCs.Add(rifleData);
-                    }
-                    if (igl)
-                    {
-                        iglData.compAtt = db.compAtt.Find(108);
-                        userGameDescListCs.Add(iglData);
-
-                    }
-                    if (supporter)
-                    {
-                        supporterData.compAtt = db.compAtt.Find(109);
-                        userGameDescListCs.Add(supporterData);
-                    }
-                    if (frag)
-                    {
-                        fragData.compAtt = db.compAtt.Find(110);
-                        userGameDescListCs.Add(fragData);
-                    }
-                    usrGameCs.userGameDesc = userGameDescListCs;
-                    userGameList.Add(usrGameCs);
+                    lurkerData.compAtt = db.compAtt.Find(106);
+                    userGameDescListCs.Add(lurkerData);
                 }
-                if (fort)
+                if (rifle)
                 {
-                    usrGameFort.game = db.game.Find(5);
-                    userGameList.Add(usrGameFort);
+                    rifleData.compAtt = db.compAtt.Find(107);
+                    userGameDescListCs.Add(rifleData);
                 }
-                if (pubg)
+                if (igl)
                 {
-                    usrGamePubg.game = db.game.Find(3);
-                    userGameList.Add(usrGamePubg);
+                    iglData.compAtt = db.compAtt.Find(108);
+                    userGameDescListCs.Add(iglData);
+
                 }
-                if (rocket)
+                if (supporter)
                 {
-                    usrGameRocket.game = db.game.Find(4);
-                    userGameList.Add(usrGameRocket);
+                    supporterData.compAtt = db.compAtt.Find(109);
+                    userGameDescListCs.Add(supporterData);
                 }
-
-                usr.username = usrname; //User table data
-                usr.password = psw;
-                usr.dateOfBirth = date;
-                usr.role = db.role.Where(u => u.id == 3).FirstOrDefault();
-                usr.mic = mic;
-                usr.headset = hs;
-                usr.userGame = userGameList;
-
-                db.user.Add(usr);
-                db.SaveChanges();
-                return RedirectToAction("Index", "users");
+                if (frag)
+                {
+                    fragData.compAtt = db.compAtt.Find(110);
+                    userGameDescListCs.Add(fragData);
+                }
+                usrGameCs.userGameDesc = userGameDescListCs;
+                userGameList.Add(usrGameCs);
             }
+            if (fort)
+            {
+                usrGameFort.game = db.game.Find(5);
+                userGameList.Add(usrGameFort);
+            }
+            if (pubg)
+            {
+                usrGamePubg.game = db.game.Find(3);
+                userGameList.Add(usrGamePubg);
+            }
+            if (rocket)
+            {
+                usrGameRocket.game = db.game.Find(4);
+                userGameList.Add(usrGameRocket);
+            }
+
+            usr.username = usrname; //User table data
+            usr.password = psw;
+            usr.dateOfBirth = date;
+            usr.role = db.role.Where(u => u.id == 3).FirstOrDefault();
+            usr.mic = mic;
+            usr.headset = hs;
+            usr.search = true;
+            usr.userGame = userGameList;
+
+            db.user.Add(usr);
+            db.SaveChanges();
+            return RedirectToAction("Index", "users");
+            //}
 
             return RedirectToAction("Login");
         }
@@ -358,7 +384,7 @@ namespace TMF.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id,username,password,dateOfBirth,mic,headset,online")] users users, FormCollection fc)
         {
-            if (users.id!= null && users.username!="" && users.password!="")
+            if (users.id != null && users.username != "" && users.password != "")
             {
                 //userGame table data
                 bool lol = fc["League"] == "on" ? true : false;
@@ -575,7 +601,7 @@ namespace TMF.Controllers
 
                 }
 
-                if (cs == false && usrGameCs!=null)//Cs verisi var ve tiki kaldırılmış tüm cs verilerini siler.
+                if (cs == false && usrGameCs != null)//Cs verisi var ve tiki kaldırılmış tüm cs verilerini siler.
                 {
                     foreach (var item in csDataList)
                     {
@@ -752,7 +778,7 @@ namespace TMF.Controllers
                 usr.password = users.password;
                 usr.username = users.username;
 
-                if (usr.userGame.Any(u=>u.game.id==5) == false &&  fort) // fortnite yok ama işaretlemiş - fort ekle
+                if (usr.userGame.Any(u => u.game.id == 5) == false && fort) // fortnite yok ama işaretlemiş - fort ekle
                 {
                     userGames usrGame = new userGames();
                     usrGame.game = db.game.Find(5);
@@ -766,7 +792,7 @@ namespace TMF.Controllers
 
                 }
 
-                if (usr.userGame.Any(u => u.game.id == 3) == false &&  pubg)// pubg yok ama işaretlemiş - pubg ekle
+                if (usr.userGame.Any(u => u.game.id == 3) == false && pubg)// pubg yok ama işaretlemiş - pubg ekle
                 {
                     userGames usrGame = new userGames();
                     usrGame.game = db.game.Find(3);
@@ -802,9 +828,9 @@ namespace TMF.Controllers
         }
 
         [HttpPost]
-        public JsonResult userSearchable(bool bit,string id)
+        public JsonResult userSearchable(bool bit, string id)
         {
-            if (id !="0")
+            if (id != "0")
             {
                 users usr = db.user.Find(int.Parse(id));
                 if (usr.search == true && bit == false) //Aranmak istemiyor.
@@ -843,6 +869,14 @@ namespace TMF.Controllers
                         db.userGameDesc.Remove(itemDesc);
                     }
                     db.userGame.Remove(item);
+                }
+                foreach (var item in db.lobby.Where(u => u.userAl.id == users.id))
+                {
+                    db.lobby.Remove(item);
+                }
+                foreach (var item in db.lobby.Where(u => u.userGon.id == users.id))
+                {
+                    db.lobby.Remove(item);
                 }
                 db.user.Remove(users);
                 db.SaveChanges();

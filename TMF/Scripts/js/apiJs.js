@@ -34,6 +34,7 @@ function getSteamDatas() {
                 $.each(data.response.games, function (index, option) {
                     $("#steamGameList").append('<li>' + option.name + '</li>');
                 });
+                $("#steamPopup").dialog("open");
             }
             
 

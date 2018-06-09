@@ -5,7 +5,7 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Profile</h2>
 <link href="~/Content/css/userDetails.css" rel="stylesheet" />
 
 <div class="content py-5  bg-light">
@@ -35,12 +35,16 @@
                                         <input class="form-control" type="text" value="@Model.username" disabled>
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <label class="col-lg-3 col-form-label form-control-label">Password</label>
-                                    <div class="col-lg-9">
-                                        <input class="form-control" type="text" value="@Model.password" disabled>
+                                @if (Model.id == int.Parse(Session["id"].ToString()))
+                                {
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label form-control-label">Password</label>
+                                        <div class="col-lg-9">
+                                            <input class="form-control" type="text" value="@Model.password" disabled>
+                                        </div>
                                     </div>
-                                </div>
+                                }
+
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label form-control-label">Age</label>
                                     @{ int age = 0;
@@ -58,7 +62,7 @@
                                     <label class="col-lg-3 col-form-label form-control-label">Mic</label>
                                     <div class="col-lg-9">
                                         <label for="mic" class="btn btn-primary">
-                                            <input type="checkbox" id="mic" name="mic" class="badgebox" value="@Model.mic" disabled>
+                                            <input type="checkbox" id="mic" name="mic" class="badgebox" @if (Model.mic) { <text> checked </text> } disabled>
                                             <span class="badge">
                                                 &check;
                                             </span>
@@ -69,20 +73,23 @@
                                     <label class="col-lg-3 col-form-label form-control-label">Headset</label>
                                     <div class="col-lg-9">
                                         <label for="mic" class="btn btn-primary">
-                                            <input type="checkbox" id="headset" name="headset" class="badgebox" value="@Model.headset" disabled>
+                                            <input type="checkbox" id="headset" name="headset" class="badgebox" @if (Model.headset) { <text> checked </text> } disabled>
                                             <span class="badge">
                                                 &check;
                                             </span>
                                         </label>
                                     </div>
                                 </div>
-
-                                <div class="form-group row">
-                                    <label class="col-lg-6 col-form-label form-control-label"></label>
-                                    <div class="col-lg-6">
-                                        <input type="button" class="btn btn-success" value="Go to Edit" onclick="getEdit(@Model.id)">
+                                @if (Model.id == int.Parse(Session["id"].ToString()))
+                                {
+                                    <div class="form-group row">
+                                        <label class="col-lg-6 col-form-label form-control-label"></label>
+                                        <div class="col-lg-6">
+                                            <input type="button" class="btn btn-success" value="Go to Edit" onclick="getEdit(@Model.id)">
+                                        </div>
                                     </div>
-                                </div>
+                                }
+
                             </form>
                         </div>
                     </div>
@@ -93,39 +100,39 @@
                         </div>
                         <div class="card-body">
                             <form id="tab" class="form" role="form" autocomplete="off">
-                                @foreach (userGames item in Model.userGame.ToList())
+                                @for (int i = 0; i < Model.userGame.ToList().Count(); i++)
                                 {
 
                                     <div class="form-group row">
-                                        <label class="col-lg-3 col-form-label form-control-label" ><b>Game Name</b></label>
+                                        <label class="col-lg-3 col-form-label form-control-label"><b>Game Name</b></label>
                                         <div class="col-lg-9">
-                                            <input class="form-control" type="text" value="@item.game.name" disabled>
+                                            <input class="form-control" type="text" value="@Model.userGame[i].game.name" disabled>
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
                                         <label class="col-lg-3 col-form-label form-control-label">Hours</label>
                                         <div class="col-lg-9">
-                                            <input class="form-control" type="text" value="@item.time" disabled>
+                                            <input class="form-control" type="text" value="@Model.userGame[i].time" disabled>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-lg-3 col-form-label form-control-label">Game Nickname</label>
                                         <div class="col-lg-9">
-                                            <input class="form-control" type="text" value="@item.gameNickName" disabled>
+                                            <input class="form-control" type="text" value="@Model.userGame[i].gameNickName" disabled>
                                         </div>
                                     </div>
-                                    if (item.gameConnectID.AsBool())
+                                    if (Model.userGame[i].gameConnectID != null)
                                     {
                                         <div class="form-group row">
                                             <label class="col-lg-3 col-form-label form-control-label">Steam ID</label>
                                             <div class="col-lg-9">
-                                                <input class="form-control" type="text" value="@item.gameConnectID" disabled>
+                                                <input class="form-control" type="text" value="@Model.userGame[i].gameConnectID" disabled>
                                             </div>
                                         </div>
                                     }
 
-                                    foreach (var itemDesc in item.userGameDesc)
+                                    foreach (var itemDesc in Model.userGame[i].userGameDesc)
                                     {
                                         <div class="form-group row">
                                             <label class="col-lg-3 col-form-label form-control-label">@itemDesc.compAtt.gameComponent.name</label>
@@ -134,8 +141,50 @@
                                             </div>
                                         </div>
                                     }
-
                                 }
+                                @*@foreach (var item in Model.userGame)
+                                    {
+
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label form-control-label"><b>Game Name</b></label>
+                                            <div class="col-lg-9">
+                                                <input class="form-control" type="text" value="@item.game.name" disabled>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label form-control-label">Hours</label>
+                                            <div class="col-lg-9">
+                                                <input class="form-control" type="text" value="@item.time" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label form-control-label">Game Nickname</label>
+                                            <div class="col-lg-9">
+                                                <input class="form-control" type="text" value="@item.gameNickName" disabled>
+                                            </div>
+                                        </div>
+                                        if (item.gameConnectID != null)
+                                        {
+                                            <div class="form-group row">
+                                                <label class="col-lg-3 col-form-label form-control-label">Steam ID</label>
+                                                <div class="col-lg-9">
+                                                    <input class="form-control" type="text" value="@item.gameConnectID" disabled>
+                                                </div>
+                                            </div>
+                                        }
+
+                                        foreach (var itemDesc in item.userGameDesc)
+                                        {
+                                            <div class="form-group row">
+                                                <label class="col-lg-3 col-form-label form-control-label">@itemDesc.compAtt.gameComponent.name</label>
+                                                <div class="col-lg-9">
+                                                    <input class="form-control" type="email" value="@itemDesc.compAtt.value" disabled>
+                                                </div>
+                                            </div>
+                                        }
+
+                                    }*@
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label form-control-label"></label>
                                     <div class="col-lg-9">
@@ -153,7 +202,7 @@
         </div>
     </div>
 
-    
+
 
 </div>
 
@@ -163,8 +212,16 @@
     <h6><b>Game List</b></h6>
     <ul id="steamGameList"></ul>
 </div>
+@if (Model.userGame.Any(u=>u.game.id==2))
+{
+    <input type="hidden" id="steamID" value="@Model.userGame.Where(u=>u.game.id==2).FirstOrDefault().gameConnectID" />
 
-<input type="hidden" id="steamID" value="@Model.userGame.Where(u=>u.game.id==2).FirstOrDefault().gameConnectID" />
+}
+else
+{
+    <input type="hidden" id="steamID" value="0" />
+
+}
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
 
 
@@ -180,4 +237,4 @@
             location.href = "/users/edit/" + ids;
         }
     </script>
-    }
+}

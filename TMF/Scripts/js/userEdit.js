@@ -93,7 +93,7 @@ function getDiv(ids) {
             $("#csDiv").slideDown("slow");
             $("#Counter").data("check", "on");
         }
-        else {
+        else if ($("#Counter").data("check") == "on"){
             $("#csDiv").slideUp("slow");
             $("#Counter").data("check", "off");
         }
@@ -115,14 +115,14 @@ function getDiv2(ids) {
     }
 
     if (ids == "2") {
-        if ($("#Counter").data("check") == "off") {
+        if ($("#Counter").data("check") == "on") {
             // Run the effect
             $("#csDivNew").slideDown("slow");
-            $("#Counter").data("check", "on");
+            $("#Counter").data("check", "off");
         }
         else {
             $("#csDivNew").slideUp("slow");
-            $("#Counter").data("check", "off");
+            $("#Counter").data("check", "on");
         }
     }
 

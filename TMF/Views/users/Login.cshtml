@@ -18,30 +18,11 @@
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="~/Scripts/js/loginJS.js"></script>
     <script>
-
-
-        $(document).ready(function () {
-            $("#kayitBtn").click(function () {
-                $("#kayitHid").show();
-                $("#loginDiv").hide();
-            });
-            $("#login-btn2").click(function () {
-                $("#kayitHid").hide();
-                $("#loginDiv").show();
-            });
-            $.ajax({
-                type: 'GET',
-                url: '/games/getGames',
-                datatype: 'json',
-                success: function (data) {
-                    $.each(data, function (index, option) { 
-                        $("#cbList").append('<input class="cbList-text" value="' + option.Value + '" name="' + option.Value + '" type="checkbox" />' + option.Text+'</br>');
-                    });
-                }
-            });
-        });
-
+        function goSignUp() {
+            location.href = "/users/Create";
+        }
     </script>
+    
 </head>
 <body>
     <input type="hidden" name="registerPage" value="1" />
@@ -59,26 +40,7 @@
                             <input type="text" name="usernameL" placeholder="Username" class="form-control" />
                             <input type="password" name="passL" placeholder="Password" class="form-control" />
                             <button type="submit" class="btn btn-default btn-block btn-custom" id="login-btn1">Login</button>
-                            <button type="button" id="kayitBtn" class="btn btn-default btn-block btn-custom">Kayıt Ol</button>
-                            <button type="button" class="btn btn-default btn-block btn-custom " style="background-color:dodgerblue" onclick="location.href='@Url.Action("Index", "Find" )'">
-                                Return Home
-                            </button>
-                        </div>
-                        
-                    </form>
-
-                    <form action="@Url.Action("Create","users")" method="post">
-                        <div id="kayitHid" style="display: none;">
-                            <input type="text" name="usernameK" placeholder="Username" class="form-control" />
-                            <input type="password" name="passK" placeholder="Password" class="form-control" />
-                            <input type="email" name="emailK" placeholder="abc@dce.com" class="form-control" />
-                            <label class="cbList-label">Games</label>
-                            <div class="cbList-text" id="cbList">
-                                @*DB'de bulunan oyun sayısı kadar checkbox.*@
-
-                            </div>
-                            <button type="submit" id="kaydol" class="btn btn-default btn-block btn-custom">Sign Up</button>
-                            <button type="button" class="btn btn-default btn-block btn-custom" id="login-btn2">Login</button>
+                            <button type="button" id="kayitBtn" class="btn btn-default btn-block btn-custom" onclick="goSignUp()">Kayıt Ol</button>
                             <button type="button" class="btn btn-default btn-block btn-custom " style="background-color:dodgerblue" onclick="location.href='@Url.Action("Index", "Find" )'">
                                 Return Home
                             </button>

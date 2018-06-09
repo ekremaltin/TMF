@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Team Mate Finder</title>
+    <title>@ViewBag.Title</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
@@ -11,14 +11,14 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
     <script src="~/Scripts/js/bootstrap-select.js"></script>
     <script src="~/Scripts/js/layout.js"></script>
-    
+
 </head>
 <body>
     <link href="~/Content/css/layout.css" rel="stylesheet" />
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" padding>
+    <nav class="navbar navbar-expand-lg navbar-light " style="background-color:rgb(193, 193, 193)!important" padding>
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">Team Mate Find</a>
+            <a class="navbar-brand" href="@Url.Action("Index","Find")">Team Mate Find</a>
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -38,22 +38,26 @@
                         <span class="dropdown-item disabled" href="#">Fortnite</span>
                     </div>
                 </li>
-                <li class="nav-item">
-                    <span class="bosluk"> </span>
-                </li>
 
-                <li class="nav-item">
+                <li class="nav-item" style="margin-left:180px">
                     <a class="nav-link" href="@Url.Action("Index", "Find")">Home </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Listeler", "Find")">Listeler </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Index", "users")">User List</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Create", "users")">User Create</a>
-                </li>
+                @if (Session["id"] != null)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Listeler", "Find")"> Invite Lobbies </a>
+                    </li>
+                }
+
+                @if (Session["id"] != null && Session["yetki"].ToString() == "1")
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index", "users")">User List</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Create", "users")">User Create</a>
+                    </li>
+                }
                 <li class="nav-item">
                     <a class="nav-link" href="@Url.Action("Search", "Find")">Cs Search</a>
                 </li>
@@ -67,7 +71,7 @@
 
                 @if (Session["id"] != null)
                 {
-                    
+                    <li class="btn btn-outline-primary my-2 my-md-0"><span class="fas fa-user"></span> @Html.ActionLink("Profile", "Details/"+Session["id"], "users")</li>
                     <li class="btn btn-outline-danger my-2 mr-2 my-sm-0 ">@Html.ActionLink("Log Out", "LogOut", "users")</li>
                 }
                 else
@@ -80,8 +84,9 @@
             </ul>
         </div>
     </nav>
-    
-    <div class="container body-content">
+
+    <div class="container body-content " style="background-color:rgb(193, 193, 193)!important">
+
         @RenderBody()
         <hr />
     </div>

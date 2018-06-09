@@ -406,18 +406,22 @@
 
 }
 
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 <script src="~/Scripts/js/userCreate.js"></script>
 <script src="~/Scripts/bootstrap.js"></script>
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
-
-@section scripts
+@*@section scripts
 {
-
-}
+    <script>
+        $(function () {
+            $("#createBtn").on("click", function () {
+                kontrol();
+            });
+            function kontrol() {
+               
+            };
+        });
+    </script>
+}*@

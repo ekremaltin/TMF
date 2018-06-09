@@ -3,9 +3,7 @@
     ViewBag.Title = "Search";
 }
 <link href="~/Content/css/searchCss.css" rel="stylesheet" />
-
-<h2>Search</h2>
-<div class="row">
+<div class="row" style="background-color:white">
     <div class="col-lg-5 col-md-5">
         <form method="post" action="@Url.Action("Search")" id="form" enctype="multipart/form-data">
             <div class="form-group">
@@ -230,7 +228,14 @@
                                     }
                                 </td>
                                 <td>
-                                    <input type="button" class="btn btn-primary" value="Davet Et" onclick="location.href = '@Url.Action("DavetEt", new { DavetEdilenId = item.id, oyunId = 2 })'">
+                                    @if (Session["id"] != null)
+                                    {
+                                        <input type="button" class="btn btn-primary" value="Davet Et" onclick="location.href = '@Url.Action("DavetEt", new { DavetEdilenId = item.id, oyunId = 2 })'">
+                                    }
+                                    else
+                                    {
+                                        <input type="button" class="btn btn-primary" value="Davet Et" onclick="alert('If you want to Invite someone, you need to Login!')">
+                                    }
                                 </td>
                             </tr>
                         }
